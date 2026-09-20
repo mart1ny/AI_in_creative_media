@@ -17,26 +17,26 @@
 
 ```
 LR1/
-  configs/          параметры запуска (prompt, seed, steps)
+  configs/          параметры запуска (запрос, зерно, шаги)
   src/              скрипты генерации и проверки
-  notebooks/        ноутбук для Google Colab (GPU)
-  data/             бриф варианта и происхождение prompt
+  notebooks/        ноутбук для Google Colab с графическим процессором
+  data/             бриф варианта и происхождение запроса
   artifacts/        PNG и manifest.json по запускам
   reports/          environment.txt, логи, отчёт
 ```
 
-Кэш весов и `.venv` в сдаваемый архив и git не входят.
+Кэш весов и виртуальное окружение в сдаваемый архив и git не входят.
 
-## Как запускать в Google Colab (GPU)
+## Как запускать в Google Colab
 
 1. Откройте [Google Colab](https://colab.research.google.com/).
-2. Runtime → Change runtime type → GPU (T4 достаточно).
+2. Среда выполнения → сменить тип → графический процессор (Tesla T4 достаточно).
 3. Загрузите `notebooks/LR01_variant2_colab.ipynb` или клонируйте этот репозиторий в ячейке.
-4. Run all. Первый запуск скачивает закреплённую ревизию SD Turbo.
-5. File → Download `.ipynb` — так сохраняются выводы ячеек.
-6. Скачайте zip с `artifacts/` и `reports/` из последней ячейки.
+4. Выполните все ячейки. Первый запуск скачивает закреплённую ревизию SD Turbo.
+5. Файл → скачать `.ipynb` — так сохраняются выводы ячеек.
+6. Скачайте архив с `artifacts/` и `reports/` из последней ячейки.
 
-После скачивания файлы возвращаются в этот репозиторий и коммитятся. Промпт и финальная генерация выполняются отдельно, в конце работы.
+Факт проверки 20.09.2026 (Colab, Tesla T4): два PNG 512×512, SHA-256 `4b14be2c…c29f02fa`, поле `"exact_sha256_match": true`. Исполненный ноутбук лежит в `notebooks/LR01_variant2_colab.ipynb`.
 
 ## Локальный запуск (CPU допустим)
 
@@ -50,4 +50,4 @@ export HF_HOME="$PWD/cache/huggingface"
 python src/run_reproducibility.py 2>&1 | tee reports/run_console.log
 ```
 
-Критерий: `reports/sha256_comparison.json` содержит `"exact_sha256_match": true` **внутри той же среды**. Совпадение с чужим CPU/GPU запуском не требуется.
+Критерий: `reports/sha256_comparison.json` содержит `"exact_sha256_match": true` **внутри той же среды**. Совпадение с чужим запуском на CPU или GPU не требуется.
