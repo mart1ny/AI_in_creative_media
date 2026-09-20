@@ -1,0 +1,7 @@
+{
+  "broken_line": "torch.Generator(device=\"cuda\").manual_seed(SEED)",
+  "how_reproduced": "subprocess with CUDA_VISIBLE_DEVICES empty",
+  "child_stdout": "child cuda_available = False\nchild symptom = AcceleratorError: CUDA error: no CUDA-capable device is detected\nSearch for `cudaErrorNoDevice' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.\nCUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1\nDevice-side assertions were explicitly omitted for this error check; the error probably arose while initializing the DSA handlers.",
+  "fix": "torch.Generator(device=\"cpu\").manual_seed(SEED)",
+  "why_cpu_generator": "Diffusers принимает CPU Generator при инференсе на GPU. Так seed задаётся одинаково на ноутбуке без CUDA и на Colab."
+}

@@ -1,0 +1,9 @@
+{
+  "checked_utc": "2026-09-20T08:30:03.919026+00:00",
+  "run_001_sha256": "4b14be2c2c8c2e8526e5e5384bd603f0a80fdc71184dd426294bd4b4c29f02fa",
+  "run_002_sha256": "4b14be2c2c8c2e8526e5e5384bd603f0a80fdc71184dd426294bd4b4c29f02fa",
+  "exact_sha256_match": true,
+  "same_image_size": true,
+  "same_image_mode": true,
+  "interpretation": "PASS: два запуска в одной зафиксированной среде побитово совпали."
+}
