@@ -4,8 +4,14 @@
   "variant": 2,
   "model_id": "stabilityai/sd-turbo",
   "revision": "b261bac6fd2cf515557d5d0707481eafa0485ec2",
-  "prompt": "PLACEHOLDER_SET_BEFORE_GENERATION",
-  "prompt_note": "Финальный prompt варианта 2 фиксируется отдельным коммитом перед запуском в Colab.",
+  "prompt": "square podcast cover about the urban environment, visual metaphor of a city as a living circulatory system of streets, night aerial view of glowing paths and quiet courtyards, dusk teal and warm brick amber palette, clean centered composition, no text, no logo, no people, no recognizable faces",
+  "prompt_structure": {
+    "subject": "square podcast cover about the urban environment",
+    "metaphor": "city as a living circulatory system of streets; night aerial view of glowing paths and quiet courtyards",
+    "palette": "dusk teal and warm brick amber",
+    "composition": "clean centered composition",
+    "constraints": "no text, no logo, no people, no recognizable faces"
+  },
   "seed": 20260920,
   "num_inference_steps": 1,
   "guidance_scale": 0.0,

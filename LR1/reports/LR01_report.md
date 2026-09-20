@@ -39,7 +39,13 @@
 
 Вариант 2 требует визуальную метафору городской среды, которая считывается без текста, без узнаваемых людей и без товарных знаков.
 
-Финальный текст prompt фиксируется в `configs/run_config.json` отдельным коммитом непосредственно перед генерацией. До этого в конфиге стоит явный placeholder, чтобы не смешать демо-промпт методички с индивидуальным заданием.
+Демо-промпт методички про scientific festival не используется. Авторский prompt зафиксирован в `configs/run_config.json`:
+
+```
+square podcast cover about the urban environment, visual metaphor of a city as a living circulatory system of streets, night aerial view of glowing paths and quiet courtyards, dusk teal and warm brick amber palette, clean centered composition, no text, no logo, no people, no recognizable faces
+```
+
+Метафора — город как кровеносная система улиц (ночной вид сверху). Её можно объяснить без надписи: светящиеся пути = движение и связь, дворы = тихие узлы. Это концепт обложки, не документ о конкретном районе.
 
 Ограничения входа:
 
