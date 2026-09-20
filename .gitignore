@@ -1,0 +1,19 @@
+.venv/
+.venv*/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.DS_Store
+
+# Model weights and Hugging Face cache (too large, not for submission)
+cache/
+**/cache/huggingface/
+.cache/
+
+# Local secrets
+.env
+.env.*
+*.pt
+*.bin
+*.safetensors
