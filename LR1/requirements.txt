@@ -1,0 +1,13 @@
+# PyTorch: install the official wheel for your device first, see
+# https://pytorch.org/get-started/locally/
+# Colab already ships a CUDA build — do not reinstall CPU torch there.
+#
+# Methodical pin `transformers>=4.51,<5` conflicts with `diffusers==0.40.0`
+# (huggingface-hub >=1.23 vs <1). Transformers 5.17.0 is the compatible set
+# used in the course reproducibility check.
+
+diffusers==0.40.0
+transformers==5.17.0
+accelerate>=1.2,<2
+safetensors>=0.5,<1
+Pillow>=11,<13
