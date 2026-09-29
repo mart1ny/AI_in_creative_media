@@ -1,0 +1,187 @@
+[
+  {
+    "seed": 101,
+    "base": {
+      "seed": 101,
+      "params": {
+        "size": 96,
+        "cell": 32,
+        "octaves": 4,
+        "persistence": 0.5,
+        "quantize": 8,
+        "interp": "smooth"
+      },
+      "sha256_pixels": "93fae5913d79728429ddcdf533063672739fd51e5afa6a7ac243e3e6a80d290b",
+      "sha256_png": "9779f1fe26d3815c5663d067f4b3454c0be748ce6e64f18bf79366cfb0051b59",
+      "mean": 0.4502076525054466,
+      "contrast": 0.1334127822998053,
+      "edge": 0.010212848297213622,
+      "entropy": 7.040183729460281
+    },
+    "factor": {
+      "seed": 101,
+      "params": {
+        "size": 96,
+        "cell": 64,
+        "octaves": 4,
+        "persistence": 0.5,
+        "quantize": 8,
+        "interp": "smooth"
+      },
+      "sha256_pixels": "3ee1a8a1b562ef8e1dd3d5f47dda26b76f1352d1b5285c880d22beb39316c738",
+      "sha256_png": "403656e7ca82aa25a183e94777648cf0eb0cbb7ec03c1225459fec16f1369fc0",
+      "mean": 0.5030118123638344,
+      "contrast": 0.09441631202100684,
+      "edge": 0.004707602339181286,
+      "entropy": 6.497628915111665
+    }
+  },
+  {
+    "seed": 102,
+    "base": {
+      "seed": 102,
+      "params": {
+        "size": 96,
+        "cell": 32,
+        "octaves": 4,
+        "persistence": 0.5,
+        "quantize": 8,
+        "interp": "smooth"
+      },
+      "sha256_pixels": "68ad1f5d571eed1219f1f1635c307f1c7569cc04d7117f23e6efe41684273668",
+      "sha256_png": "0a55b05c727f5c6e586363b48209a50d1df2e0de173aaad764f5c9eda3f73ce5",
+      "mean": 0.5334295002723312,
+      "contrast": 0.12235312814418071,
+      "edge": 0.009784141726866185,
+      "entropy": 6.915136810361154
+    },
+    "factor": {
+      "seed": 102,
+      "params": {
+        "size": 96,
+        "cell": 64,
+        "octaves": 4,
+        "persistence": 0.5,
+        "quantize": 8,
+        "interp": "smooth"
+      },
+      "sha256_pixels": "2f901e969766f39310cbdce5506b0e6d1705f0c8edca32378d88108c92234b72",
+      "sha256_png": "4fb5827c9fd73fa613ab1f24213067416de3cf676b7ca9b1d4aea11d296d2f0f",
+      "mean": 0.5277394812091504,
+      "contrast": 0.06575886604583975,
+      "edge": 0.003915978672170623,
+      "entropy": 5.949332323352527
+    }
+  },
+  {
+    "seed": 103,
+    "base": {
+      "seed": 103,
+      "params": {
+        "size": 96,
+        "cell": 32,
+        "octaves": 4,
+        "persistence": 0.5,
+        "quantize": 8,
+        "interp": "smooth"
+      },
+      "sha256_pixels": "29de29fed0ec32e292ab5630cd70251ee4c5be5c0774b271b4eb05cb6b365698",
+      "sha256_png": "43943352661849a0ab7ed84c815d5395658111f918875cca39ff689dc9f56586",
+      "mean": 0.4103226273148148,
+      "contrast": 0.13178940765827826,
+      "edge": 0.009120227038183694,
+      "entropy": 6.953374583557598
+    },
+    "factor": {
+      "seed": 103,
+      "params": {
+        "size": 96,
+        "cell": 64,
+        "octaves": 4,
+        "persistence": 0.5,
+        "quantize": 8,
+        "interp": "smooth"
+      },
+      "sha256_pixels": "567f35650a763fc4175006eacd0fcd458280ce3cf72cc14afecb0ec0ff0c884f",
+      "sha256_png": "bf86e7bbe76befaf188588f5e60e4ce3ae668b32f6d3e45f4e5f1a256dd68938",
+      "mean": 0.46102600762527235,
+      "contrast": 0.13334714311833565,
+      "edge": 0.005406346749226006,
+      "entropy": 6.592156090216753
+    }
+  },
+  {
+    "seed": 104,
+    "base": {
+      "seed": 104,
+      "params": {
+        "size": 96,
+        "cell": 32,
+        "octaves": 4,
+        "persistence": 0.5,
+        "quantize": 8,
+        "interp": "smooth"
+      },
+      "sha256_pixels": "7bbc5d91842e833b68c2863670fecb4eb9291ed2e08ae5bfd4fa60fac5bda7ec",
+      "sha256_png": "5b4767ca562a960be65a60746f1557f762b03c31558187bd27729f2a4965dfb0",
+      "mean": 0.5008306100217865,
+      "contrast": 0.14669774887512202,
+      "edge": 0.010359477124183007,
+      "entropy": 7.196072456448111
+    },
+    "factor": {
+      "seed": 104,
+      "params": {
+        "size": 96,
+        "cell": 64,
+        "octaves": 4,
+        "persistence": 0.5,
+        "quantize": 8,
+        "interp": "smooth"
+      },
+      "sha256_pixels": "a59e2dc7c605b7453b35f7a9045a8590274258c3287fea4ac5b148beec54170c",
+      "sha256_png": "36461a967310a61e26f15689bf2bc2b98b5e0087a742402ae02e41014e86c040",
+      "mean": 0.49791539011437913,
+      "contrast": 0.1266668983397711,
+      "edge": 0.004424234606123151,
+      "entropy": 6.917439934553262
+    }
+  },
+  {
+    "seed": 105,
+    "base": {
+      "seed": 105,
+      "params": {
+        "size": 96,
+        "cell": 32,
+        "octaves": 4,
+        "persistence": 0.5,
+        "quantize": 8,
+        "interp": "smooth"
+      },
+      "sha256_pixels": "a0e6a8d0388fcf29b2869a48bbe454863cd16e86ba1d55f2336c75481a2a2232",
+      "sha256_png": "69a02b13e03a6ac7cc24d9b34988bdddce993d6abce09810cb5b68a996a865bf",
+      "mean": 0.49609375,
+      "contrast": 0.12146685776991206,
+      "edge": 0.0091937564499484,
+      "entropy": 6.879674522697006
+    },
+    "factor": {
+      "seed": 105,
+      "params": {
+        "size": 96,
+        "cell": 64,
+        "octaves": 4,
+        "persistence": 0.5,
+        "quantize": 8,
+        "interp": "smooth"
+      },
+      "sha256_pixels": "bf333dc995da9fe0acb9cd16d1e9ab1ff2b077ff7c37a9371df2bd24fc74ee5f",
+      "sha256_png": "96f83eb544010c9e47f1bdc5e1bd3ad5987d8f07221e33aef9216abd2445d618",
+      "mean": 0.5444814644607843,
+      "contrast": 0.10222654329883783,
+      "edge": 0.006109821121431028,
+      "entropy": 6.550370849458531
+    }
+  }
+]

@@ -1,0 +1,39 @@
+{
+  "date_utc": "2026-09-24T13:40:19.994376+00:00",
+  "runs": [
+    {
+      "label": "без seed 1",
+      "command": ".venv/bin/python src/lab01_generator.py --out artifacts/seed_diagnostic/без_seed_1",
+      "seed": 1300885312,
+      "sha256_pixels": "cf213588e227a0e7f9ee72031316855e4a959bf475cb04f474c6622d14a27071",
+      "sha256_png": "577e7034cc60de05db4e1ebfe509ec4b72f604ee17ef89f09778480513d96c10",
+      "warning": "ПРЕДУПРЕЖДЕНИЕ: seed не задан, использован 1300885312 — результат не воспроизводится"
+    },
+    {
+      "label": "без seed 2",
+      "command": ".venv/bin/python src/lab01_generator.py --out artifacts/seed_diagnostic/без_seed_2",
+      "seed": 1343810312,
+      "sha256_pixels": "d55d29472daebf324c13e33a3057df50b562980051b228b307e90ffe88890f56",
+      "sha256_png": "8086483d7c200e5bf982fb4e5ee7833f7f2076aaa2b1a40a1d90cc53dc5370d8",
+      "warning": "ПРЕДУПРЕЖДЕНИЕ: seed не задан, использован 1343810312 — результат не воспроизводится"
+    },
+    {
+      "label": "seed 101 1",
+      "command": ".venv/bin/python src/lab01_generator.py --seed 101 --out artifacts/seed_diagnostic/seed_101_1",
+      "seed": 101,
+      "sha256_pixels": "93fae5913d79728429ddcdf533063672739fd51e5afa6a7ac243e3e6a80d290b",
+      "sha256_png": "9779f1fe26d3815c5663d067f4b3454c0be748ce6e64f18bf79366cfb0051b59",
+      "warning": ""
+    },
+    {
+      "label": "seed 101 2",
+      "command": ".venv/bin/python src/lab01_generator.py --seed 101 --out artifacts/seed_diagnostic/seed_101_2",
+      "seed": 101,
+      "sha256_pixels": "93fae5913d79728429ddcdf533063672739fd51e5afa6a7ac243e3e6a80d290b",
+      "sha256_png": "9779f1fe26d3815c5663d067f4b3454c0be748ce6e64f18bf79366cfb0051b59",
+      "warning": ""
+    }
+  ],
+  "unseeded_equal": false,
+  "seeded_equal": true
+}

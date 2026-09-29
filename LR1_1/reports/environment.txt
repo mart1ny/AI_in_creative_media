@@ -1,0 +1,7 @@
+date_utc: 2026-09-24T13:40:19.994814+00:00
+python: 3.12.12 (main, Oct  9 2025, 11:07:00) [Clang 17.0.0 (clang-1700.6.3.2)]
+executable: /Users/danilvlasuk/AI_in_creative_media/LR1_1/.venv/bin/python
+platform: macOS-26.0.1-arm64-arm-64bit
+zlib: 1.2.12
+third_party_packages: none
+requirements.txt: empty (pip freeze)

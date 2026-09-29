@@ -1,0 +1,163 @@
+started_utc: 2026-09-29T19:40:26.580155+00:00
+interpreter: /Users/danilvlasuk/AI_in_creative_media/LR1_1/.venv/bin/python
+notebook: notebooks/LR01_variant3.ipynb
+
+--- cell 3 execution 1 ---
+from pathlib import Path
+import hashlib, json, platform, statistics, subprocess, sys, zlib
+from datetime import datetime, timezone
+
+ROOT = next((p for p in (Path.cwd(), *Path.cwd().parents) if (p / 'src/lab01_experiment.py').exists()), None)
+if ROOT is None:
+    ROOT = Path.cwd() / 'LR1_1'
+assert (ROOT / 'src/lab01_experiment.py').exists(), 'Не найдена папка LR1_1'
+PYTHON = ROOT / '.venv/bin/python'
+if not PYTHON.exists():
+    PYTHON = Path(sys.executable)
+print('time_utc =', datetime.now(timezone.utc).isoformat())
+print('root =', ROOT)
+print('notebook interpreter =', sys.executable)
+print('experiment interpreter =', PYTHON)
+print('python =', platform.python_version())
+print('platform =', platform.platform())
+print('zlib =', zlib.ZLIB_VERSION)
+freeze = subprocess.run([str(PYTHON), '-m', 'pip', 'freeze'], capture_output=True, text=True, check=True)
+print('third-party freeze =', freeze.stdout.strip() or '(empty)')
+assert not freeze.stdout.strip(), 'Среда эксперимента должна быть без сторонних пакетов'
+import_check = subprocess.run([str(PYTHON), '-c', "import sys; sys.path.insert(0, 'src'); import lab01_generator; print(lab01_generator.SCRIPT_VERSION)"], cwd=ROOT, capture_output=True, text=True, check=True)
+print('generator import/version =', import_check.stdout.strip())
+hypothesis = (ROOT / 'data/hypothesis.md').read_text(encoding='utf-8')
+assert '24.09.2026, 13:39 UTC' in hypothesis and '|Δ| > 2 × s_base' in hypothesis
+print('prior hypothesis and threshold = verified in data/hypothesis.md')
+--- output ---
+time_utc = 2026-09-29T19:40:26.606460+00:00
+root = /Users/danilvlasuk/AI_in_creative_media/LR1_1
+notebook interpreter = /Users/danilvlasuk/AI_in_creative_media/LR1_1/.venv/bin/python
+experiment interpreter = /Users/danilvlasuk/AI_in_creative_media/LR1_1/.venv/bin/python
+python = 3.12.12
+platform = macOS-26.0.1-arm64-arm-64bit
+zlib = 1.2.12
+third-party freeze = (empty)
+generator import/version = 1.0
+prior hypothesis and threshold = verified in data/hypothesis.md
+
+--- cell 5 execution 2 ---
+diagnostic_dir = ROOT / 'artifacts/notebook_seed_diagnostic'
+diagnostic_dir.mkdir(parents=True, exist_ok=True)
+diagnostics = []
+for label, seed in [('without_seed_1', None), ('without_seed_2', None), ('seed_101_1', 101), ('seed_101_2', 101)]:
+    command = [str(PYTHON), 'src/lab01_generator.py', '--out', str(diagnostic_dir / label)]
+    if seed is not None:
+        command += ['--seed', str(seed)]
+    proc = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, check=True)
+    result = json.loads(proc.stdout)
+    diagnostics.append({'label': label, 'command': command, 'seed': result['seed'], 'sha256_pixels': result['sha256_pixels'], 'sha256_png': result['sha256_png'], 'stderr': proc.stderr.strip()})
+    print(f"{label}: seed={result['seed']}, pixel_sha256={result['sha256_pixels']}, warning={bool(proc.stderr.strip())}")
+assert diagnostics[0]['sha256_pixels'] != diagnostics[1]['sha256_pixels']
+assert diagnostics[2]['sha256_pixels'] == diagnostics[3]['sha256_pixels']
+assert all('ПРЕДУПРЕЖДЕНИЕ' in r['stderr'] for r in diagnostics[:2])
+diagnostic_path = ROOT / 'reports/notebook_seed_diagnostic.json'
+diagnostic_path.write_text(json.dumps({'runs': diagnostics, 'unseeded_equal': False, 'seeded_equal': True}, ensure_ascii=False, indent=2), encoding='utf-8')
+print('diagnostic =', diagnostic_path.relative_to(ROOT))
+--- output ---
+without_seed_1: seed=1879541216, pixel_sha256=943ebd9a0c7072d826f2dbbb0ee00418238b073b8e880cb2ddb5647318660a69, warning=True
+without_seed_2: seed=1922365216, pixel_sha256=070c0a0b2bc13a220d8123a2ceee26869b836fd5e7616f2601cd5bae242b3cc3, warning=True
+seed_101_1: seed=101, pixel_sha256=93fae5913d79728429ddcdf533063672739fd51e5afa6a7ac243e3e6a80d290b, warning=False
+seed_101_2: seed=101, pixel_sha256=93fae5913d79728429ddcdf533063672739fd51e5afa6a7ac243e3e6a80d290b, warning=False
+diagnostic = reports/notebook_seed_diagnostic.json
+
+--- cell 7 execution 3 ---
+out_dir = ROOT / 'artifacts/notebook_variant03'
+command = [str(PYTHON), 'src/lab01_experiment.py', '--variant', '3', '--out', str(out_dir)]
+proc = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, check=True)
+experiment_log = ROOT / 'reports/notebook_experiment.log'
+experiment_log.write_text('command: ' + ' '.join(command) + '\nstdout:\n' + proc.stdout + 'stderr:\n' + proc.stderr + 'returncode: ' + str(proc.returncode) + '\n', encoding='utf-8')
+result = json.loads((out_dir / 'results.json').read_text(encoding='utf-8'))
+print(proc.stdout.strip())
+print('result file =', (out_dir / 'results.json').relative_to(ROOT))
+print('experiment log =', experiment_log.relative_to(ROOT))
+print('base parameters =', result['params_base'])
+print('factor parameters =', result['params_perturbed'])
+assert result['variant'] == 3 and result['n'] == 5
+assert result['params_base']['cell'] == 32 and result['params_perturbed']['cell'] == 64
+--- output ---
+контекст=clouds фактор=cell EQ={'EQ_1_2': True, 'EQ_1_4': True, 'EQ_1_3': False, 'EQ_2_4': True} значимо=['contrast', 'edge', 'entropy']
+result file = artifacts/notebook_variant03/results.json
+experiment log = reports/notebook_experiment.log
+base parameters = {'size': 96, 'cell': 32, 'octaves': 4, 'persistence': 0.5, 'quantize': 8, 'interp': 'smooth'}
+factor parameters = {'size': 96, 'cell': 64, 'octaves': 4, 'persistence': 0.5, 'quantize': 8, 'interp': 'smooth'}
+
+--- cell 9 execution 4 ---
+expected = {'EQ_1_2': True, 'EQ_1_4': True, 'EQ_1_3': False, 'EQ_2_4': True}
+assert result['eq'] == expected
+for number, run in enumerate(result['runs_repro'], 1):
+    print(f"run={number} seed={run['seed']} pixel_sha256={run['sha256_pixels']} png_sha256={run['sha256_png']}")
+print('eq =', result['eq'])
+print('png_1_2_equal =', result['eq_png']['EQ_1_2_png'])
+historical = json.loads((ROOT / 'artifacts/variant03/results.json').read_text(encoding='utf-8'))
+assert result['metrics_table'] == historical['metrics_table']
+assert [r['sha256_pixels'] for r in result['runs_repro']] == [r['sha256_pixels'] for r in historical['runs_repro']]
+print('matches 24.09.2026 results = True')
+--- output ---
+run=1 seed=101 pixel_sha256=93fae5913d79728429ddcdf533063672739fd51e5afa6a7ac243e3e6a80d290b png_sha256=9779f1fe26d3815c5663d067f4b3454c0be748ce6e64f18bf79366cfb0051b59
+run=2 seed=101 pixel_sha256=93fae5913d79728429ddcdf533063672739fd51e5afa6a7ac243e3e6a80d290b png_sha256=9779f1fe26d3815c5663d067f4b3454c0be748ce6e64f18bf79366cfb0051b59
+run=3 seed=1101 pixel_sha256=79aa3ff4187bbfe82959dec1a542c82e7143d035dc7641ab0827855fc36d4fd2 png_sha256=68cab27fecf9d4a005b90805a6f4a91388660242d13e4290be807586e3b0a407
+run=4 seed=101 pixel_sha256=93fae5913d79728429ddcdf533063672739fd51e5afa6a7ac243e3e6a80d290b png_sha256=9779f1fe26d3815c5663d067f4b3454c0be748ce6e64f18bf79366cfb0051b59
+eq = {'EQ_1_2': True, 'EQ_1_4': True, 'EQ_1_3': False, 'EQ_2_4': True}
+png_1_2_equal = True
+matches 24.09.2026 results = True
+
+--- cell 11 execution 5 ---
+sys.path.insert(0, str(ROOT / 'src'))
+import lab01_generator as gen
+per_seed = []
+for seed in range(101, 106):
+    a = gen.run_once(result['params_base'], seed)
+    b = gen.run_once(result['params_perturbed'], seed)
+    per_seed.append({'seed': seed, 'base': a, 'factor': b})
+    print(f"seed={seed} base={a['sha256_pixels'][:16]} factor={b['sha256_pixels'][:16]} edge_base={a['edge']:.6f} edge_factor={b['edge']:.6f}")
+for metric in ('mean', 'contrast', 'edge', 'entropy'):
+    base_values = [row['base'][metric] for row in per_seed]
+    factor_values = [row['factor'][metric] for row in per_seed]
+    row = result['metrics_table'][metric]
+    assert statistics.fmean(base_values) == row['mean_base']
+    assert statistics.stdev(base_values) == row['s_base']
+    assert statistics.fmean(factor_values) == row['mean_pert']
+    assert statistics.stdev(factor_values) == row['s_pert']
+per_seed_path = ROOT / 'reports/notebook_per_seed.json'
+per_seed_path.write_text(json.dumps(per_seed, ensure_ascii=False, indent=2), encoding='utf-8')
+print('all four aggregate metrics independently verified = True')
+print('per-seed data =', per_seed_path.relative_to(ROOT))
+--- output ---
+seed=101 base=93fae5913d797284 factor=3ee1a8a1b562ef8e edge_base=0.010213 edge_factor=0.004708
+seed=102 base=68ad1f5d571eed12 factor=2f901e969766f393 edge_base=0.009784 edge_factor=0.003916
+seed=103 base=29de29fed0ec32e2 factor=567f35650a763fc4 edge_base=0.009120 edge_factor=0.005406
+seed=104 base=7bbc5d91842e833b factor=a59e2dc7c605b745 edge_base=0.010359 edge_factor=0.004424
+seed=105 base=a0e6a8d0388fcf29 factor=bf333dc995da9fe0 edge_base=0.009194 edge_factor=0.006110
+all four aggregate metrics independently verified = True
+per-seed data = reports/notebook_per_seed.json
+
+--- cell 13 execution 6 ---
+names = {'mean': 'Средняя яркость', 'contrast': 'Контраст', 'edge': 'Граничная энергия', 'entropy': 'Энтропия'}
+print(f"{'Метрика':22} {'База':>8} {'s_база':>8} {'Фактор':>8} {'s_фактор':>9} {'Δ':>8} {'|Δ|/s':>8} {'Вывод':>12}")
+for key, name in names.items():
+    row = result['metrics_table'][key]
+    outcome = 'существенно' if row['significant'] else 'не обнаружено'
+    print(f"{name:22} {row['mean_base']:8.4f} {row['s_base']:8.4f} {row['mean_pert']:8.4f} {row['s_pert']:9.4f} {row['delta']:+8.4f} {row['delta_over_s']:8.2f} {outcome:>12}")
+assert result['metrics_table']['edge']['delta'] < 0
+assert result['metrics_table']['edge']['significant']
+print('Гипотеза о снижении граничной энергии подтверждена по учебному критерию при n=5.')
+print('Контраст и энтропия также уменьшились; изменение средней яркости не обнаружено при n=5.')
+print('Читаемость заголовка этими четырьмя метриками не измерялась.')
+--- output ---
+Метрика                    База   s_база   Фактор  s_фактор        Δ    |Δ|/s        Вывод
+Средняя яркость          0.4782   0.0481   0.5068    0.0318  +0.0287     0.60 не обнаружено
+Контраст                 0.1311   0.0102   0.1045    0.0271  -0.0267     2.61  существенно
+Граничная энергия        0.0097   0.0006   0.0049    0.0009  -0.0048     8.48  существенно
+Энтропия                 6.9969   0.1264   6.5014    0.3495  -0.4955     3.92  существенно
+Гипотеза о снижении граничной энергии подтверждена по учебному критерию при n=5.
+Контраст и энтропия также уменьшились; изменение средней яркости не обнаружено при n=5.
+Читаемость заголовка этими четырьмя метриками не измерялась.
+
+finished_utc: 2026-09-29T19:40:27.472570+00:00
+status: success; executed_cells: 6

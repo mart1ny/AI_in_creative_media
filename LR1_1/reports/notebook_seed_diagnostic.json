@@ -1,0 +1,62 @@
+{
+  "runs": [
+    {
+      "label": "without_seed_1",
+      "command": [
+        "/Users/danilvlasuk/AI_in_creative_media/LR1_1/.venv/bin/python",
+        "src/lab01_generator.py",
+        "--out",
+        "/Users/danilvlasuk/AI_in_creative_media/LR1_1/artifacts/notebook_seed_diagnostic/without_seed_1"
+      ],
+      "seed": 1879541216,
+      "sha256_pixels": "943ebd9a0c7072d826f2dbbb0ee00418238b073b8e880cb2ddb5647318660a69",
+      "sha256_png": "18ed328ba2c5f42b84e6fee397feacfc2d1402c0e59dcf48b3458d210a61b787",
+      "stderr": "ПРЕДУПРЕЖДЕНИЕ: seed не задан, использован 1879541216 — результат не воспроизводится"
+    },
+    {
+      "label": "without_seed_2",
+      "command": [
+        "/Users/danilvlasuk/AI_in_creative_media/LR1_1/.venv/bin/python",
+        "src/lab01_generator.py",
+        "--out",
+        "/Users/danilvlasuk/AI_in_creative_media/LR1_1/artifacts/notebook_seed_diagnostic/without_seed_2"
+      ],
+      "seed": 1922365216,
+      "sha256_pixels": "070c0a0b2bc13a220d8123a2ceee26869b836fd5e7616f2601cd5bae242b3cc3",
+      "sha256_png": "d51285dd7c06b7e7a5ca383826137ea23fd572ea47de35db695c6c149b7e1489",
+      "stderr": "ПРЕДУПРЕЖДЕНИЕ: seed не задан, использован 1922365216 — результат не воспроизводится"
+    },
+    {
+      "label": "seed_101_1",
+      "command": [
+        "/Users/danilvlasuk/AI_in_creative_media/LR1_1/.venv/bin/python",
+        "src/lab01_generator.py",
+        "--out",
+        "/Users/danilvlasuk/AI_in_creative_media/LR1_1/artifacts/notebook_seed_diagnostic/seed_101_1",
+        "--seed",
+        "101"
+      ],
+      "seed": 101,
+      "sha256_pixels": "93fae5913d79728429ddcdf533063672739fd51e5afa6a7ac243e3e6a80d290b",
+      "sha256_png": "9779f1fe26d3815c5663d067f4b3454c0be748ce6e64f18bf79366cfb0051b59",
+      "stderr": ""
+    },
+    {
+      "label": "seed_101_2",
+      "command": [
+        "/Users/danilvlasuk/AI_in_creative_media/LR1_1/.venv/bin/python",
+        "src/lab01_generator.py",
+        "--out",
+        "/Users/danilvlasuk/AI_in_creative_media/LR1_1/artifacts/notebook_seed_diagnostic/seed_101_2",
+        "--seed",
+        "101"
+      ],
+      "seed": 101,
+      "sha256_pixels": "93fae5913d79728429ddcdf533063672739fd51e5afa6a7ac243e3e6a80d290b",
+      "sha256_png": "9779f1fe26d3815c5663d067f4b3454c0be748ce6e64f18bf79366cfb0051b59",
+      "stderr": ""
+    }
+  ],
+  "unseeded_equal": false,
+  "seeded_equal": true
+}

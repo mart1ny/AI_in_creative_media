@@ -1,0 +1,5 @@
+command: /Users/danilvlasuk/AI_in_creative_media/LR1_1/.venv/bin/python src/lab01_experiment.py --variant 3 --out /Users/danilvlasuk/AI_in_creative_media/LR1_1/artifacts/notebook_variant03
+stdout:
+контекст=clouds фактор=cell EQ={'EQ_1_2': True, 'EQ_1_4': True, 'EQ_1_3': False, 'EQ_2_4': True} значимо=['contrast', 'edge', 'entropy']
+stderr:
+returncode: 0
