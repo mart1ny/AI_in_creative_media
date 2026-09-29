@@ -215,7 +215,6 @@ doc.add_paragraph('Контрольные суммы исходного кода
 for name, sha in RESULT['script_sha256'].items():
     p = doc.add_paragraph(); p.add_run(name + ': ').bold = True; p.add_run(sha)
 
-doc.add_page_break()
 doc.add_paragraph('Приложение Б Полные отпечатки проверочных запусков', style='Heading 1')
 rows = [('Запуск', 'Seed', 'SHA 256 полного массива пикселей')]
 for idx, run in enumerate(RESULT['runs_repro'], 1):
@@ -241,9 +240,6 @@ for command in [
     '.venv/bin/python src/lab01_experiment.py --variant 3 --out artifacts/variant03',
 ]:
     p = doc.add_paragraph(); r = p.add_run(command); r.font.name='Consolas'; r.font.size=Pt(8.5)
-
-doc.add_paragraph('Состав архива артефактов', style='Heading 2')
-doc.add_paragraph('Архив LR1_1_submission.zip содержит исходные скрипты, requirements.txt, предварительную гипотезу, среду и журналы, паспорт в MD и JSON, результаты и PNG основного эксперимента, выполненный ноутбук с его выводами, повторные результаты и диагностику seed, таблицу метрик по каждому seed, а также этот отчёт. Папка .venv не включена; она пересоздаётся по команде выше.')
 
 OUT.parent.mkdir(parents=True, exist_ok=True)
 doc.save(OUT)

@@ -153,3 +153,47 @@ SHA-256 исходных скриптов и точная команда заф�
 10. **Что добавить для реальной модели text to image?** Идентификатор и ревизию весов, текст запроса и отрицательный запрос, настройки семплера, число шагов, guidance, размер, устройство, тип данных, версии библиотек и сведения о лицензии модели.
 
 Методические указания и исходный код: предоставленный архив «ЛР01 Подготовка среды и паспорт эксперимента»; фактические данные: `artifacts/variant03/results.json` и `reports/seed_diagnostic.json`.
+
+## 11. Часть Б — проверка облачной среды Engee
+
+29.09.2026 в 22:47–22:58 MSK в авторизованной среде Engee выполнены действия методических указаний. Версия личного кабинета — `26.9.1.1` (нижний левый угол бокового меню), версия рабочей среды — `26.9.2-H1` (заголовок вкладки). В командной строке `VERSION` вернул `v"1.12.4"`; `pwd()` вернул `/user`. По `versioninfo()` ядро работает на Linux x86_64, Julia 1.12.4. Эти сведения относятся к Engee; локальный эксперимент части А выполнен на macOS и Python.
+
+В файловом дереве Engee создан `/user/AI_in_creative_media/LR01`. Интерфейс показывает команды «Файлы», «Создать», «Папку», «Скрипт», `.ngscript`, «Редактор скриптов», «Переменные» и «Командная строка». В данной сессии подменю «Создать» не открылось при выборе мышью, поэтому папки созданы командой `mkpath("AI_in_creative_media/LR01")`, а подготовленный файл `LR01_environment.ngscript` загружен кнопкой панели «Файлы». Наличие обоих объектов проверено в дереве.
+
+Одна кодовая ячейка `LR01_environment.ngscript` с `println("VERSION = ", VERSION)` и `versioninfo()` выполнена в редакторе: статус «Выполнено», ошибок нет. После сохранения статус стал «Сохранено», файл скачан с сохранённым `stdout`. Исполненный сценарий — [`engee/LR01_environment.ngscript`](../engee/LR01_environment.ngscript), отдельная точная копия вывода — [`engee/versioninfo.txt`](../engee/versioninfo.txt). Паспорт среды [`engee/passport.md`](../engee/passport.md) загружен в папку LR01 на сервере; протокол команд — [`engee/session.log`](../engee/session.log).
+
+Для проверки рабочей области исполнено `seed = 101`. Панель «Переменные» показала `seed = 101`, класс `Int64`, и служебный `ans = 101`. После команды «Очистить все переменные» и подтверждения «Да» `seed` исчез, `ans` остался. После команды «Перезапуск ядра» и подтверждения «Перезапустить» `seed` по-прежнему отсутствовал. Дополнительная проверка `(isdefined(Main, :seed), isdefined(Main, :ans))` дала `(false, true)`. Это фактическая особенность текущего интерфейса; в паспорте не сделан неверный вывод о пустой таблице.
+
+### 11.1. Необработанный вывод ячейки Engee
+
+Полный вывод `VERSION` и `versioninfo()` приведён в [`engee/passport.md`](../engee/passport.md) и сохранён без обработки в исполняемом `.ngscript`. Ниже приведён этот же вывод:
+
+```text
+VERSION = 1.12.4
+Julia Version 1.12.4
+Commit 01a2eadb047 (2026-01-06 16:56 UTC)
+Build Info:
+  Official https://julialang.org release
+Platform Info:
+  OS: Linux (x86_64-linux-gnu)
+  CPU: 112 × Intel(R) Xeon(R) Platinum 8180 CPU @ 2.50GHz
+  WORD_SIZE: 64
+  LLVM: libLLVM-18.1.7 (ORCJIT, skylake-avx512)
+  GC: Built with stock GC
+Threads: 5 default, 3 interactive, 5 GC (on 112 virtual cores)
+Environment:
+  JULIA_LSP_STORE_PATH = /user/lsp_store
+  JULIA_CPU_TARGET = generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1)
+  JULIA_LSP_PORT = 3751
+  JULIA_NUM_PRECOMPILE_TASKS = 8
+  JULIA_PKG_PRECOMPILE_AUTO = 0
+  JULIA_DEPOT_PATH = /user/.packages:/opt/depot/core:/opt/depot/mtl:/opt/depot/demos:/opt/depot/stdlib
+  JULIA_PATH = /usr/local/julia
+  LD_LIBRARY_PATH = /usr/local/nvidia/lib:/usr/local/nvidia/lib64
+  JULIA_PROJECT = /user/.project/
+  JULIA_DA_STORE_PATH = /user/da_store
+  JULIA_PKG_SERVER = http://pkgserver.pkgserver.svc.cluster.local
+  JULIA_NUM_THREADS = 7,1
+  JULIA_DA_PORT = 3752
+  JULIA_DEBUG = BackendLib,AbstractAPI
+```

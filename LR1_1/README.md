@@ -14,7 +14,8 @@
 - `notebooks/LR01_variant3.ipynb` — исполненный ноутбук с сохранёнными выводами шести кодовых ячеек;
 - `notebooks/run_notebook.py` — повторный запуск ноутбука без сторонних пакетов;
 - `artifacts/notebook_variant03/` и `artifacts/notebook_seed_diagnostic/` — результаты повторного запуска через ноутбук;
-- `reports/` — отчёт в `.md` и `.docx`, полный паспорт, сведения о среде, данные по каждому `seed` и журналы запуска.
+- `reports/` — единый отчёт по частям А и Б в `.md` и `.docx`, паспорт, сведения о среде, данные по каждому `seed` и журналы запуска;
+- `engee/` — выполненный облачный сценарий `.ngscript` с сохранённым выводом, паспорт части Б, исходный `versioninfo()` и журнал действий.
 
 ## Повтор запуска
 
@@ -30,3 +31,7 @@ python3.12 -m venv .venv
 Проверка: в `results.json` поля `eq` должны содержать `true, true, false, true` в порядке `EQ_1_2`, `EQ_1_4`, `EQ_1_3`, `EQ_2_4`. При другой версии Python или `zlib` различия сначала сопоставляют с паспортом среды.
 
 Выполненный ноутбук сравнивает новый результат с сохранённым запуском 24.09.2026. Полный журнал находится в `reports/notebook_run.log`, а сводный отчёт — в [`reports/LR01_1_report.md`](reports/LR01_1_report.md) и [`reports/ЛР01_Вариант_3_Отчёт.docx`](reports/ЛР01_Вариант_3_Отчёт.docx).
+
+## Часть Б в Engee
+
+29.09.2026 проверены кабинет `26.9.1.1`, среда `26.9.2-H1` и ядро Julia `1.12.4`. В Engee создана папка `/user/AI_in_creative_media/LR01`, запущен и сохранён [`engee/LR01_environment.ngscript`](engee/LR01_environment.ngscript), загружен [`engee/passport.md`](engee/passport.md). Полный вывод `versioninfo()` — в [`engee/versioninfo.txt`](engee/versioninfo.txt), наблюдения по `seed`, очистке и перезапуску — в паспорте и [`engee/session.log`](engee/session.log).
