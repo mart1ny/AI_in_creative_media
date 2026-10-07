@@ -1,0 +1,7 @@
+{
+  "checked_at_msk": "2026-10-07T19:50:26.857977+03:00",
+  "docx_sha256": "ecca7cc1af89d09bf9724a36aab0b2080b141950e4e4ac220d159ed881749dac",
+  "pages": 16,
+  "visual_review": "Все 16 страниц проверены; нет обрезанного текста, пустых страниц и дефектов таблиц.",
+  "render": "штатный render_docx.py и bundled LibreOffice; PDF и PNG остаются в qa для внутренней проверки."
+}
