@@ -1,0 +1,9 @@
+{
+  "recorded_at": "2026-10-07T19:38:09.655723+03:00",
+  "python": "3.12.14",
+  "implementation": "CPython",
+  "platform": "macOS-26.0.1-arm64-arm-64bit",
+  "executable": "/Users/danilvlasuk/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+  "lab_dependencies": "стандартная библиотека",
+  "report_dependencies": "python-docx; штатный renderer documents"
+}

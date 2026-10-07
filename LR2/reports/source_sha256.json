@@ -1,0 +1,11 @@
+{
+  "src/lab02_audit.py": "50bf77e48dca05a123f30ca259ed420d7bb4bee8792373cab4ebaf67087f90ae",
+  "src/lab02_risks.py": "9581afb696758047d3dc427b7287ab00221e3e2f06f8ecddc6cbd7477e9f6f47",
+  "src/lab02_model_card.py": "1bd32cd27a64395bcff81053518a3bc2f1576b937a7373207f47899382ece1ac",
+  "src/lab02_common.py": "00624727e535237bb9a363abfed1f6d14a50e748e52a0fc57e03877727706f41",
+  "src/lab02_make_variant.py": "4db53312f631af41e324d73166a465e0046732faa9a92c414ba571fa62f742dd",
+  "inputs/lr01_variant03_passport.json": "3b01473a3a550cf1923be3fbaa4a52ad936e20e093237fad910e2f18a94d25b9",
+  "inputs/lr01_variant03_results.json": "79112dfd0f12b10071b85f617986c6aaa8dd12883aaee10a1f2ab17028be634e",
+  "inputs/lr01_src/lab01_generator.py": "8f07d340a5a765a8e44f1fec407489cf00114ba54216aa7539c4e7116680e152",
+  "inputs/lr01_src/lab01_experiment.py": "69257206dab50ef35de448b45764daad0d4f60dbc98febd8953c6faee28e06b5"
+}

@@ -1,0 +1,5 @@
+# Сохраняем байты входов и CSV для воспроизводимого сравнения и хешей
+artifacts/v03/*.csv -text whitespace=cr-at-eol
+inputs/*.json -text
+src/*.py text eol=lf
+inputs/lr01_src/*.py text eol=lf

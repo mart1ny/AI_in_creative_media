@@ -1,0 +1,26 @@
+[
+  {
+    "rule": "R4",
+    "severity": "error",
+    "item": "item03",
+    "message": "CC-BY-ND-4.0: условие NoDerivatives запрещает производные, а сценарий их создаёт"
+  },
+  {
+    "rule": "R4",
+    "severity": "error",
+    "item": "item04",
+    "message": "CC-BY-ND-4.0: условие NoDerivatives запрещает производные, а сценарий их создаёт"
+  },
+  {
+    "rule": "R9",
+    "severity": "warning",
+    "item": "item10",
+    "message": "контрольная сумма совпадает с item01 — дубликат"
+  },
+  {
+    "rule": "R4",
+    "severity": "error",
+    "item": "item11",
+    "message": "CC-BY-ND-4.0: условие NoDerivatives запрещает производные, а сценарий их создаёт"
+  }
+]

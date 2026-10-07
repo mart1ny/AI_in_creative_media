@@ -1,0 +1,29 @@
+{
+  "result": "PASS",
+  "checks": {
+    "исходный аудит 3 ошибки и 1 предупреждение": true,
+    "решение и обоснование для каждой находки": true,
+    "выборка 8 без находок": true,
+    "политика варианта сохранена": true,
+    "повторное создание manifest.csv": true,
+    "повторное создание policy.json": true,
+    "повторное создание variant.json": true,
+    "семь рисков семь категорий": true,
+    "обязательные категории варианта": true,
+    "уникальные идентификаторы рисков": true,
+    "data_card.md заполнены разделы": true,
+    "model_card.md заполнены разделы": true,
+    "штатная проверка PASS": true,
+    "SHA256 src/lab02_audit.py": true,
+    "SHA256 src/lab02_risks.py": true,
+    "SHA256 src/lab02_model_card.py": true,
+    "SHA256 src/lab02_common.py": true,
+    "SHA256 src/lab02_make_variant.py": true,
+    "SHA256 inputs/lr01_variant03_passport.json": true,
+    "SHA256 inputs/lr01_variant03_results.json": true,
+    "SHA256 inputs/lr01_src/lab01_generator.py": true,
+    "SHA256 inputs/lr01_src/lab01_experiment.py": true,
+    "версия исходного генератора ЛР1": true,
+    "метрики карточки из паспорта ЛР1": true
+  }
+}
