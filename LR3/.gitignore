@@ -1,0 +1,6 @@
+reports/rendered*/
+reports/qa*/
+__pycache__/
+*.pyc
+input/*.docx
+input/docx_text.txt

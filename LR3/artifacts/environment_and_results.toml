@@ -1,0 +1,23 @@
+psnr_x2 = 36.8740228989885
+practical_relative_threshold = 0.05
+sha_first = "50567c6b9e5e4ac1b068d288afc484e1918714e92d7ec350c63efb1d20bfcfc6"
+psnr_x4 = 35.244412731815686
+demo_verified = true
+library_sha256 = "cd1622643e7cfe7cc01bb7d8067e4802a76f6a76e9a6833ba4c09c84bb9fa62a"
+practical_psnr_threshold_db = 30.0
+min = 0.08115622264322489
+luma_maxdiff = 9.856187532797378e-9
+platform = "x86_64-linux-gnu"
+eltype = "RGB{Float64}"
+bytes = 393216
+sha_equal = true
+generated_at = "2026-10-07T17:32:44.666"
+max = 0.9185814096363565
+demo_psnr = 34.594244830067446
+size = [128, 128]
+julia = "1.12.4"
+sha_repeat = "50567c6b9e5e4ac1b068d288afc484e1918714e92d7ec350c63efb1d20bfcfc6"
+
+[package_versions]
+Images = "0.26.2"
+Plots = "1.41.6"

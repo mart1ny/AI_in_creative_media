@@ -1,0 +1,73 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 5,
+  "metadata": {
+    "kernelspec": {
+      "display_name": "IJulia 1.9.3",
+      "language": "julia",
+      "name": "ijulia-1.9"
+    },
+    "language_info": {
+      "file_extension": ".jl",
+      "name": "julia",
+      "version": "1.9.3"
+    },
+    "engee": {}
+  },
+  "cells": [
+    {
+      "id": "4538894b",
+      "cell_type": "markdown",
+      "source": [
+        "# Гипотеза и критерии до запуска\n\nДата фиксации: 2026-10-07T20:23:23.601789+03:00\n\nВариант 3. Базовая сцена n=128, lo=0.15, hi=0.85, noise=0.02, checker=0; seed 101:105. Воздействие: imresize до 32×32 и возврат к 128×128. Сравнение: до 64×64 и возврат.\n\nГипотеза: средняя яркость изменится менее чем на 5%; контраст и энтропия снизятся за счёт сглаживания шума и границ. PSNR уменьшения вчетверо будет ниже, чем вдвое. Не предполагается, что каждая метрика обязательно пересечёт практический порог.\n\nПрактический критерий по каждой метрике: abs(after-base)/abs(base)>0.05; по PSNR: средний PSNR<30 дБ. Порог 5% — учебная оценка заметного относительного сдвига; 30 дБ соответствует MSE>0.001 для диапазона [0,1]. Это не универсальный критерий качества.\n\nУчебный статистический критерий: abs(Δ)>2s, где s — выборочное стандартное отклонение базовой метрики между пятью seed. Это эвристика методички, а не тест с установленным уровнем значимости.\n\nДополнительная проверка влияния шума: повторить seed 101:105 при noise=0, не меняя структуру и интерполяцию. Она отделяет сглаживание шума от потери на границе круга.\n"
+      ],
+      "attachments": {},
+      "metadata": {
+        "name": "План до расчёта",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": true,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false
+        }
+      }
+    },
+    {
+      "id": "a6bf70af",
+      "cell_type": "code",
+      "source": [
+        "include(\"/user/AI_in_creative_media/LR03/LR03_3.jl\")\n"
+      ],
+      "execution_count": 0,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": "START 2026-10-07T17:32:24.859 Julia 1.12.4\nJulia Version 1.12.4\nCommit 01a2eadb047 (2026-01-06 16:56 UTC)\nBuild Info:\n  Official https://julialang.org release\nPlatform Info:\n  OS: Linux (x86_64-linux-gnu)\n  CPU: 112 × Intel(R) Xeon(R) Platinum 8180 CPU @ 2.50GHz\n  WORD_SIZE: 64\n  LLVM: libLLVM-18.1.7 (ORCJIT, skylake-avx512)\n  GC: Built with stock GC\nThreads: 5 default, 3 interactive, 5 GC (on 112 virtual cores)\nEnvironment:\n  JULIA_LSP_STORE_PATH = /user/lsp_store\n  JULIA_CPU_TARGET = generic;sandybridge,-xsaveopt,clone_all;haswell,-rdrnd,base(1)\n  JULIA_LSP_PORT = 3751\n  JULIA_NUM_PRECOMPILE_TASKS = 8\n  JULIA_PKG_PRECOMPILE_AUTO = 0\n  JULIA_DEPOT_PATH = /user/.packages:/opt/depot/core:/opt/depot/mtl:/opt/depot/demos:/opt/depot/stdlib\n  JULIA_PATH = /usr/local/julia\n  LD_LIBRARY_PATH = /usr/local/nvidia/lib:/usr/local/nvidia/lib64\n  JULIA_PROJECT = /user/.project/\n  JULIA_DA_STORE_PATH = /user/da_store\n  JULIA_PKG_SERVER = http://pkgserver.pkgserver.svc.cluster.local\n  JULIA_NUM_THREADS = 7,1\n  JULIA_DA_PORT = 3752\n  JULIA_DEBUG = BackendLib,AbstractAPI\nDESCRIPTION (size = (128, 128), eltype = \"RGB{Float64}\", min = 0.08115622264322489, max = 0.9185814096363565, bytes = 393216)\nMAXDIFF 9.856187532797378e-9\nSHA_FIRST 50567c6b9e5e4ac1b068d288afc484e1918714e92d7ec350c63efb1d20bfcfc6\nSHA_REPEAT 50567c6b9e5e4ac1b068d288afc484e1918714e92d7ec350c63efb1d20bfcfc6\nSUMMARY (variant = 2, ctx = 1, fac = 2, psnr = 36.8740228989885, rows = Any[(:mean, 0.471941890422909, 8.38856208237571e-5, 0.471941890422909, 0.0, 0.0, false), (:contrast, 0.06424645499928484, 0.00015397990431180933, 0.061871299825091375, -0.002375155174193469, 15.42509839065609, true), (:entropy, 2.687327799345528, 0.004443699253370972, 2.4374570430107156, -0.24987075633481215, 56.23034820487935, true)])\nSUMMARY (variant = 3, ctx = 1, fac = 3, psnr = 35.244412731815686, rows = Any[(:mean, 0.471941890422909, 8.38856208237571e-5, 0.47145185777147136, -0.0004900326514376552, 5.841676399668176, true), (:contrast, 0.06424645499928484, 0.00015397990431180933, 0.06166933801797011, -0.002577116981314735, 16.736709850761258, true), (:entropy, 2.687327799345528, 0.004443699253370972, 2.486132258081164, -0.2011955412643638, 45.276588219091934, true)])\nALL CHECKS PASS; ARCHIVE: /user/AI_in_creative_media/LR03/LR03_variant3_results.tar\n"
+        }
+      ],
+      "metadata": {
+        "name": "Запуск варианта 3",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": false,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false,
+          "outputInfo": {
+            "isExpanded": false,
+            "scrollTop": 0
+          },
+          "maskInfo": {
+            "isMaskVisible": true,
+            "isEditorVisible": true,
+            "isAutoplayActive": false
+          }
+        }
+      }
+    }
+  ]
+}

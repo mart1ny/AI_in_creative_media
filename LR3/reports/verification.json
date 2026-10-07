@@ -1,0 +1,18 @@
+{
+  "result": "PASS",
+  "checks": {
+    "summary_x2": true,
+    "summary_x4": true,
+    "before_range_size": true,
+    "before_hash": true,
+    "after_x2_range_size": true,
+    "after_x2_hash": true,
+    "after_x4_range_size": true,
+    "after_x4_hash": true,
+    "after_x2_mse_psnr": true,
+    "after_x4_mse_psnr": true,
+    "teacher_library_unchanged": true,
+    "hypothesis_unchanged_recorded_before_run": true,
+    "executed_notebook_no_errors": true
+  }
+}

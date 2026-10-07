@@ -1,0 +1,65 @@
+{
+  "student": "Власюк Данил Витальевич",
+  "group": "Т26ИИКТ-МИК11",
+  "date": "2026-10-07",
+  "timezone": "Europe/Moscow",
+  "environment": "Engee 26.9.2-H4",
+  "julia": "1.12.4",
+  "platform": "x86_64-linux-gnu",
+  "packages": {
+    "Images": "0.26.2",
+    "Plots": "1.41.6"
+  },
+  "library": "lab03_lib.jl из архива преподавателя от 19.09.2026",
+  "library_sha256": "cd1622643e7cfe7cc01bb7d8067e4802a76f6a76e9a6833ba4c09c84bb9fa62a",
+  "variant": 3,
+  "scene": {
+    "n": 128,
+    "lo": 0.15,
+    "hi": 0.85,
+    "noise": 0.02,
+    "checker": 0
+  },
+  "seeds": [
+    101,
+    102,
+    103,
+    104,
+    105
+  ],
+  "rng": "Random.MersenneTwister(seed), локальный генератор",
+  "luma": "Float64.(Gray.(img)); Rec.601 вручную только для сравнения",
+  "histogram": {
+    "bins": 32,
+    "domain": [
+      0,
+      1
+    ],
+    "bin_index": "min(32,max(1,ceil(Int,v*32)))"
+  },
+  "factor": "imresize(imresize(g,ratio=0.25),size(g))",
+  "comparison": "imresize(imresize(g,ratio=0.5),size(g))",
+  "control": "noise=0.0, те же seed, два масштаба",
+  "thresholds": {
+    "statistic": "abs(mean_after-mean_before)>2*std_before_between_seeds; std corrected=true",
+    "practical_relative": 0.05,
+    "practical_psnr_db": 30
+  },
+  "hypothesis_record": {
+    "recorded_at": "2026-10-07T20:23:23.602399+03:00",
+    "hypothesis_sha256": "1be041218f8f8d0924c5be29d92febd3a94f5f35afac5f4525d388ceb7b53b34"
+  },
+  "sha_luma_101": "50567c6b9e5e4ac1b068d288afc484e1918714e92d7ec350c63efb1d20bfcfc6",
+  "sha_repeat": "50567c6b9e5e4ac1b068d288afc484e1918714e92d7ec350c63efb1d20bfcfc6",
+  "sha_equal": true,
+  "hash_encoding": "Float64 IEEE754, little-endian, Julia vec column-major, SHA-256",
+  "metric_data": "Float64 до сохранения PNG",
+  "png_storage": "Gray{N0f8}, RGB{N0f8}; квантование для отображения отдельно от расчёта",
+  "psnr_x4_mean_db": 35.244412731815686,
+  "psnr_x2_mean_db": 36.8740228989885,
+  "demo_psnr": 34.594244830067446,
+  "demo_verified": true,
+  "cloud_folder": "/user/AI_in_creative_media/LR03",
+  "archive": "ЛР03_Вариант_3_Сдача.zip",
+  "notebook_metadata_note": "Автометаданные IJulia 1.9.3; фактический VERSION и stdout 1.12.4"
+}
