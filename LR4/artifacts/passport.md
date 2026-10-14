@@ -1,0 +1,29 @@
+# Паспорт эксперимента ЛР4 вариант 3
+
+- **Engee:** 26.9.2-H4
+- **Images:** 0.26.2
+- **bg:** [0.1, 0.4]
+- **border:** replicate
+- **checker:** 0
+- **date:** 2026-10-14T19:39:11.259
+- **demo_match:** true
+- **disc:** 0.75
+- **float64_order:** Julia column-major little-endian
+- **gaussian_sigma:** 3
+- **group:** Т26ИИКТ-МИК11
+- **hypothesis_sha256:** 8c2e3c351ff61b9daf01d93b5aa5bd1698ccf571961c19bfbdf375edd1e27c49
+- **julia:** 1.12.4
+- **library03_sha256:** cd1622643e7cfe7cc01bb7d8067e4802a76f6a76e9a6833ba4c09c84bb9fa62a
+- **library04_sha256:** 094cecea2f55a0f53a652149a1a4025e98d87b3994b376be7028c4920cb0f8c2
+- **main_class:** вредна
+- **main_delta_psnr:** -7.112715934118768
+- **noise:** 0.02
+- **platform:** x86_64-linux-gnu
+- **practical_threshold_db:** 1.0
+- **scene_sha256:** e7ecd4f73ea684ab746fc444eef55f0c18943d7fdcfc4fe7866b3f4b6012accf
+- **seeds:** [101, 102, 103, 104, 105]
+- **size:** [128, 128]
+- **started_at:** 2026-10-14T19:38:58.968
+- **status:** executed
+- **student:** Власюк Данил Витальевич
+- **variant:** 3

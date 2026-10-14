@@ -1,0 +1,5 @@
+input/*.docx
+input/method_pdf.txt
+notebooks/prepared/
+__pycache__/
+*.pyc

@@ -1,0 +1,12 @@
+{
+  "result": "PASS",
+  "checks": {
+    "all_30_variants_and_150_seed_rows": true,
+    "all_summary_arithmetic_psnr_and_iou": true,
+    "float64_size_range_sha_mse_contrast": true,
+    "teacher_libraries_unchanged": true,
+    "hypothesis_and_threshold_recorded_before_run": true,
+    "executed_notebook_all_cells_images_no_errors": true,
+    "workspacearray_example_executed": true
+  }
+}
