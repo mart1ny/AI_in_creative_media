@@ -1,0 +1,11 @@
+{
+  "result": "PASS",
+  "checks": {
+    "images_manifests_and_sha": true,
+    "pixel_mse_psnr_and_classification": true,
+    "repeat_error_and_controlled_comparison": true,
+    "initial_noise_differs_before_model": true,
+    "hypothesis_before_run_and_teacher_sources_unchanged": true,
+    "executed_notebook_without_errors": true
+  }
+}

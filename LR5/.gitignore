@@ -1,0 +1,5 @@
+__pycache__/
+notebooks/prepared/
+input/method_pdf.txt
+input/teacher_demo/
+.DS_Store

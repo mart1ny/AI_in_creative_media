@@ -1,0 +1,12 @@
+{
+  "shape": [
+    1,
+    4,
+    64,
+    64
+  ],
+  "dtype": "torch.float16",
+  "equal": false,
+  "max_diff": 5.564453125,
+  "mse": 2.0380618572235107
+}

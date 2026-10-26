@@ -1,0 +1,9 @@
+{
+  "sha_a": "098ebd438eb3befedd979cf5edc0a71ff403f3ae22a664e1644d4309f93eca08",
+  "sha_b": "4675318261e6f52dde480c450f4ecd10b4098544949930eed1c25179474f1e83",
+  "pixel_equal": false,
+  "max_diff": 255,
+  "mse": 7301.234217325847,
+  "psnr": 9.496840804095045,
+  "verdict": "different"
+}

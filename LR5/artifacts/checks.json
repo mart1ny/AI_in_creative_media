@@ -1,0 +1,7 @@
+{
+  "fresh_generator_repeat": true,
+  "initial_noise_differs": true,
+  "fixed_noise_repeat": true,
+  "explicit_noise_reproduces_A": true,
+  "standard_summary_matches": true
+}

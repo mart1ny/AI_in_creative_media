@@ -1,0 +1,57 @@
+{
+  "student": "Власюк Данил Витальевич",
+  "group": "Т26ИИКТ-МИК11",
+  "variant": 3,
+  "started_utc": "2026-10-26T07:08:27.826225+00:00",
+  "finished_utc": "2026-10-26T07:08:44.970753+00:00",
+  "model_id": "stabilityai/sd-turbo",
+  "revision": "b261bac6fd2cf515557d5d0707481eafa0485ec2",
+  "prompt": "editorial poster concept for a robotics festival, glowing mechanical arm silhouette, deep blue and amber palette, clean composition, no text, no logo, no people",
+  "seed": 1003,
+  "steps": 1,
+  "guidance_scale": 0.0,
+  "size": [
+    512,
+    512
+  ],
+  "dtype": "torch.float16",
+  "generator_devices": [
+    "cpu",
+    "cuda"
+  ],
+  "model_device": "Tesla T4",
+  "gpu_info": "name, memory.total [MiB], driver_version\nTesla T4, 15360 MiB, 580.82.07\n",
+  "platform": "Linux-6.6.122+-x86_64-with-glibc2.39",
+  "python": "3.13.16 (main, Oct  1 2026, 15:40:24) [GCC 13.3.0]",
+  "packages": {
+    "torch": "2.11.0+cu130",
+    "diffusers": "0.40.0",
+    "transformers": "5.16.1",
+    "accelerate": "1.15.0",
+    "safetensors": "0.8.0",
+    "huggingface_hub": "1.31.0",
+    "PIL": "11.3.0",
+    "numpy": "2.1.3"
+  },
+  "tolerance_db": 40,
+  "deterministic_algorithms": true,
+  "library_sha256": "4eb176506585ffcda1702605a767309fb451808229c3622f80ce882b7fa2ce1a",
+  "demo_sha256": "53b3b13f19e6754bda1cde58ef09f1e45b1595d1c4dab2a9b02bd4d99d731ce4",
+  "main_result": {
+    "sha_a": "098ebd438eb3befedd979cf5edc0a71ff403f3ae22a664e1644d4309f93eca08",
+    "sha_b": "4675318261e6f52dde480c450f4ecd10b4098544949930eed1c25179474f1e83",
+    "pixel_equal": false,
+    "max_diff": 255,
+    "mse": 7301.234217325847,
+    "psnr": 9.496840804095045,
+    "verdict": "different"
+  },
+  "checks": {
+    "fresh_generator_repeat": true,
+    "initial_noise_differs": true,
+    "fixed_noise_repeat": true,
+    "explicit_noise_reproduces_A": true,
+    "standard_summary_matches": true
+  },
+  "independent_new_session_tested": false
+}
