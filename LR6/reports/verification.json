@@ -1,0 +1,14 @@
+{
+  "result": "PASS",
+  "checks": [
+    "10 images and SHA-256",
+    "one changed factor",
+    "spatial metrics independently recomputed",
+    "means, sample s, delta, ratio, 2s and tolerances",
+    "common-scale spatial control",
+    "guidance 0/1 equality and 3 control",
+    "pre-run hypothesis and unchanged teacher scripts",
+    "all code cells executed without errors"
+  ],
+  "limitation": "CLIP embeddings not independently recomputed locally; original CLIP outputs retained"
+}

@@ -1,0 +1,24 @@
+{
+  "records": [
+    {
+      "guidance": 0.0,
+      "cfg_active": false,
+      "sha256": "84db2534b3e66ea6f5ac17a7d3ba210bfb7653bcd738534372564a5b46b79b36",
+      "file": "guidance_0.png"
+    },
+    {
+      "guidance": 1.0,
+      "cfg_active": false,
+      "sha256": "84db2534b3e66ea6f5ac17a7d3ba210bfb7653bcd738534372564a5b46b79b36",
+      "file": "guidance_1.png"
+    },
+    {
+      "guidance": 3.0,
+      "cfg_active": true,
+      "sha256": "b961e528cd31aa9da0ce4a7aeb68cbca550ddd3f993f5cd301260ed739e8c015",
+      "file": "guidance_3.png"
+    }
+  ],
+  "equal_0_1": true,
+  "psnr_0_3": 11.605078740312596
+}

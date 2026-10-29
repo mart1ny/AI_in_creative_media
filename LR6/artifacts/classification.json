@@ -1,0 +1,54 @@
+[
+  {
+    "metric": "clip",
+    "A": 30.797866582870483,
+    "s_A": 1.4309017437110398,
+    "B": 29.185186624526978,
+    "delta": -1.6126799583435059,
+    "ratio": 1.1270375240168655,
+    "over_2s": false,
+    "tolerance": 1.0,
+    "practical": true,
+    "label": "ухудшение",
+    "criteria_disagree": true
+  },
+  {
+    "metric": "edge",
+    "A": 0.045660816369404854,
+    "s_A": 0.006960480109480653,
+    "B": 0.04291206343592788,
+    "delta": -0.0027487529334769764,
+    "ratio": 0.3949085250215694,
+    "over_2s": false,
+    "tolerance": 0.004566081636940485,
+    "practical": false,
+    "label": "нейтрально",
+    "criteria_disagree": false
+  },
+  {
+    "metric": "contrast",
+    "A": 0.1922867990891968,
+    "s_A": 0.02249353315005205,
+    "B": 0.17997915362126518,
+    "delta": -0.012307645467931616,
+    "ratio": 0.5471637286071769,
+    "over_2s": false,
+    "tolerance": 0.01922867990891968,
+    "practical": false,
+    "label": "нейтрально",
+    "criteria_disagree": false
+  },
+  {
+    "metric": "seconds",
+    "A": 0.34529348520001124,
+    "s_A": 0.05301082967354675,
+    "B": 0.7323701549999896,
+    "delta": 0.38707666979997835,
+    "ratio": 7.30184138191551,
+    "over_2s": true,
+    "tolerance": 0.06905869704000225,
+    "practical": true,
+    "label": "ухудшение",
+    "criteria_disagree": false
+  }
+]

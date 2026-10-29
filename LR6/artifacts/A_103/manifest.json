@@ -1,0 +1,18 @@
+{
+  "condition": "A",
+  "seed": 103,
+  "settings": {
+    "prompt": "editorial poster concept for a robotics festival, glowing mechanical arm silhouette, deep blue and amber palette, clean composition, no text, no logo, no people",
+    "steps": 1,
+    "guidance": 0.0,
+    "size": 512
+  },
+  "metrics": {
+    "clip": 31.327080726623535,
+    "edge": 0.055380908620380406,
+    "contrast": 0.19766126169093032,
+    "seconds": 0.31446902000004684
+  },
+  "sha256": "d0a3ff677d892b96cc1103be02b5f24084a943e9a2d3a00c6a6df13642771c69",
+  "file": "A_103/result.png"
+}

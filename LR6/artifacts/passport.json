@@ -1,0 +1,59 @@
+{
+  "student": "Власюк Данил Витальевич",
+  "group": "Т26ИИКТ-МИК11",
+  "variant": 3,
+  "started_utc": "2026-10-28T06:52:48.020955+00:00",
+  "finished_utc": "2026-10-28T06:55:21.634780+00:00",
+  "model_id": "stabilityai/sd-turbo",
+  "revision": "b261bac6fd2cf515557d5d0707481eafa0485ec2",
+  "clip_id": "openai/clip-vit-base-patch32",
+  "clip_revision": "3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268",
+  "gpu": "name, memory.total [MiB], driver_version\nTesla T4, 15360 MiB, 580.82.07\n",
+  "python": "3.13.16 (main, Oct  1 2026, 15:40:24) [GCC 13.3.0]",
+  "platform": "Linux-6.6.159+-x86_64-with-glibc2.39",
+  "packages": {
+    "torch": "2.11.0+cu130",
+    "diffusers": "0.40.0",
+    "transformers": "5.16.1",
+    "accelerate": "1.15.0",
+    "safetensors": "0.8.0",
+    "huggingface_hub": "1.31.0",
+    "numpy": "2.1.3",
+    "scipy": "1.16.3",
+    "Pillow": "11.3.0"
+  },
+  "seeds": [
+    101,
+    102,
+    103,
+    104,
+    105
+  ],
+  "settings_A": {
+    "prompt": "editorial poster concept for a robotics festival, glowing mechanical arm silhouette, deep blue and amber palette, clean composition, no text, no logo, no people",
+    "steps": 1,
+    "guidance": 0.0,
+    "size": 512
+  },
+  "settings_B": {
+    "prompt": "editorial poster concept for a robotics festival, glowing mechanical arm silhouette, deep blue and amber palette, clean composition, no text, no logo, no people",
+    "steps": 1,
+    "guidance": 0.0,
+    "size": 768
+  },
+  "generator": "cpu; fresh generator each call",
+  "dtype": "torch.float16",
+  "tolerances": {
+    "clip": 1.0,
+    "edge": 0.1,
+    "contrast": 0.1,
+    "seconds": 0.2
+  },
+  "source_sha256": {
+    "lab05_lib.py": "4eb176506585ffcda1702605a767309fb451808229c3622f80ce882b7fa2ce1a",
+    "lab06_demo.py": "6bd455ea028a475f6d21593b6f969446b676a3627ab496fd7f125394361edf4a",
+    "lab06_lib.py": "c6d8473cf5a3000f4c27fbdef57916c2fbce347db272928d5c4729472f748bd8",
+    "lab05_demo.py": "53b3b13f19e6754bda1cde58ef09f1e45b1595d1c4dab2a9b02bd4d99d731ce4"
+  },
+  "independent_new_session_tested": false
+}

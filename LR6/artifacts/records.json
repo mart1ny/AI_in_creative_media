@@ -1,0 +1,182 @@
+[
+  {
+    "condition": "A",
+    "seed": 101,
+    "settings": {
+      "prompt": "editorial poster concept for a robotics festival, glowing mechanical arm silhouette, deep blue and amber palette, clean composition, no text, no logo, no people",
+      "steps": 1,
+      "guidance": 0.0,
+      "size": 512
+    },
+    "metrics": {
+      "clip": 30.30926287174225,
+      "edge": 0.047968852990238335,
+      "contrast": 0.15688247029165409,
+      "seconds": 0.43887954099994886
+    },
+    "sha256": "84db2534b3e66ea6f5ac17a7d3ba210bfb7653bcd738534372564a5b46b79b36",
+    "file": "A_101/result.png"
+  },
+  {
+    "condition": "B",
+    "seed": 101,
+    "settings": {
+      "prompt": "editorial poster concept for a robotics festival, glowing mechanical arm silhouette, deep blue and amber palette, clean composition, no text, no logo, no people",
+      "steps": 1,
+      "guidance": 0.0,
+      "size": 768
+    },
+    "metrics": {
+      "clip": 29.032331705093384,
+      "edge": 0.03803463604469074,
+      "contrast": 0.15229005156244804,
+      "seconds": 0.8616977909999832
+    },
+    "sha256": "afd59b680091fb35bc54b8268d09d3a0cf054f98705801e23ed1c2653b7061b2",
+    "file": "B_101/result.png"
+  },
+  {
+    "condition": "A",
+    "seed": 102,
+    "settings": {
+      "prompt": "editorial poster concept for a robotics festival, glowing mechanical arm silhouette, deep blue and amber palette, clean composition, no text, no logo, no people",
+      "steps": 1,
+      "guidance": 0.0,
+      "size": 512
+    },
+    "metrics": {
+      "clip": 32.94239044189453,
+      "edge": 0.04712976365363871,
+      "contrast": 0.21912255152940358,
+      "seconds": 0.3353263700000184
+    },
+    "sha256": "0d0d796d3cf4ee23576600f4c520c79fe15e08b5858e6adb3dae68beaf3321b9",
+    "file": "A_102/result.png"
+  },
+  {
+    "condition": "B",
+    "seed": 102,
+    "settings": {
+      "prompt": "editorial poster concept for a robotics festival, glowing mechanical arm silhouette, deep blue and amber palette, clean composition, no text, no logo, no people",
+      "steps": 1,
+      "guidance": 0.0,
+      "size": 768
+    },
+    "metrics": {
+      "clip": 28.151732683181763,
+      "edge": 0.04511637057855282,
+      "contrast": 0.22593078925438273,
+      "seconds": 0.7010460369999691
+    },
+    "sha256": "83d45444f710a4e60143f51f0aaec144c321e940a034d432319ceaa3e3b72784",
+    "file": "B_102/result.png"
+  },
+  {
+    "condition": "A",
+    "seed": 103,
+    "settings": {
+      "prompt": "editorial poster concept for a robotics festival, glowing mechanical arm silhouette, deep blue and amber palette, clean composition, no text, no logo, no people",
+      "steps": 1,
+      "guidance": 0.0,
+      "size": 512
+    },
+    "metrics": {
+      "clip": 31.327080726623535,
+      "edge": 0.055380908620380406,
+      "contrast": 0.19766126169093032,
+      "seconds": 0.31446902000004684
+    },
+    "sha256": "d0a3ff677d892b96cc1103be02b5f24084a943e9a2d3a00c6a6df13642771c69",
+    "file": "A_103/result.png"
+  },
+  {
+    "condition": "B",
+    "seed": 103,
+    "settings": {
+      "prompt": "editorial poster concept for a robotics festival, glowing mechanical arm silhouette, deep blue and amber palette, clean composition, no text, no logo, no people",
+      "steps": 1,
+      "guidance": 0.0,
+      "size": 768
+    },
+    "metrics": {
+      "clip": 29.37185764312744,
+      "edge": 0.04346688674379091,
+      "contrast": 0.1564888182224672,
+      "seconds": 0.6906493399999931
+    },
+    "sha256": "032d3c194ac8634d9f9473794d795a20196a44aa3988f7e3396f99bc42f3cc44",
+    "file": "B_103/result.png"
+  },
+  {
+    "condition": "A",
+    "seed": 104,
+    "settings": {
+      "prompt": "editorial poster concept for a robotics festival, glowing mechanical arm silhouette, deep blue and amber palette, clean composition, no text, no logo, no people",
+      "steps": 1,
+      "guidance": 0.0,
+      "size": 512
+    },
+    "metrics": {
+      "clip": 30.29041886329651,
+      "edge": 0.03952160927797911,
+      "contrast": 0.1967321886419229,
+      "seconds": 0.3144734059999905
+    },
+    "sha256": "82a2b32b5aa51daa43e5d08343825b8e9ac738460520494b7fe1433a312652bc",
+    "file": "A_104/result.png"
+  },
+  {
+    "condition": "B",
+    "seed": 104,
+    "settings": {
+      "prompt": "editorial poster concept for a robotics festival, glowing mechanical arm silhouette, deep blue and amber palette, clean composition, no text, no logo, no people",
+      "steps": 1,
+      "guidance": 0.0,
+      "size": 768
+    },
+    "metrics": {
+      "clip": 30.631226301193237,
+      "edge": 0.04381198363251095,
+      "contrast": 0.21655811025454597,
+      "seconds": 0.7156063410000115
+    },
+    "sha256": "dcb01b5c9719c6a63ff79ffef5dc4603c418fff72da39dd77b182d91305b42e0",
+    "file": "B_104/result.png"
+  },
+  {
+    "condition": "A",
+    "seed": 105,
+    "settings": {
+      "prompt": "editorial poster concept for a robotics festival, glowing mechanical arm silhouette, deep blue and amber palette, clean composition, no text, no logo, no people",
+      "steps": 1,
+      "guidance": 0.0,
+      "size": 512
+    },
+    "metrics": {
+      "clip": 29.120180010795593,
+      "edge": 0.038302947304787734,
+      "contrast": 0.1910355232920731,
+      "seconds": 0.32331908900005146
+    },
+    "sha256": "21897cc9e657705c01bd9d39641104cfadcc7215b2e3e8982c2302401b22ce58",
+    "file": "A_105/result.png"
+  },
+  {
+    "condition": "B",
+    "seed": 105,
+    "settings": {
+      "prompt": "editorial poster concept for a robotics festival, glowing mechanical arm silhouette, deep blue and amber palette, clean composition, no text, no logo, no people",
+      "steps": 1,
+      "guidance": 0.0,
+      "size": 768
+    },
+    "metrics": {
+      "clip": 28.738784790039062,
+      "edge": 0.044130440180093954,
+      "contrast": 0.14862799881248193,
+      "seconds": 0.692851265999991
+    },
+    "sha256": "0da5a3cbc68fdcd48f1dec0f3fed9f7d40b23c61273ee2319500430052bb5d2d",
+    "file": "B_105/result.png"
+  }
+]
