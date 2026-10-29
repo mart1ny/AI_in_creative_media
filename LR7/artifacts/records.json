@@ -1,0 +1,212 @@
+[
+  {
+    "condition": "A",
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 8,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 101,
+    "metrics": {
+      "psnr": 25.839370727539062,
+      "gap": 0.03539466857910156,
+      "params": 101.035,
+      "seconds": 1.7043153550000625
+    },
+    "errors": "A_101_errors.npz"
+  },
+  {
+    "condition": "B",
+    "kind": "disc",
+    "settings": {
+      "arch": "dense",
+      "d": 8,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 101,
+    "metrics": {
+      "psnr": 25.803054809570312,
+      "gap": 0.11465072631835938,
+      "params": 1580.552,
+      "seconds": 1.1063863929999798
+    },
+    "errors": "B_101_errors.npz"
+  },
+  {
+    "condition": "A",
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 8,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 102,
+    "metrics": {
+      "psnr": 26.59311866760254,
+      "gap": 0.051059722900390625,
+      "params": 101.035,
+      "seconds": 1.7102636040000334
+    },
+    "errors": "A_102_errors.npz"
+  },
+  {
+    "condition": "B",
+    "kind": "disc",
+    "settings": {
+      "arch": "dense",
+      "d": 8,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 102,
+    "metrics": {
+      "psnr": 25.728260040283203,
+      "gap": 0.1213531494140625,
+      "params": 1580.552,
+      "seconds": 1.106402772000024
+    },
+    "errors": "B_102_errors.npz"
+  },
+  {
+    "condition": "A",
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 8,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 103,
+    "metrics": {
+      "psnr": 25.048969268798828,
+      "gap": 0.034389495849609375,
+      "params": 101.035,
+      "seconds": 1.6869562819999828
+    },
+    "errors": "A_103_errors.npz"
+  },
+  {
+    "condition": "B",
+    "kind": "disc",
+    "settings": {
+      "arch": "dense",
+      "d": 8,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 103,
+    "metrics": {
+      "psnr": 25.566911697387695,
+      "gap": 0.11866378784179688,
+      "params": 1580.552,
+      "seconds": 1.1291043469999522
+    },
+    "errors": "B_103_errors.npz"
+  },
+  {
+    "condition": "A",
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 8,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 104,
+    "metrics": {
+      "psnr": 26.468135833740234,
+      "gap": 0.05181694030761719,
+      "params": 101.035,
+      "seconds": 1.7708798219999835
+    },
+    "errors": "A_104_errors.npz"
+  },
+  {
+    "condition": "B",
+    "kind": "disc",
+    "settings": {
+      "arch": "dense",
+      "d": 8,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 104,
+    "metrics": {
+      "psnr": 25.613994598388672,
+      "gap": 0.11828994750976562,
+      "params": 1580.552,
+      "seconds": 1.114519157000018
+    },
+    "errors": "B_104_errors.npz"
+  },
+  {
+    "condition": "A",
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 8,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 105,
+    "metrics": {
+      "psnr": 26.47624969482422,
+      "gap": 0.041717529296875,
+      "params": 101.035,
+      "seconds": 1.7191983989999926
+    },
+    "errors": "A_105_errors.npz"
+  },
+  {
+    "condition": "B",
+    "kind": "disc",
+    "settings": {
+      "arch": "dense",
+      "d": 8,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 105,
+    "metrics": {
+      "psnr": 25.75566864013672,
+      "gap": 0.11905288696289062,
+      "params": 1580.552,
+      "seconds": 1.1141057050000427
+    },
+    "errors": "B_105_errors.npz"
+  }
+]

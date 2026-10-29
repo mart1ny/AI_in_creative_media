@@ -1,0 +1,8 @@
+{
+  "psnr": 17.170730590820312,
+  "method": "mean over training images only, average per-image test PSNR",
+  "train": 4096,
+  "test": 1024,
+  "data_seed": 7,
+  "scene_factors": 3
+}

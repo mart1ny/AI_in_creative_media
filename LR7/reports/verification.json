@@ -1,0 +1,16 @@
+{
+  "result": "PASS",
+  "checks": [
+    "run manifest and all hashes",
+    "five seeds and only architecture changed",
+    "baseline from train evaluated on test",
+    "per-image test/train PSNR and gap",
+    "parameter counts from layer formulas",
+    "means, sample s, delta, ratios, 2s and tolerances",
+    "diagnostic d series",
+    "seed101 reconstruction errors and pixel-exact comparison sheet",
+    "hypothesis before run, unchanged teacher source",
+    "notebook fully executed without errors"
+  ],
+  "limitations": "No local GPU retraining; all-seed PSNR aggregated from actual saved per-image errors; full pixel reconstructions independently checked for first eight test scenes at seed101"
+}

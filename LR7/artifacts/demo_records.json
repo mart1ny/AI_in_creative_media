@@ -1,0 +1,534 @@
+[
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 8,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 0,
+    "metrics": {
+      "psnr": 27.190399169921875,
+      "gap": 0.04933929443359375,
+      "params": 101.035,
+      "seconds": 10.33626817600009
+    }
+  },
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 8,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 101,
+    "metrics": {
+      "psnr": 25.770111083984375,
+      "gap": 0.036396026611328125,
+      "params": 101.035,
+      "seconds": 1.761228613999947
+    }
+  },
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 2,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 101,
+    "metrics": {
+      "psnr": 23.28857421875,
+      "gap": 0.1058807373046875,
+      "params": 88.741,
+      "seconds": 1.7754039090000333
+    }
+  },
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 8,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 102,
+    "metrics": {
+      "psnr": 26.567684173583984,
+      "gap": 0.04376792907714844,
+      "params": 101.035,
+      "seconds": 1.7474734449999687
+    }
+  },
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 2,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 102,
+    "metrics": {
+      "psnr": 23.409114837646484,
+      "gap": 0.087554931640625,
+      "params": 88.741,
+      "seconds": 1.7843162190000612
+    }
+  },
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 8,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 103,
+    "metrics": {
+      "psnr": 24.783443450927734,
+      "gap": 0.018543243408203125,
+      "params": 101.035,
+      "seconds": 1.8065451740000071
+    }
+  },
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 2,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 103,
+    "metrics": {
+      "psnr": 22.74100112915039,
+      "gap": 0.09004020690917969,
+      "params": 88.741,
+      "seconds": 1.808820962000027
+    }
+  },
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 8,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 104,
+    "metrics": {
+      "psnr": 26.167991638183594,
+      "gap": 0.05135154724121094,
+      "params": 101.035,
+      "seconds": 1.9432082079999873
+    }
+  },
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 2,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 104,
+    "metrics": {
+      "psnr": 23.131914138793945,
+      "gap": 0.09684371948242188,
+      "params": 88.741,
+      "seconds": 1.7137088739999626
+    }
+  },
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 8,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 105,
+    "metrics": {
+      "psnr": 26.425626754760742,
+      "gap": 0.048442840576171875,
+      "params": 101.035,
+      "seconds": 1.7574029959999962
+    }
+  },
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 2,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 105,
+    "metrics": {
+      "psnr": 23.467716217041016,
+      "gap": 0.13202285766601562,
+      "params": 88.741,
+      "seconds": 1.7275139380000155
+    }
+  },
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 1,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 101,
+    "metrics": {
+      "psnr": 20.63599967956543,
+      "gap": 0.0042285919189453125,
+      "params": 86.692,
+      "seconds": 1.8094042769999987
+    }
+  },
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 1,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 102,
+    "metrics": {
+      "psnr": 20.77271842956543,
+      "gap": -0.051105499267578125,
+      "params": 86.692,
+      "seconds": 1.7250607569999374
+    }
+  },
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 1,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 103,
+    "metrics": {
+      "psnr": 20.602922439575195,
+      "gap": 0.05410957336425781,
+      "params": 86.692,
+      "seconds": 1.7429011220000348
+    }
+  },
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 2,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 101,
+    "metrics": {
+      "psnr": 23.29865837097168,
+      "gap": 0.10347938537597656,
+      "params": 88.741,
+      "seconds": 1.9682220130000587
+    }
+  },
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 2,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 102,
+    "metrics": {
+      "psnr": 23.45281219482422,
+      "gap": 0.08222007751464844,
+      "params": 88.741,
+      "seconds": 1.981032808000009
+    }
+  },
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 2,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 103,
+    "metrics": {
+      "psnr": 22.721874237060547,
+      "gap": 0.08253097534179688,
+      "params": 88.741,
+      "seconds": 1.70291500299993
+    }
+  },
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 3,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 101,
+    "metrics": {
+      "psnr": 24.838809967041016,
+      "gap": 0.03875732421875,
+      "params": 90.79,
+      "seconds": 1.7743212990000075
+    }
+  },
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 3,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 102,
+    "metrics": {
+      "psnr": 24.83949851989746,
+      "gap": 0.018152236938476562,
+      "params": 90.79,
+      "seconds": 1.7310341029999563
+    }
+  },
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 3,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 103,
+    "metrics": {
+      "psnr": 26.16002655029297,
+      "gap": 0.055149078369140625,
+      "params": 90.79,
+      "seconds": 1.7004500270001017
+    }
+  },
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 4,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 101,
+    "metrics": {
+      "psnr": 27.108631134033203,
+      "gap": 0.06182861328125,
+      "params": 92.839,
+      "seconds": 1.7506029630000057
+    }
+  },
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 4,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 102,
+    "metrics": {
+      "psnr": 26.332378387451172,
+      "gap": 0.061367034912109375,
+      "params": 92.839,
+      "seconds": 1.7265839050000977
+    }
+  },
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 4,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 103,
+    "metrics": {
+      "psnr": 26.105010986328125,
+      "gap": 0.052764892578125,
+      "params": 92.839,
+      "seconds": 1.74333177099993
+    }
+  },
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 8,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 101,
+    "metrics": {
+      "psnr": 25.755767822265625,
+      "gap": 0.04212188720703125,
+      "params": 101.035,
+      "seconds": 1.7619911990000219
+    }
+  },
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 8,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 102,
+    "metrics": {
+      "psnr": 26.68834114074707,
+      "gap": 0.047534942626953125,
+      "params": 101.035,
+      "seconds": 1.738383282999962
+    }
+  },
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 8,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 103,
+    "metrics": {
+      "psnr": 25.04463768005371,
+      "gap": 0.016340255737304688,
+      "params": 101.035,
+      "seconds": 1.721761526000023
+    }
+  },
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 8,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 101,
+    "metrics": {
+      "psnr": 25.56399917602539,
+      "gap": 0.047817230224609375,
+      "params": 101.035,
+      "seconds": 1.7178011930000139
+    }
+  },
+  {
+    "kind": "disc",
+    "settings": {
+      "arch": "conv",
+      "d": 2,
+      "loss": "mse",
+      "noise": 0.0,
+      "eval_noise": 0.0,
+      "n_train": 4096,
+      "epochs": 20
+    },
+    "seed": 101,
+    "metrics": {
+      "psnr": 23.31733512878418,
+      "gap": 0.10175514221191406,
+      "params": 88.741,
+      "seconds": 1.7026608769999712
+    }
+  }
+]

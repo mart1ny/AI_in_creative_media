@@ -1,0 +1,61 @@
+{
+  "student": "Власюк Данил Витальевич",
+  "group": "Т26ИИКТ-МИК11",
+  "variant": 3,
+  "started_utc": "2026-10-29T08:03:45.551427+00:00",
+  "finished_utc": "2026-10-29T08:05:02.387405+00:00",
+  "gpu": "name, memory.total [MiB], driver_version\nTesla T4, 15360 MiB, 580.82.07\n",
+  "python": "3.13.16 (main, Oct  1 2026, 15:40:24) [GCC 13.3.0]",
+  "platform": "Linux-6.6.159+-x86_64-with-glibc2.39",
+  "packages": {
+    "torch": "2.11.0+cu130",
+    "numpy": "2.1.3",
+    "Pillow": "11.3.0"
+  },
+  "kind": "disc",
+  "data_seed": 7,
+  "seeds": [
+    101,
+    102,
+    103,
+    104,
+    105
+  ],
+  "settings_A": {
+    "arch": "conv",
+    "d": 8,
+    "loss": "mse",
+    "noise": 0.0,
+    "eval_noise": 0.0,
+    "n_train": 4096,
+    "epochs": 20
+  },
+  "settings_B": {
+    "arch": "dense",
+    "d": 8,
+    "loss": "mse",
+    "noise": 0.0,
+    "eval_noise": 0.0,
+    "n_train": 4096,
+    "epochs": 20
+  },
+  "optimizer": "Adam",
+  "lr": 0.002,
+  "batch": 128,
+  "training_updates": 640,
+  "dtype": "float32",
+  "tolerances": {
+    "psnr": 1.0,
+    "gap": 0.1,
+    "params": 0.2,
+    "seconds": 0.2
+  },
+  "source_sha256": {
+    "lab07_lib.py": "d84b83a878f55e95289d76a788dc9fa84d3249d0d33aa719d9db8d6792fd2698",
+    "lab07_demo.py": "fce7924908adbef63dd5808a800a3c9f5b96c137dc9ebf9d398fc2eb613d95fa"
+  },
+  "cudnn_benchmark": false,
+  "cudnn_deterministic": false,
+  "deterministic_algorithms": false,
+  "independent_new_session_tested": false
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "metric": "psnr",
+    "A": 26.085168838500977,
+    "s_A": 0.6503359216806296,
+    "B": 25.69357795715332,
+    "delta": -0.39159088134765696,
+    "ratio": 0.602136324156428,
+    "over_2s": false,
+    "tolerance": 1.0,
+    "practical": false,
+    "label": "нейтрально",
+    "criteria_disagree": false,
+    "deterministic": false
+  },
+  {
+    "metric": "gap",
+    "A": 0.04287567138671875,
+    "s_A": 0.008310337845851045,
+    "B": 0.118402099609375,
+    "delta": 0.07552642822265626,
+    "ratio": 9.088250035510049,
+    "over_2s": true,
+    "tolerance": 0.1,
+    "practical": false,
+    "label": "нейтрально",
+    "criteria_disagree": true,
+    "deterministic": false
+  },
+  {
+    "metric": "params",
+    "A": 101.035,
+    "s_A": 0.0,
+    "B": 1580.552,
+    "delta": 1479.5169999999998,
+    "ratio": Infinity,
+    "over_2s": true,
+    "tolerance": 20.207,
+    "practical": true,
+    "label": "ухудшение",
+    "criteria_disagree": false,
+    "deterministic": true
+  },
+  {
+    "metric": "seconds",
+    "A": 1.718322692400011,
+    "s_A": 0.03165448168149024,
+    "B": 1.1141036748000033,
+    "delta": -0.6042190176000077,
+    "ratio": 19.087945387313706,
+    "over_2s": true,
+    "tolerance": 0.3436645384800022,
+    "practical": true,
+    "label": "улучшение",
+    "criteria_disagree": false,
+    "deterministic": false
+  }
+]
