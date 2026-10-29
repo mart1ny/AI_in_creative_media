@@ -1,0 +1,192 @@
+[
+  {
+    "condition": "A",
+    "kind": "disc",
+    "settings": {
+      "d": 8,
+      "beta": 1.0,
+      "interp": "lin",
+      "temp": 1.0,
+      "epochs": 30
+    },
+    "seed": 101,
+    "metrics": {
+      "recon": 26.68584442138672,
+      "interp": 22.676808675130207,
+      "sample": 23.281002044677734,
+      "r2": 0.8830305933952332
+    },
+    "audit": "A_101_audit.npz"
+  },
+  {
+    "condition": "B",
+    "kind": "disc",
+    "settings": {
+      "d": 2,
+      "beta": 1.0,
+      "interp": "lin",
+      "temp": 1.0,
+      "epochs": 30
+    },
+    "seed": 101,
+    "metrics": {
+      "recon": 23.330543518066406,
+      "interp": 22.95764986673991,
+      "sample": 24.708106994628906,
+      "r2": 0.6436245441436768
+    },
+    "audit": "B_101_audit.npz"
+  },
+  {
+    "condition": "A",
+    "kind": "disc",
+    "settings": {
+      "d": 8,
+      "beta": 1.0,
+      "interp": "lin",
+      "temp": 1.0,
+      "epochs": 30
+    },
+    "seed": 102,
+    "metrics": {
+      "recon": 26.877029418945312,
+      "interp": 23.21292241414388,
+      "sample": 23.89876937866211,
+      "r2": 0.9346650242805481
+    },
+    "audit": "A_102_audit.npz"
+  },
+  {
+    "condition": "B",
+    "kind": "disc",
+    "settings": {
+      "d": 2,
+      "beta": 1.0,
+      "interp": "lin",
+      "temp": 1.0,
+      "epochs": 30
+    },
+    "seed": 102,
+    "metrics": {
+      "recon": 23.366790771484375,
+      "interp": 23.18939463297526,
+      "sample": 24.75436019897461,
+      "r2": 0.6470401883125305
+    },
+    "audit": "B_102_audit.npz"
+  },
+  {
+    "condition": "A",
+    "kind": "disc",
+    "settings": {
+      "d": 8,
+      "beta": 1.0,
+      "interp": "lin",
+      "temp": 1.0,
+      "epochs": 30
+    },
+    "seed": 103,
+    "metrics": {
+      "recon": 25.643220901489258,
+      "interp": 22.062571843465168,
+      "sample": 22.87070655822754,
+      "r2": 0.8931019306182861
+    },
+    "audit": "A_103_audit.npz"
+  },
+  {
+    "condition": "B",
+    "kind": "disc",
+    "settings": {
+      "d": 2,
+      "beta": 1.0,
+      "interp": "lin",
+      "temp": 1.0,
+      "epochs": 30
+    },
+    "seed": 103,
+    "metrics": {
+      "recon": 23.343542098999023,
+      "interp": 22.89524777730306,
+      "sample": 24.648174285888672,
+      "r2": 0.6489303708076477
+    },
+    "audit": "B_103_audit.npz"
+  },
+  {
+    "condition": "A",
+    "kind": "disc",
+    "settings": {
+      "d": 8,
+      "beta": 1.0,
+      "interp": "lin",
+      "temp": 1.0,
+      "epochs": 30
+    },
+    "seed": 104,
+    "metrics": {
+      "recon": 26.882999420166016,
+      "interp": 22.72519365946452,
+      "sample": 23.63253402709961,
+      "r2": 0.9056034088134766
+    },
+    "audit": "A_104_audit.npz"
+  },
+  {
+    "condition": "B",
+    "kind": "disc",
+    "settings": {
+      "d": 2,
+      "beta": 1.0,
+      "interp": "lin",
+      "temp": 1.0,
+      "epochs": 30
+    },
+    "seed": 104,
+    "metrics": {
+      "recon": 22.939409255981445,
+      "interp": 22.917871475219727,
+      "sample": 23.91432762145996,
+      "r2": 0.6512466073036194
+    },
+    "audit": "B_104_audit.npz"
+  },
+  {
+    "condition": "A",
+    "kind": "disc",
+    "settings": {
+      "d": 8,
+      "beta": 1.0,
+      "interp": "lin",
+      "temp": 1.0,
+      "epochs": 30
+    },
+    "seed": 105,
+    "metrics": {
+      "recon": 25.7703800201416,
+      "interp": 22.085391998291016,
+      "sample": 22.52622413635254,
+      "r2": 0.8810162544250488
+    },
+    "audit": "A_105_audit.npz"
+  },
+  {
+    "condition": "B",
+    "kind": "disc",
+    "settings": {
+      "d": 2,
+      "beta": 1.0,
+      "interp": "lin",
+      "temp": 1.0,
+      "epochs": 30
+    },
+    "seed": 105,
+    "metrics": {
+      "recon": 23.140911102294922,
+      "interp": 22.937581380208332,
+      "sample": 24.30832290649414,
+      "r2": 0.6482437252998352
+    },
+    "audit": "B_105_audit.npz"
+  }
+]

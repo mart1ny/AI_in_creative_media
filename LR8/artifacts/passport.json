@@ -1,0 +1,59 @@
+{
+  "student": "Власюк Данил Витальевич",
+  "group": "Т26ИИКТ-МИК11",
+  "variant": 3,
+  "started_utc": "2026-10-29T08:36:47.939239+00:00",
+  "finished_utc": "2026-10-29T09:03:53.412582+00:00",
+  "environment": "Engee CPU",
+  "python": "3.11.11 (main, Mar 17 2025, 21:02:09) [Clang 20.1.0 ]",
+  "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.35",
+  "torch": "2.4.1+cpu",
+  "numpy": "2.1.3",
+  "threads": 4,
+  "cuda": false,
+  "kind": "disc",
+  "data_seed": 7,
+  "seeds": [
+    101,
+    102,
+    103,
+    104,
+    105
+  ],
+  "settings_A": {
+    "d": 8,
+    "beta": 1.0,
+    "interp": "lin",
+    "temp": 1.0,
+    "epochs": 30
+  },
+  "settings_B": {
+    "d": 2,
+    "beta": 1.0,
+    "interp": "lin",
+    "temp": 1.0,
+    "epochs": 30
+  },
+  "optimizer": "Adam",
+  "lr": 0.002,
+  "batch": 128,
+  "warmup": 10,
+  "training_updates": 960,
+  "n_pairs": 200,
+  "n_samples": 256,
+  "pair_seed": 11,
+  "sample_seed": "1000+training_seed",
+  "tolerances": {
+    "recon": 1.0,
+    "interp": 1.0,
+    "sample": 1.0,
+    "r2": 0.05
+  },
+  "source_sha256": {
+    "lab07_lib.py": "d84b83a878f55e95289d76a788dc9fa84d3249d0d33aa719d9db8d6792fd2698",
+    "lab08_lib.py": "f414c49bd0df4eb3aae1f822b29ef2eb112979afc078b26bc65645fd3f43fe9f",
+    "lab08_demo.py": "8ab781bf6a0e71fb9c007e2a0d88f25f96686aa7fb1237190be9846672865c53",
+    "run_lr08.py": "e19ba954db3f5f109afa1efd08381255410bf71c1117192533fe1236876f454f"
+  },
+  "independent_new_session_tested": false
+}

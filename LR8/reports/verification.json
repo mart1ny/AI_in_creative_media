@@ -1,0 +1,16 @@
+{
+  "result": "PASS",
+  "checks": [
+    "authentic Engee CPU passport and artifact hashes",
+    "5 seeds and only d changed",
+    "test reconstruction and 200-pair interpolation PSNR",
+    "256-sample nearest PSNR and direct pixel check for seed101 subset",
+    "independent factor regression and R2",
+    "KL, standard deviations and active dimensions",
+    "means, sample s, delta, 2s and tolerances",
+    "exact comparison image from float pixels",
+    "hypothesis before training and unchanged teacher scripts",
+    "executed Engee notebook without errors"
+  ],
+  "limitation": "No independent local retraining; full-series PSNR aggregated from saved per-image errors; pixel-level reconstruction and nearest-neighbor check covers first 8 seed101 samples"
+}

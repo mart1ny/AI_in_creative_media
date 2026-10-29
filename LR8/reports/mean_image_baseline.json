@@ -1,0 +1,4 @@
+{
+  "psnr": 17.170729767774475,
+  "provenance": "Independent NumPy float64 recomputation from LR8 train mean and held-out test images"
+}

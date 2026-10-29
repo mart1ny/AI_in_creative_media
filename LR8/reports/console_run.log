@@ -1,0 +1,96 @@
+LR08: Python CPU execution started 2026-10-29T08:36:44.730
+STARTED 2026-10-29T08:36:47.939239+00:00 3.11.11 (main, Mar 17 2025, 21:02:09) [Clang 20.1.0 ] 2.4.1+cpu CPU threads 4
+SOURCE_SHA256 lab07_lib.py d84b83a878f55e95289d76a788dc9fa84d3249d0d33aa719d9db8d6792fd2698
+SOURCE_SHA256 lab08_lib.py f414c49bd0df4eb3aae1f822b29ef2eb112979afc078b26bc65645fd3f43fe9f
+SOURCE_SHA256 lab08_demo.py 8ab781bf6a0e71fb9c007e2a0d88f25f96686aa7fb1237190be9846672865c53
+SOURCE_SHA256 run_lr08.py e19ba954db3f5f109afa1efd08381255410bf71c1117192533fe1236876f454f
+DEMO_BEGIN
+A: {'d': 8, 'beta': 1.0, 'interp': 'lin', 'temp': 1.0, 'epochs': 30}
+B: {'d': 8, 'beta': 8.0, 'interp': 'lin', 'temp': 1.0, 'epochs': 30}
+TRAIN_START {'index': 1, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 101, 'warmup': 10, 'started': '2026-10-29T08:36:48.635460+00:00'}
+TRAIN_DONE {'index': 1, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 101, 'warmup': 10, 'started': '2026-10-29T08:36:48.635460+00:00', 'seconds': 73.69497613981366, 'finished': '2026-10-29T08:38:02.333380+00:00'}
+DEMO_METRICS 101 {'d': 8, 'beta': 1.0, 'interp': 'lin', 'temp': 1.0, 'epochs': 30} {'recon': 26.68584442138672, 'interp': 22.676808675130207, 'sample': 23.281002044677734, 'r2': 0.8830305933952332}
+TRAIN_START {'index': 2, 'd': 8, 'beta': 8.0, 'epochs': 30, 'seed': 101, 'warmup': 10, 'started': '2026-10-29T08:38:03.251403+00:00'}
+TRAIN_DONE {'index': 2, 'd': 8, 'beta': 8.0, 'epochs': 30, 'seed': 101, 'warmup': 10, 'started': '2026-10-29T08:38:03.251403+00:00', 'seconds': 67.94633603282273, 'finished': '2026-10-29T08:39:11.200748+00:00'}
+DEMO_METRICS 101 {'d': 8, 'beta': 8.0, 'interp': 'lin', 'temp': 1.0, 'epochs': 30} {'recon': 22.239620208740234, 'interp': 22.389849344889324, 'sample': 23.406951904296875, 'r2': 0.944146454334259}
+TRAIN_START {'index': 3, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 102, 'warmup': 10, 'started': '2026-10-29T08:39:11.988472+00:00'}
+TRAIN_DONE {'index': 3, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 102, 'warmup': 10, 'started': '2026-10-29T08:39:11.988472+00:00', 'seconds': 63.949941804632545, 'finished': '2026-10-29T08:40:15.941037+00:00'}
+DEMO_METRICS 102 {'d': 8, 'beta': 1.0, 'interp': 'lin', 'temp': 1.0, 'epochs': 30} {'recon': 26.877029418945312, 'interp': 23.21292241414388, 'sample': 23.89876937866211, 'r2': 0.9346650242805481}
+TRAIN_START {'index': 4, 'd': 8, 'beta': 8.0, 'epochs': 30, 'seed': 102, 'warmup': 10, 'started': '2026-10-29T08:40:17.553546+00:00'}
+TRAIN_DONE {'index': 4, 'd': 8, 'beta': 8.0, 'epochs': 30, 'seed': 102, 'warmup': 10, 'started': '2026-10-29T08:40:17.553546+00:00', 'seconds': 63.32857985235751, 'finished': '2026-10-29T08:41:20.885274+00:00'}
+DEMO_METRICS 102 {'d': 8, 'beta': 8.0, 'interp': 'lin', 'temp': 1.0, 'epochs': 30} {'recon': 22.655994415283203, 'interp': 21.727223078409832, 'sample': 23.412357330322266, 'r2': 0.7241811752319336}
+TRAIN_START {'index': 5, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 103, 'warmup': 10, 'started': '2026-10-29T08:41:21.633579+00:00'}
+TRAIN_DONE {'index': 5, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 103, 'warmup': 10, 'started': '2026-10-29T08:41:21.633579+00:00', 'seconds': 55.71381380967796, 'finished': '2026-10-29T08:42:17.351601+00:00'}
+DEMO_METRICS 103 {'d': 8, 'beta': 1.0, 'interp': 'lin', 'temp': 1.0, 'epochs': 30} {'recon': 25.643220901489258, 'interp': 22.062571843465168, 'sample': 22.87070655822754, 'r2': 0.8931019306182861}
+TRAIN_START {'index': 6, 'd': 8, 'beta': 8.0, 'epochs': 30, 'seed': 103, 'warmup': 10, 'started': '2026-10-29T08:42:18.058804+00:00'}
+TRAIN_DONE {'index': 6, 'd': 8, 'beta': 8.0, 'epochs': 30, 'seed': 103, 'warmup': 10, 'started': '2026-10-29T08:42:18.058804+00:00', 'seconds': 58.11168751493096, 'finished': '2026-10-29T08:43:16.173668+00:00'}
+DEMO_METRICS 103 {'d': 8, 'beta': 8.0, 'interp': 'lin', 'temp': 1.0, 'epochs': 30} {'recon': 22.321874618530273, 'interp': 21.6166254679362, 'sample': 22.809064865112305, 'r2': 0.7060256004333496}
+TRAIN_START {'index': 7, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 104, 'warmup': 10, 'started': '2026-10-29T08:43:16.799744+00:00'}
+TRAIN_DONE {'index': 7, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 104, 'warmup': 10, 'started': '2026-10-29T08:43:16.799744+00:00', 'seconds': 62.83519763313234, 'finished': '2026-10-29T08:44:19.637048+00:00'}
+DEMO_METRICS 104 {'d': 8, 'beta': 1.0, 'interp': 'lin', 'temp': 1.0, 'epochs': 30} {'recon': 26.882999420166016, 'interp': 22.72519365946452, 'sample': 23.63253402709961, 'r2': 0.9056034088134766}
+TRAIN_START {'index': 8, 'd': 8, 'beta': 8.0, 'epochs': 30, 'seed': 104, 'warmup': 10, 'started': '2026-10-29T08:44:20.398381+00:00'}
+TRAIN_DONE {'index': 8, 'd': 8, 'beta': 8.0, 'epochs': 30, 'seed': 104, 'warmup': 10, 'started': '2026-10-29T08:44:20.398381+00:00', 'seconds': 65.34948287531734, 'finished': '2026-10-29T08:45:25.752307+00:00'}
+DEMO_METRICS 104 {'d': 8, 'beta': 8.0, 'interp': 'lin', 'temp': 1.0, 'epochs': 30} {'recon': 22.788619995117188, 'interp': 21.9771302541097, 'sample': 23.224328994750977, 'r2': 0.7972347736358643}
+TRAIN_START {'index': 9, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 105, 'warmup': 10, 'started': '2026-10-29T08:45:26.558117+00:00'}
+TRAIN_DONE {'index': 9, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 105, 'warmup': 10, 'started': '2026-10-29T08:45:26.558117+00:00', 'seconds': 67.23309653066099, 'finished': '2026-10-29T08:46:33.794315+00:00'}
+DEMO_METRICS 105 {'d': 8, 'beta': 1.0, 'interp': 'lin', 'temp': 1.0, 'epochs': 30} {'recon': 25.7703800201416, 'interp': 22.085391998291016, 'sample': 22.52622413635254, 'r2': 0.8810162544250488}
+TRAIN_START {'index': 10, 'd': 8, 'beta': 8.0, 'epochs': 30, 'seed': 105, 'warmup': 10, 'started': '2026-10-29T08:46:34.675635+00:00'}
+TRAIN_DONE {'index': 10, 'd': 8, 'beta': 8.0, 'epochs': 30, 'seed': 105, 'warmup': 10, 'started': '2026-10-29T08:46:34.675635+00:00', 'seconds': 69.33901444077492, 'finished': '2026-10-29T08:47:44.018456+00:00'}
+DEMO_METRICS 105 {'d': 8, 'beta': 8.0, 'interp': 'lin', 'temp': 1.0, 'epochs': 30} {'recon': 22.637529373168945, 'interp': 21.799431482950848, 'sample': 23.196285247802734, 'r2': 0.7561233043670654}
+recon   A= 26.372 s= 0.614 B= 22.529 d= -3.843 |d|/s=   6.26 2s=да
+interp  A= 22.553 s= 0.485 B= 21.902 d= -0.651 |d|/s=   1.34 2s=нет
+sample  A= 23.242 s= 0.556 B= 23.210 d= -0.032 |d|/s=   0.06 2s=нет
+r2      A=  0.899 s= 0.022 B=  0.786 d= -0.114 |d|/s=   5.19 2s=да
+TRAIN_START {'index': 11, 'd': 8, 'beta': 0.0, 'epochs': 30, 'seed': 101, 'warmup': 10, 'started': '2026-10-29T08:47:44.812237+00:00'}
+TRAIN_DONE {'index': 11, 'd': 8, 'beta': 0.0, 'epochs': 30, 'seed': 101, 'warmup': 10, 'started': '2026-10-29T08:47:44.812237+00:00', 'seconds': 60.532456358894706, 'finished': '2026-10-29T08:48:45.347433+00:00'}
+AE, beta=0: разброс mu по осям [2.72 4.91 2.67 3.13 4.02 4.01 4.11 2.04]; активных осей -; сэмплы PSNR 12.86; интерполяция PSNR 22.30; реконструкция PSNR 26.24
+VAE, beta=1: разброс mu по осям [1.03 0.97 0.44 1.03 0.23 0.43 1.02 0.98]; активных осей 7; сэмплы PSNR 23.28; интерполяция PSNR 22.68; реконструкция PSNR 26.69
+VAE, beta=8: разброс mu по осям [0.07 0.16 0.88 0.05 0.05 0.88 0.12 0.08]; активных осей 2; сэмплы PSNR 23.41; интерполяция PSNR 22.39; реконструкция PSNR 22.24
+TRAIN_START {'index': 12, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 101, 'warmup': 1e-09, 'started': '2026-10-29T08:48:47.890516+00:00'}
+TRAIN_DONE {'index': 12, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 101, 'warmup': 1e-09, 'started': '2026-10-29T08:48:47.890516+00:00', 'seconds': 63.67635382153094, 'finished': '2026-10-29T08:49:51.568959+00:00'}
+TRAIN_START {'index': 13, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 102, 'warmup': 1e-09, 'started': '2026-10-29T08:49:52.329264+00:00'}
+TRAIN_DONE {'index': 13, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 102, 'warmup': 1e-09, 'started': '2026-10-29T08:49:52.329264+00:00', 'seconds': 61.12876230478287, 'finished': '2026-10-29T08:50:53.460294+00:00'}
+TRAIN_START {'index': 14, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 103, 'warmup': 1e-09, 'started': '2026-10-29T08:50:54.206169+00:00'}
+TRAIN_DONE {'index': 14, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 103, 'warmup': 1e-09, 'started': '2026-10-29T08:50:54.206169+00:00', 'seconds': 56.37936412356794, 'finished': '2026-10-29T08:51:50.587729+00:00'}
+TRAIN_START {'index': 15, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 104, 'warmup': 1e-09, 'started': '2026-10-29T08:51:51.285880+00:00'}
+TRAIN_DONE {'index': 15, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 104, 'warmup': 1e-09, 'started': '2026-10-29T08:51:51.285880+00:00', 'seconds': 54.88292379304767, 'finished': '2026-10-29T08:52:46.170745+00:00'}
+TRAIN_START {'index': 16, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 105, 'warmup': 1e-09, 'started': '2026-10-29T08:52:46.877840+00:00'}
+TRAIN_DONE {'index': 16, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 105, 'warmup': 1e-09, 'started': '2026-10-29T08:52:46.877840+00:00', 'seconds': 56.019231816753745, 'finished': '2026-10-29T08:53:42.899493+00:00'}
+без разогрева: [26.5, 17.2, 25.7, 26.7, 24.7]
+TRAIN_START {'index': 17, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 101, 'warmup': 10, 'started': '2026-10-29T08:53:43.567154+00:00'}
+TRAIN_DONE {'index': 17, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 101, 'warmup': 10, 'started': '2026-10-29T08:53:43.567154+00:00', 'seconds': 56.799556739628315, 'finished': '2026-10-29T08:54:40.368981+00:00'}
+TRAIN_START {'index': 18, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 102, 'warmup': 10, 'started': '2026-10-29T08:54:41.220486+00:00'}
+TRAIN_DONE {'index': 18, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 102, 'warmup': 10, 'started': '2026-10-29T08:54:41.220486+00:00', 'seconds': 56.62280176579952, 'finished': '2026-10-29T08:55:37.846001+00:00'}
+TRAIN_START {'index': 19, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 103, 'warmup': 10, 'started': '2026-10-29T08:55:38.635292+00:00'}
+TRAIN_DONE {'index': 19, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 103, 'warmup': 10, 'started': '2026-10-29T08:55:38.635292+00:00', 'seconds': 62.916771510615945, 'finished': '2026-10-29T08:56:41.555343+00:00'}
+TRAIN_START {'index': 20, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 104, 'warmup': 10, 'started': '2026-10-29T08:56:42.614284+00:00'}
+TRAIN_DONE {'index': 20, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 104, 'warmup': 10, 'started': '2026-10-29T08:56:42.614284+00:00', 'seconds': 56.62854621745646, 'finished': '2026-10-29T08:57:39.245764+00:00'}
+TRAIN_START {'index': 21, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 105, 'warmup': 10, 'started': '2026-10-29T08:57:39.967914+00:00'}
+TRAIN_DONE {'index': 21, 'd': 8, 'beta': 1.0, 'epochs': 30, 'seed': 105, 'warmup': 10, 'started': '2026-10-29T08:57:39.967914+00:00', 'seconds': 71.49588353559375, 'finished': '2026-10-29T08:58:51.466179+00:00'}
+разогрев 10 эпох: [26.7, 26.9, 25.6, 26.9, 25.8]
+DEMO_COMPLETE
+INDIVIDUAL_A {'d': 8, 'beta': 1.0, 'interp': 'lin', 'temp': 1.0, 'epochs': 30} B {'d': 2, 'beta': 1.0, 'interp': 'lin', 'temp': 1.0, 'epochs': 30}
+INDIVIDUAL_METRICS {'condition': 'A', 'kind': 'disc', 'settings': {'d': 8, 'beta': 1.0, 'interp': 'lin', 'temp': 1.0, 'epochs': 30}, 'seed': 101, 'metrics': {'recon': 26.68584442138672, 'interp': 22.676808675130207, 'sample': 23.281002044677734, 'r2': 0.8830305933952332}, 'audit': 'A_101_audit.npz'}
+TRAIN_START {'index': 22, 'd': 2, 'beta': 1.0, 'epochs': 30, 'seed': 101, 'warmup': 10, 'started': '2026-10-29T08:58:55.819338+00:00'}
+TRAIN_DONE {'index': 22, 'd': 2, 'beta': 1.0, 'epochs': 30, 'seed': 101, 'warmup': 10, 'started': '2026-10-29T08:58:55.819338+00:00', 'seconds': 62.384187296032906, 'finished': '2026-10-29T08:59:58.206617+00:00'}
+INDIVIDUAL_METRICS {'condition': 'B', 'kind': 'disc', 'settings': {'d': 2, 'beta': 1.0, 'interp': 'lin', 'temp': 1.0, 'epochs': 30}, 'seed': 101, 'metrics': {'recon': 23.330543518066406, 'interp': 22.95764986673991, 'sample': 24.708106994628906, 'r2': 0.6436245441436768}, 'audit': 'B_101_audit.npz'}
+INDIVIDUAL_METRICS {'condition': 'A', 'kind': 'disc', 'settings': {'d': 8, 'beta': 1.0, 'interp': 'lin', 'temp': 1.0, 'epochs': 30}, 'seed': 102, 'metrics': {'recon': 26.877029418945312, 'interp': 23.21292241414388, 'sample': 23.89876937866211, 'r2': 0.9346650242805481}, 'audit': 'A_102_audit.npz'}
+TRAIN_START {'index': 23, 'd': 2, 'beta': 1.0, 'epochs': 30, 'seed': 102, 'warmup': 10, 'started': '2026-10-29T09:00:01.265441+00:00'}
+TRAIN_DONE {'index': 23, 'd': 2, 'beta': 1.0, 'epochs': 30, 'seed': 102, 'warmup': 10, 'started': '2026-10-29T09:00:01.265441+00:00', 'seconds': 50.70769357122481, 'finished': '2026-10-29T09:00:51.975692+00:00'}
+INDIVIDUAL_METRICS {'condition': 'B', 'kind': 'disc', 'settings': {'d': 2, 'beta': 1.0, 'interp': 'lin', 'temp': 1.0, 'epochs': 30}, 'seed': 102, 'metrics': {'recon': 23.366790771484375, 'interp': 23.18939463297526, 'sample': 24.75436019897461, 'r2': 0.6470401883125305}, 'audit': 'B_102_audit.npz'}
+INDIVIDUAL_METRICS {'condition': 'A', 'kind': 'disc', 'settings': {'d': 8, 'beta': 1.0, 'interp': 'lin', 'temp': 1.0, 'epochs': 30}, 'seed': 103, 'metrics': {'recon': 25.643220901489258, 'interp': 22.062571843465168, 'sample': 22.87070655822754, 'r2': 0.8931019306182861}, 'audit': 'A_103_audit.npz'}
+TRAIN_START {'index': 24, 'd': 2, 'beta': 1.0, 'epochs': 30, 'seed': 103, 'warmup': 10, 'started': '2026-10-29T09:00:54.971172+00:00'}
+TRAIN_DONE {'index': 24, 'd': 2, 'beta': 1.0, 'epochs': 30, 'seed': 103, 'warmup': 10, 'started': '2026-10-29T09:00:54.971172+00:00', 'seconds': 55.235043125227094, 'finished': '2026-10-29T09:01:50.208711+00:00'}
+INDIVIDUAL_METRICS {'condition': 'B', 'kind': 'disc', 'settings': {'d': 2, 'beta': 1.0, 'interp': 'lin', 'temp': 1.0, 'epochs': 30}, 'seed': 103, 'metrics': {'recon': 23.343542098999023, 'interp': 22.89524777730306, 'sample': 24.648174285888672, 'r2': 0.6489303708076477}, 'audit': 'B_103_audit.npz'}
+INDIVIDUAL_METRICS {'condition': 'A', 'kind': 'disc', 'settings': {'d': 8, 'beta': 1.0, 'interp': 'lin', 'temp': 1.0, 'epochs': 30}, 'seed': 104, 'metrics': {'recon': 26.882999420166016, 'interp': 22.72519365946452, 'sample': 23.63253402709961, 'r2': 0.9056034088134766}, 'audit': 'A_104_audit.npz'}
+TRAIN_START {'index': 25, 'd': 2, 'beta': 1.0, 'epochs': 30, 'seed': 104, 'warmup': 10, 'started': '2026-10-29T09:01:53.042949+00:00'}
+TRAIN_DONE {'index': 25, 'd': 2, 'beta': 1.0, 'epochs': 30, 'seed': 104, 'warmup': 10, 'started': '2026-10-29T09:01:53.042949+00:00', 'seconds': 56.2520185764879, 'finished': '2026-10-29T09:02:49.298340+00:00'}
+INDIVIDUAL_METRICS {'condition': 'B', 'kind': 'disc', 'settings': {'d': 2, 'beta': 1.0, 'interp': 'lin', 'temp': 1.0, 'epochs': 30}, 'seed': 104, 'metrics': {'recon': 22.939409255981445, 'interp': 22.917871475219727, 'sample': 23.91432762145996, 'r2': 0.6512466073036194}, 'audit': 'B_104_audit.npz'}
+INDIVIDUAL_METRICS {'condition': 'A', 'kind': 'disc', 'settings': {'d': 8, 'beta': 1.0, 'interp': 'lin', 'temp': 1.0, 'epochs': 30}, 'seed': 105, 'metrics': {'recon': 25.7703800201416, 'interp': 22.085391998291016, 'sample': 22.52622413635254, 'r2': 0.8810162544250488}, 'audit': 'A_105_audit.npz'}
+TRAIN_START {'index': 26, 'd': 2, 'beta': 1.0, 'epochs': 30, 'seed': 105, 'warmup': 10, 'started': '2026-10-29T09:02:52.465413+00:00'}
+TRAIN_DONE {'index': 26, 'd': 2, 'beta': 1.0, 'epochs': 30, 'seed': 105, 'warmup': 10, 'started': '2026-10-29T09:02:52.465413+00:00', 'seconds': 57.37347633577883, 'finished': '2026-10-29T09:03:49.841471+00:00'}
+INDIVIDUAL_METRICS {'condition': 'B', 'kind': 'disc', 'settings': {'d': 2, 'beta': 1.0, 'interp': 'lin', 'temp': 1.0, 'epochs': 30}, 'seed': 105, 'metrics': {'recon': 23.140911102294922, 'interp': 22.937581380208332, 'sample': 24.30832290649414, 'r2': 0.6482437252998352}, 'audit': 'B_105_audit.npz'}
+MAIN_SUMMARY {"variant": 3, "ctx": 1, "factor": "latent_8_to_2", "rows": [["recon", 26.37189483642578, 0.61395011229331, 23.224239349365234, -3.147655487060547, 5.126891296269979, true], ["interp", 22.55257771809896, 0.4846784927818566, 22.97954902648926, 0.42697130839029995, 0.8809371877420412, false], ["sample", 23.241847229003906, 0.5557827346968682, 24.46665840148926, 1.224811172485353, 2.2037589439574483, true], ["r2", 0.8994834423065186, 0.02195253207044567, 0.6478170871734619, -0.2516663551330567, 11.464115133755842, true]]}
+CLASSIFICATION [{"metric": "recon", "A": 26.37189483642578, "s_A": 0.61395011229331, "B": 23.224239349365234, "delta": -3.147655487060547, "ratio": 5.126891296269979, "over_2s": true, "tolerance": 1.0, "label": "ухудшение", "criteria_disagree": false}, {"metric": "interp", "A": 22.55257771809896, "s_A": 0.4846784927818566, "B": 22.97954902648926, "delta": 0.42697130839029995, "ratio": 0.8809371877420412, "over_2s": false, "tolerance": 1.0, "label": "нейтрально", "criteria_disagree": false}, {"metric": "sample", "A": 23.241847229003906, "s_A": 0.5557827346968682, "B": 24.46665840148926, "delta": 1.224811172485353, "ratio": 2.2037589439574483, "over_2s": true, "tolerance": 1.0, "label": "улучшение", "criteria_disagree": false}, {"metric": "r2", "A": 0.8994834423065186, "s_A": 0.02195253207044567, "B": 0.6478170871734619, "delta": -0.2516663551330567, "ratio": 11.464115133755842, "over_2s": true, "tolerance": 0.05, "label": "ухудшение", "criteria_disagree": false}]
+COMPLETE; ARCHIVE /user/AI_in_creative_media/LR08/LR08_variant3_results.zip
+LR08: Python execution finished 2026-10-29T09:03:56.870
