@@ -1,0 +1,1 @@
+PASS: 10 PNG; edge/contrast independently recomputed; comparison statistics and nine answers with K1-K4 checked. CLIP embeddings not independently recomputed. Engee notebook: three code cells with outputs, no error outputs.

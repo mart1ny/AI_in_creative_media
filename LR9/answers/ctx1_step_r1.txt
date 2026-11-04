@@ -1,0 +1,105 @@
+Ключевые элементы
+
+1. Плакат фестиваля. Предмет: светящаяся механическая рука. Стиль не указан, выбран 3D-рендер. Цвета: синий и янтарный. Запреты: люди и текст.
+
+2. Афиша соревнований. Предмет: робот-манипулятор. Стиль: строгий индустриальный, выбран minimal geometric. Свет: холодный, но не синий. Цвета: серый, белый, чёрный, синий исключён. Композиция: много пустого места. Запретов «без …» нет, ограничение касается только цвета.
+
+3. Обложка буклета. Предмет: дружелюбный маленький робот на столе. Стиль не указан, выбран flat vector illustration. Свет: тёплый, от лампы. Цвета: тёплые (янтарный, жёлтый, оранжевый). Запретов нет.
+
+4. Баннер сайта. Предмет: рука-манипулятор берёт светящийся шар. Композиция: крупный план. Цвета: ровно два, чёрный и синий. Запретов нет.
+
+5. Иллюстрация к статье. Предмет: ряды стеллажей и робот-погрузчик. Стиль: изометрия. Цвета: серый и оранжевый. Запретов нет.
+
+[
+
+  {
+
+    "subject": "glowing mechanical robotic hand",
+
+    "setting": "dark futuristic festival backdrop",
+
+    "style": "3D render",
+
+    "lighting": "soft neon glow",
+
+    "palette": ["blue", "amber"],
+
+    "composition": "centered",
+
+    "avoid": ["people", "text"]
+
+  },
+
+  {
+
+    "subject": "industrial robotic manipulator arm in competition pose",
+
+    "setting": "clean minimalist industrial arena",
+
+    "style": "minimal geometric",
+
+    "lighting": "cool neutral white light",
+
+    "palette": ["gray", "white", "black"],
+
+    "composition": "wide negative space",
+
+    "avoid": []
+
+  },
+
+  {
+
+    "subject": "friendly small cute robot",
+
+    "setting": "wooden school desk",
+
+    "style": "flat vector illustration",
+
+    "lighting": "warm desk lamp light",
+
+    "palette": ["amber", "yellow", "orange"],
+
+    "composition": "centered",
+
+    "avoid": []
+
+  },
+
+  {
+
+    "subject": "robotic manipulator hand grasping a glowing sphere",
+
+    "setting": "pure black background",
+
+    "style": "photorealistic",
+
+    "lighting": "electric blue glow",
+
+    "palette": ["black", "blue"],
+
+    "composition": "close-up",
+
+    "avoid": []
+
+  },
+
+  {
+
+    "subject": "rows of warehouse shelving and a robotic forklift",
+
+    "setting": "automated warehouse floor",
+
+    "style": "isometric 3D render",
+
+    "lighting": "even soft studio light",
+
+    "palette": ["gray", "orange"],
+
+    "composition": "centered",
+
+    "avoid": []
+
+  }
+
+]

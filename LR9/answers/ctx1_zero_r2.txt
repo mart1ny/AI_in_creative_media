@@ -1,0 +1,47 @@
+[
+  {
+    "subject": "glowing mechanical robotic hand with articulated metal fingers",
+    "setting": "dark futuristic robotics festival backdrop",
+    "style": "3D render",
+    "lighting": "glowing neon rim light",
+    "palette": ["blue", "amber"],
+    "composition": "centered",
+    "avoid": ["people", "text"]
+  },
+  {
+    "subject": "industrial robotic manipulator arms in competition",
+    "setting": "bare concrete industrial arena",
+    "style": "minimal geometric",
+    "lighting": "cold white industrial light",
+    "palette": ["gray", "white", "black"],
+    "composition": "wide negative space",
+    "avoid": []
+  },
+  {
+    "subject": "friendly small robot sitting on a desk",
+    "setting": "school robotics club classroom table",
+    "style": "flat vector illustration",
+    "lighting": "warm desk lamp glow",
+    "palette": ["amber", "orange", "white"],
+    "composition": "rule of thirds",
+    "avoid": []
+  },
+  {
+    "subject": "robotic manipulator arm grasping a glowing sphere",
+    "setting": "dark minimal studio background",
+    "style": "3D render",
+    "lighting": "electric glow from sphere",
+    "palette": ["black", "blue"],
+    "composition": "close-up",
+    "avoid": []
+  },
+  {
+    "subject": "rows of warehouse shelving racks and robotic forklift",
+    "setting": "automated warehouse floor",
+    "style": "isometric 3D render",
+    "lighting": "soft even ambient light",
+    "palette": ["gray", "orange"],
+    "composition": "centered",
+    "avoid": []
+  }
+]

@@ -1,0 +1,122 @@
+{
+  "zero": {
+    "k1": 1.0,
+    "k2": 1.0,
+    "k3": 1.0,
+    "k4": 0.9333333333333333,
+    "per_repeat": [
+      {
+        "parsed": true,
+        "fenced": false,
+        "n": 5,
+        "k1": 1.0,
+        "k2": 1.0,
+        "k3": 1.0,
+        "errors": []
+      },
+      {
+        "parsed": true,
+        "fenced": false,
+        "n": 5,
+        "k1": 1.0,
+        "k2": 1.0,
+        "k3": 1.0,
+        "errors": []
+      },
+      {
+        "parsed": true,
+        "fenced": false,
+        "n": 5,
+        "k1": 1.0,
+        "k2": 1.0,
+        "k3": 1.0,
+        "errors": []
+      }
+    ],
+    "sha256": {
+      "ctx1_zero_r1.txt": "2c59e53ba6b8c5df8274ca8edd60376b392fc723540ca25aea524bc7f41bfa01",
+      "ctx1_zero_r2.txt": "84bb401bdb8eb3b8821e6c29d2a47df54ede3a78bc2b1cc29bf43833b0be1ed4",
+      "ctx1_zero_r3.txt": "63196515ec04178ba880d6bca359f7d344233224f352dd1e44cab8d4faa8174c"
+    }
+  },
+  "few": {
+    "k1": 1.0,
+    "k2": 1.0,
+    "k3": 1.0,
+    "k4": 0.7,
+    "per_repeat": [
+      {
+        "parsed": true,
+        "fenced": false,
+        "n": 5,
+        "k1": 1.0,
+        "k2": 1.0,
+        "k3": 1.0,
+        "errors": []
+      },
+      {
+        "parsed": true,
+        "fenced": false,
+        "n": 5,
+        "k1": 1.0,
+        "k2": 1.0,
+        "k3": 1.0,
+        "errors": []
+      },
+      {
+        "parsed": true,
+        "fenced": false,
+        "n": 5,
+        "k1": 1.0,
+        "k2": 1.0,
+        "k3": 1.0,
+        "errors": []
+      }
+    ],
+    "sha256": {
+      "ctx1_few_r1.txt": "257d82b464fc286832434ef957f93c75299f1c06424c15b6df8443e31d2b9f7c",
+      "ctx1_few_r2.txt": "a59f3c77a148ab1408cded86286fe62c33b7eccd54028939bbc757cfa0db1ad6",
+      "ctx1_few_r3.txt": "23f885fcef573dee7021d8f6042932805093a44185b9cb323c63d7c34676b64a"
+    }
+  },
+  "step": {
+    "k1": 1.0,
+    "k2": 1.0,
+    "k3": 1.0,
+    "k4": 0.9333333333333333,
+    "per_repeat": [
+      {
+        "parsed": true,
+        "fenced": false,
+        "n": 5,
+        "k1": 1.0,
+        "k2": 1.0,
+        "k3": 1.0,
+        "errors": []
+      },
+      {
+        "parsed": true,
+        "fenced": false,
+        "n": 5,
+        "k1": 1.0,
+        "k2": 1.0,
+        "k3": 1.0,
+        "errors": []
+      },
+      {
+        "parsed": true,
+        "fenced": false,
+        "n": 5,
+        "k1": 1.0,
+        "k2": 1.0,
+        "k3": 1.0,
+        "errors": []
+      }
+    ],
+    "sha256": {
+      "ctx1_step_r1.txt": "5a0be46b45a2ef9e9d24821a500ac121713dd676695a1e0ae54019ef469a1246",
+      "ctx1_step_r2.txt": "9dd4c4ea0f26a026405d7a815e36bfdacf92f054fb1ddda4082084d1447cf2a5",
+      "ctx1_step_r3.txt": "150f2a7ff1cff62b6692c3a2d56df16695d1d6617f2d6f8b686543f79fe87730"
+    }
+  }
+}

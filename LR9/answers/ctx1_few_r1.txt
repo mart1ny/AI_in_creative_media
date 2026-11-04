@@ -1,0 +1,47 @@
+[
+  {
+    "subject": "glowing mechanical robotic hand",
+    "setting": "dark futuristic tech festival stage",
+    "style": "3D render",
+    "lighting": "glowing neon light",
+    "palette": ["blue", "amber"],
+    "composition": "centered",
+    "avoid": ["people", "text"]
+  },
+  {
+    "subject": "industrial robotic manipulator arm in competition",
+    "setting": "minimal industrial factory hall",
+    "style": "3D render",
+    "lighting": "cold white light",
+    "palette": ["gray", "white", "black"],
+    "composition": "wide negative space",
+    "avoid": []
+  },
+  {
+    "subject": "friendly small robot sitting on a desk",
+    "setting": "cozy school classroom desk",
+    "style": "flat vector illustration",
+    "lighting": "warm desk lamp light",
+    "palette": ["amber", "orange", "yellow"],
+    "composition": "rule of thirds",
+    "avoid": []
+  },
+  {
+    "subject": "robotic manipulator hand grabbing a glowing sphere",
+    "setting": "dark plain background",
+    "style": "3D render",
+    "lighting": "electric blue glow",
+    "palette": ["black", "blue"],
+    "composition": "close-up",
+    "avoid": []
+  },
+  {
+    "subject": "robotic forklift moving between rows of shelving",
+    "setting": "automated warehouse interior",
+    "style": "isometric 3D render",
+    "lighting": "even soft studio light",
+    "palette": ["gray", "orange"],
+    "composition": "symmetrical",
+    "avoid": []
+  }
+]

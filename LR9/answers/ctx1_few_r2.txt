@@ -1,0 +1,7 @@
+[
+  {"subject": "glowing mechanical robotic hand", "setting": "dark robotics festival stage", "style": "3D render", "lighting": "glowing neon backlight", "palette": ["blue", "amber"], "composition": "centered", "avoid": ["people", "text"]},
+  {"subject": "industrial robotic manipulator arm in competition", "setting": "bare concrete factory hall", "style": "minimal geometric", "lighting": "cold white industrial light", "palette": ["gray", "white", "black"], "composition": "wide negative space", "avoid": []},
+  {"subject": "friendly small robot standing on a desk", "setting": "school robotics club classroom table", "style": "3D render", "lighting": "warm desk lamp light", "palette": ["amber", "orange", "yellow"], "composition": "centered", "avoid": []},
+  {"subject": "robotic manipulator arm grasping a glowing sphere", "setting": "plain dark background", "style": "3D render", "lighting": "electric blue glow", "palette": ["black", "blue"], "composition": "close-up", "avoid": []},
+  {"subject": "rows of warehouse shelving with a robotic forklift", "setting": "automated warehouse interior", "style": "isometric 3D render", "lighting": "even soft daylight", "palette": ["gray", "orange"], "composition": "centered", "avoid": []}
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "subject": "glowing mechanical robotic arm with intricate metal joints",
+    "setting": "dark abstract background for a robotics festival poster",
+    "style": "3D render",
+    "lighting": "glowing neon rim light",
+    "palette": ["blue", "amber"],
+    "composition": "centered",
+    "avoid": ["people", "text"]
+  },
+  {
+    "subject": "industrial robotic manipulator arms competing on a platform",
+    "setting": "clean minimal industrial arena",
+    "style": "minimal geometric",
+    "lighting": "cold neutral white light",
+    "palette": ["gray", "white", "black"],
+    "composition": "wide negative space",
+    "avoid": []
+  },
+  {
+    "subject": "friendly small cute robot with rounded shapes",
+    "setting": "on a wooden school desk in a classroom",
+    "style": "flat vector illustration",
+    "lighting": "warm desk lamp glow",
+    "palette": ["amber", "orange", "yellow"],
+    "composition": "centered",
+    "avoid": []
+  },
+  {
+    "subject": "robotic manipulator arm grasping a glowing sphere",
+    "setting": "pure black void background",
+    "style": "3D render",
+    "lighting": "electric blue glow from sphere",
+    "palette": ["black", "blue"],
+    "composition": "close-up",
+    "avoid": []
+  },
+  {
+    "subject": "rows of warehouse shelving racks and a robotic forklift",
+    "setting": "automated warehouse interior",
+    "style": "isometric 3D render",
+    "lighting": "soft even ambient light",
+    "palette": ["gray", "orange"],
+    "composition": "centered",
+    "avoid": []
+  }
+]

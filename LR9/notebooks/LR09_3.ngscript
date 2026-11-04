@@ -1,0 +1,447 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 5,
+  "metadata": {
+    "kernelspec": {
+      "display_name": "IJulia 1.9.3",
+      "language": "julia",
+      "name": "ijulia-1.9"
+    },
+    "language_info": {
+      "name": "julia",
+      "file_extension": ".jl",
+      "version": "1.9.3"
+    },
+    "engee": {}
+  },
+  "cells": [
+    {
+      "id": "2121cee1",
+      "cell_type": "markdown",
+      "source": [
+        "# ЛР9. Промпт-инжиниринг\nВласюк Данил Витальевич, Т26ИИКТ-МИК11. Вариант 3.\n# ЛР9. Вариант 3. Предварительный протокол\n\nЗаписано до запуска: 2026-11-04 (Europe/Moscow).\nA: robotic arm poster\nB: robotic arm poster, deep blue and amber colors\nЦель CLIP: deep blue and amber colors.\nSeed: 101,102,103,104,105; SD-Turbo, CPU float32, 512x512, 1 шаг, guidance_scale=0.\nГипотеза: добавление палитры повышает clip_target минимум на 1 пункт. Предмет должен оставаться узнаваемым; падение clip_subject более 1 пункта нежелательно. Для edge и contrast направление заранее не предполагается, практический допуск 10% среднего A. Эвристика |delta|>2s_A оценивается отдельно от допуска и не является формальным тестом значимости.\nЧасть 2: ожидается более высокое покрытие ограничений у few-shot и пошагового запроса; возможен потолок K1-K3. Три новых чата на каждый приём, сырые ответы сохраняются без исправлений. K4 описывает согласованность выбора, а не правильность.\n"
+      ],
+      "attachments": {},
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": true,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false
+        }
+      }
+    },
+    {
+      "id": "5486c700",
+      "cell_type": "code",
+      "source": [
+        "println(read(\"/user/AI_in_creative_media/LR09/artifacts/environment.json\",String))"
+      ],
+      "execution_count": 0,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": "{\n  \"started\": \"2026-11-04T13:04:03+0000\",\n  \"python\": \"3.11.11 (main, Mar 17 2025, 21:02:09) [Clang 20.1.0 ]\",\n  \"platform\": \"Linux-6.8.0-136-generic-x86_64-with-glibc2.35\",\n  \"packages\": {\n    \"torch\": \"2.4.1+cpu\",\n    \"diffusers\": \"0.32.2\",\n    \"transformers\": \"4.57.6\",\n    \"numpy\": \"2.1.3\",\n    \"scipy\": \"1.15.2\",\n    \"Pillow\": \"11.1.0\"\n  },\n  \"model\": \"stabilityai/sd-turbo\",\n  \"revision\": \"b261bac6fd2cf515557d5d0707481eafa0485ec2\",\n  \"clip\": \"openai/clip-vit-large-patch14\",\n  \"clip_revision\": \"32bd64288804d66eefd0ccbe215aa642df71cc41\",\n  \"seeds\": [\n    101,\n    102,\n    103,\n    104,\n    105\n  ],\n  \"steps\": 1,\n  \"guidance\": 0.0,\n  \"size\": 512,\n  \"device\": \"cpu\",\n  \"source_sha256\": \"cc4d233de574e47a73d2126234ee0b8e9f5d80aa0ed6d4a2fac9748ac0f7b062\"\n}\n"
+        }
+      ],
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": false,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false,
+          "outputInfo": {
+            "isExpanded": false,
+            "scrollTop": 0
+          },
+          "maskInfo": {
+            "isMaskVisible": true,
+            "isEditorVisible": true,
+            "isAutoplayActive": false
+          }
+        }
+      }
+    },
+    {
+      "id": "050eed48",
+      "cell_type": "markdown",
+      "source": [
+        "## Генерация\nДва запроса, общий набор seed 101-105, единственное отличие - фраза палитры. Изображения и метрики сохраняются для каждого seed. Исходная библиотека преподавателя сохранена без правок.\nПолный запуск генератора выполнен в консоли Engee; следующая ячейка показывает неизменённый журнал. Она не запускает генерацию повторно."
+      ],
+      "attachments": {},
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": true,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false
+        }
+      }
+    },
+    {
+      "id": "379dfc19",
+      "cell_type": "code",
+      "source": [
+        "cd(\"/user/AI_in_creative_media/LR09\")\n# Генератор execute_variant3.py фактически выполнен отдельным процессом Engee.\n# Для нового запуска: run(`/user/.user_venvs/py3.11/bin/python3 -u execute_variant3.py`)\nprintln(read(\"run.log\",String))"
+      ],
+      "execution_count": 0,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": "Loading SD-Turbo and CLIP\nA 101 {'sims': [26.995331048965454, 14.8024782538414, 13.421118259429932, 12.096305936574936, 15.509045124053955, 13.425801694393158, 11.752146482467651], 'edge': 0.034773100700224886, 'contrast': 0.17681703554606626, 'seconds': 21.46544429473579, 'seed': 101}\nA 102 {'sims': [26.386627554893494, 10.40092259645462, 12.058684229850769, 7.594262808561325, 14.610737562179565, 13.049134612083435, 12.182672321796417], 'edge': 0.03785444019139989, 'contrast': 0.18499720585178822, 'seconds': 20.38964934553951, 'seed': 102}\nA 103 {'sims': [24.483904242515564, 12.772847712039948, 12.356279045343399, 10.324019938707352, 14.44191038608551, 14.068441092967987, 13.229933381080627], 'edge': 0.040482923263066586, 'contrast': 0.18770185900293943, 'seconds': 20.610414238646626, 'seed': 103}\nA 104 {'sims': [25.822126865386963, 14.366140961647034, 13.035216927528381, 9.001150727272034, 15.056991577148438, 14.528878033161163, 13.769452273845673], 'edge': 0.039040452054556696, 'contrast': 0.1740034820559433, 'seconds': 21.619765654206276, 'seed': 104}\nA 105 {'sims': [22.52502143383026, 8.159932494163513, 10.552099347114563, 7.90853351354599, 11.805060505867004, 10.67432016134262, 8.531173318624496], 'edge': 0.035102282177476705, 'contrast': 0.1803280719575143, 'seconds': 22.589267211034894, 'seed': 105}\nB 101 {'sims': [26.913982629776, 14.234790205955505, 11.617345362901688, 14.440318942070007, 16.49210751056671, 13.477535545825958, 13.132104277610779], 'edge': 0.03844051678551294, 'contrast': 0.15011756672087728, 'seconds': 22.9761125696823, 'seed': 101}\nB 102 {'sims': [26.333382725715637, 14.318841695785522, 10.495338588953018, 14.821627736091614, 16.96740984916687, 13.453245162963867, 12.263188511133194], 'edge': 0.03838017174944549, 'contrast': 0.16326551484644664, 'seconds': 22.027367940172553, 'seed': 102}\nB 103 {'sims': [27.13986039161682, 16.3980171084404, 12.144333869218826, 15.429176390171051, 15.751957893371582, 14.094772934913635, 14.793339371681213], 'edge': 0.04558697961295842, 'contrast': 0.1299475278661834, 'seconds': 21.514919065870345, 'seed': 103}\nB 104 {'sims': [26.983043551445007, 16.19217097759247, 13.223680853843689, 14.375725388526917, 16.752435266971588, 14.135776460170746, 13.286274671554565], 'edge': 0.036748488461702526, 'contrast': 0.12535360640734405, 'seconds': 20.490715003572404, 'seed': 104}\nB 105 {'sims': [25.28415620326996, 11.518517881631851, 11.02517694234848, 17.0706570148468, 15.83012193441391, 12.827816605567932, 13.503268361091614], 'edge': 0.04606101394210585, 'contrast': 0.1676176853832413, 'seconds': 21.69501824490726, 'seed': 105}\nCOMPLETE [[\"clip_target\", 9.384854584932327, 1.8551934845095033, 15.227501094341278, 5.842646509408951, 3.1493461777404286, true], [\"clip_subject\", 25.242602229118347, 1.7802787056928457, 26.530885100364685, 1.288282871246338, 0.723641117049123, false], [\"edge\", 0.03745063967734495, 0.0024783714368163297, 0.04104343411034504, 0.0035927944330000905, 1.4496593931115216, false], [\"contrast\", 0.1807695308828503, 0.005646391124109956, 0.14726038024481852, -0.03350915063803178, 5.934613791621431, true]]\n\n"
+        }
+      ],
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": false,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false,
+          "outputInfo": {
+            "isExpanded": false,
+            "scrollTop": 0
+          },
+          "maskInfo": {
+            "isMaskVisible": true,
+            "isEditorVisible": true,
+            "isAutoplayActive": false
+          }
+        }
+      }
+    },
+    {
+      "id": "df68c9ce",
+      "cell_type": "code",
+      "source": [
+        "println(read(\"artifacts/comparison.json\",String))"
+      ],
+      "execution_count": 0,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": "{\n  \"variant\": 3,\n  \"prompt_a\": \"robotic arm poster\",\n  \"prompt_b\": \"robotic arm poster, deep blue and amber colors\",\n  \"target\": \"deep blue and amber colors\",\n  \"rows\": [\n    [\n      \"clip_target\",\n      9.384854584932327,\n      1.8551934845095033,\n      15.227501094341278,\n      5.842646509408951,\n      3.1493461777404286,\n      true\n    ],\n    [\n      \"clip_subject\",\n      25.242602229118347,\n      1.7802787056928457,\n      26.530885100364685,\n      1.288282871246338,\n      0.723641117049123,\n      false\n    ],\n    [\n      \"edge\",\n      0.03745063967734495,\n      0.0024783714368163297,\n      0.04104343411034504,\n      0.0035927944330000905,\n      1.4496593931115216,\n      false\n    ],\n    [\n      \"contrast\",\n      0.1807695308828503,\n      0.005646391124109956,\n      0.14726038024481852,\n      -0.03350915063803178,\n      5.934613791621431,\n      true\n    ]\n  ]\n}\n"
+        }
+      ],
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": false,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false,
+          "outputInfo": {
+            "isExpanded": false,
+            "scrollTop": 0
+          },
+          "maskInfo": {
+            "isMaskVisible": true,
+            "isEditorVisible": true,
+            "isAutoplayActive": false
+          }
+        }
+      }
+    },
+    {
+      "id": "b49bc0d2",
+      "cell_type": "markdown",
+      "source": [
+        "## Визуальная оценка\nНа seed101 в A крупная оранжевая механическая рука справа и несколько светлых манипуляторов слева стоят на серо-голубом фоне. В B фон заметно темнее и синее, оранжево-янтарные детали и декоративные элементы распределены по всему кадру. Палитра визуально изменилась в ожидаемом направлении, что согласуется с ростом clip_target.\n\nМеханические руки в B остаются узнаваемыми и занимают основную площадь, но композиция не стала изображением одного изолированного устройства: видны несколько манипуляторов и насыщенный декоративный фон. В обоих изображениях есть нечитабельные мелкие надписи и неправдоподобные детали. Это концепт, а не техническая иллюстрация реального оборудования. Названия производителей в запросы не вводились.\n\nСубъективно B выглядит насыщеннее по цвету, хотя среднее стандартное отклонение яркости уменьшилось с 0,18077 до 0,14726: насыщенность цвета и контраст яркости - разные свойства. CLIP не является оценкой художественного или технического качества. Визуальное описание относится к seed101; численные выводы рассчитаны по всей серии 101-105.\n\nГипотеза роста clip_target минимум на 1 пункт подтверждена: Δ=+5,84265, |Δ|/s_A=3,149>2. Контроль clip_subject не ухудшился: Δ=+1,28828, однако 2s не превышено. Edge вырос на 9,59% - внутри допуска 10% и без превышения 2s. Contrast снизился на 18,54% - за пределами допуска и с превышением 2s; снижение не объявляется автоматически улучшением или ухудшением дизайна.\n"
+      ],
+      "attachments": {},
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": false,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false
+        }
+      }
+    },
+    {
+      "id": "8c702eb4",
+      "cell_type": "markdown",
+      "source": [
+        "## Часть 2. Девять новых чатов Dia\nДата 04.11.2026, стандартный режим; базовая модель не сообщается интерфейсом. Поиск запрещён запросом.\n\nzero: K1=1.000; K2=1.000; K3=1.000; K4=0.933\nfew: K1=1.000; K2=1.000; K3=1.000; K4=0.700\nstep: K1=1.000; K2=1.000; K3=1.000; K4=0.933\n\nОценка выполнена исходным lab09_llm.py, три повтора каждого приёма. Различие K4 предварительное, 30 сравнений не независимы. Потолок K1-K3 ограничивает различимость приёмов."
+      ],
+      "attachments": {},
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": true,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false
+        }
+      }
+    },
+    {
+      "id": "82184b8d",
+      "cell_type": "markdown",
+      "source": [
+        "### Запрос zero\nТы помощник дизайнера. Преобразуй пять описаний заказчика (на русском языке) в пять JSON-объектов для генератора изображений. Не используй поиск в интернете и не добавляй ссылки. Ответ: один JSON-массив из пяти объектов в одном блоке кода, в том же порядке, что описания. Поля каждого объекта — ровно эти семь, значения на английском языке: subject — предмет, 3–12 слов; setting — место или фон, 2–12 слов; style — одно из: flat vector illustration, photorealistic, 3D render, watercolor, minimal geometric, macro photography, pencil sketch, isometric 3D render; lighting — освещение, 1–6 слов; palette — массив из 1–3 цветов ТОЛЬКО из списка: blue, amber, orange, teal, green, red, pink, purple, yellow, gray, black, white; composition — одно из: centered, rule of thirds, symmetrical, top-down, close-up, wide negative space; avoid — массив, элементы ТОЛЬКО из списка: people, text, logo, watermark, blur; перечисли ровно то, что заказчик прямо запрещает («без …»); если запретов нет — пустой массив.\n\nОписания заказчика:\n1. Нужен плакат для фестиваля робототехники: светящаяся механическая рука в синих и янтарных тонах, без людей и текста.\n2. Афиша соревнований роботов-манипуляторов: строгий индустриальный стиль, холодный свет, но только не синий; много пустого места для заголовка.\n3. Обложка буклета школьного кружка робототехники: дружелюбный маленький робот на столе, тёплый свет лампы.\n4. Баннер для сайта фестиваля: рука-манипулятор берёт светящийся шар, вид крупным планом; палитра — ровно два цвета: чёрный и электрический синий.\n5. Иллюстрация к статье об автоматизации склада: ряды стеллажей и робот-погрузчик, изометрия, серо-оранжевая гамма."
+      ],
+      "attachments": {},
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": false,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false
+        }
+      }
+    },
+    {
+      "id": "1ac4f3a3",
+      "cell_type": "markdown",
+      "source": [
+        "### Ответ zero, повтор 1\n\n[\n  {\n    \"subject\": \"glowing mechanical robotic hand with articulated metal joints\",\n    \"setting\": \"dark abstract robotics festival poster background\",\n    \"style\": \"3D render\",\n    \"lighting\": \"glowing neon rim light\",\n    \"palette\": [\"blue\", \"amber\"],\n    \"composition\": \"centered\",\n    \"avoid\": [\"people\", \"text\"]\n  },\n  {\n    \"subject\": \"industrial robotic manipulator arm\",\n    \"setting\": \"stark industrial factory floor background\",\n    \"style\": \"minimal geometric\",\n    \"lighting\": \"cold white industrial light\",\n    \"palette\": [\"gray\", \"white\", \"black\"],\n    \"composition\": \"wide negative space\",\n    \"avoid\": []\n  },\n  {\n    \"subject\": \"friendly small cute robot\",\n    \"setting\": \"wooden school desk in classroom\",\n    \"style\": \"flat vector illustration\",\n    \"lighting\": \"warm desk lamp glow\",\n    \"palette\": [\"amber\", \"yellow\", \"orange\"],\n    \"composition\": \"centered\",\n    \"avoid\": []\n  },\n  {\n    \"subject\": \"robotic manipulator arm grasping a glowing sphere\",\n    \"setting\": \"dark minimal background\",\n    \"style\": \"3D render\",\n    \"lighting\": \"glowing sphere with electric highlights\",\n    \"palette\": [\"black\", \"blue\"],\n    \"composition\": \"close-up\",\n    \"avoid\": []\n  },\n  {\n    \"subject\": \"rows of storage shelves and robotic forklift\",\n    \"setting\": \"automated warehouse interior\",\n    \"style\": \"isometric 3D render\",\n    \"lighting\": \"soft even ambient light\",\n    \"palette\": [\"gray\", \"orange\"],\n    \"composition\": \"centered\",\n    \"avoid\": []\n  }\n]"
+      ],
+      "attachments": {},
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": false,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false
+        }
+      }
+    },
+    {
+      "id": "20cf687e",
+      "cell_type": "markdown",
+      "source": [
+        "### Ответ zero, повтор 2\n\n[\n  {\n    \"subject\": \"glowing mechanical robotic hand with articulated metal fingers\",\n    \"setting\": \"dark futuristic robotics festival backdrop\",\n    \"style\": \"3D render\",\n    \"lighting\": \"glowing neon rim light\",\n    \"palette\": [\"blue\", \"amber\"],\n    \"composition\": \"centered\",\n    \"avoid\": [\"people\", \"text\"]\n  },\n  {\n    \"subject\": \"industrial robotic manipulator arms in competition\",\n    \"setting\": \"bare concrete industrial arena\",\n    \"style\": \"minimal geometric\",\n    \"lighting\": \"cold white industrial light\",\n    \"palette\": [\"gray\", \"white\", \"black\"],\n    \"composition\": \"wide negative space\",\n    \"avoid\": []\n  },\n  {\n    \"subject\": \"friendly small robot sitting on a desk\",\n    \"setting\": \"school robotics club classroom table\",\n    \"style\": \"flat vector illustration\",\n    \"lighting\": \"warm desk lamp glow\",\n    \"palette\": [\"amber\", \"orange\", \"white\"],\n    \"composition\": \"rule of thirds\",\n    \"avoid\": []\n  },\n  {\n    \"subject\": \"robotic manipulator arm grasping a glowing sphere\",\n    \"setting\": \"dark minimal studio background\",\n    \"style\": \"3D render\",\n    \"lighting\": \"electric glow from sphere\",\n    \"palette\": [\"black\", \"blue\"],\n    \"composition\": \"close-up\",\n    \"avoid\": []\n  },\n  {\n    \"subject\": \"rows of warehouse shelving racks and robotic forklift\",\n    \"setting\": \"automated warehouse floor\",\n    \"style\": \"isometric 3D render\",\n    \"lighting\": \"soft even ambient light\",\n    \"palette\": [\"gray\", \"orange\"],\n    \"composition\": \"centered\",\n    \"avoid\": []\n  }\n]"
+      ],
+      "attachments": {},
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": false,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false
+        }
+      }
+    },
+    {
+      "id": "8c8b896f",
+      "cell_type": "markdown",
+      "source": [
+        "### Ответ zero, повтор 3\n\n[\n  {\n    \"subject\": \"glowing mechanical robotic arm with intricate metal joints\",\n    \"setting\": \"dark abstract background for a robotics festival poster\",\n    \"style\": \"3D render\",\n    \"lighting\": \"glowing neon rim light\",\n    \"palette\": [\"blue\", \"amber\"],\n    \"composition\": \"centered\",\n    \"avoid\": [\"people\", \"text\"]\n  },\n  {\n    \"subject\": \"industrial robotic manipulator arms competing on a platform\",\n    \"setting\": \"clean minimal industrial arena\",\n    \"style\": \"minimal geometric\",\n    \"lighting\": \"cold neutral white light\",\n    \"palette\": [\"gray\", \"white\", \"black\"],\n    \"composition\": \"wide negative space\",\n    \"avoid\": []\n  },\n  {\n    \"subject\": \"friendly small cute robot with rounded shapes\",\n    \"setting\": \"on a wooden school desk in a classroom\",\n    \"style\": \"flat vector illustration\",\n    \"lighting\": \"warm desk lamp glow\",\n    \"palette\": [\"amber\", \"orange\", \"yellow\"],\n    \"composition\": \"centered\",\n    \"avoid\": []\n  },\n  {\n    \"subject\": \"robotic manipulator arm grasping a glowing sphere\",\n    \"setting\": \"pure black void background\",\n    \"style\": \"3D render\",\n    \"lighting\": \"electric blue glow from sphere\",\n    \"palette\": [\"black\", \"blue\"],\n    \"composition\": \"close-up\",\n    \"avoid\": []\n  },\n  {\n    \"subject\": \"rows of warehouse shelving racks and a robotic forklift\",\n    \"setting\": \"automated warehouse interior\",\n    \"style\": \"isometric 3D render\",\n    \"lighting\": \"soft even ambient light\",\n    \"palette\": [\"gray\", \"orange\"],\n    \"composition\": \"centered\",\n    \"avoid\": []\n  }\n]"
+      ],
+      "attachments": {},
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": false,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false
+        }
+      }
+    },
+    {
+      "id": "fbea6216",
+      "cell_type": "markdown",
+      "source": [
+        "### Запрос few\nТы помощник дизайнера. Преобразуй пять описаний заказчика (на русском языке) в пять JSON-объектов для генератора изображений. Не используй поиск в интернете и не добавляй ссылки. Ответ: один JSON-массив из пяти объектов в одном блоке кода, в том же порядке, что описания. Поля каждого объекта — ровно эти семь, значения на английском языке: subject — предмет, 3–12 слов; setting — место или фон, 2–12 слов; style — одно из: flat vector illustration, photorealistic, 3D render, watercolor, minimal geometric, macro photography, pencil sketch, isometric 3D render; lighting — освещение, 1–6 слов; palette — массив из 1–3 цветов ТОЛЬКО из списка: blue, amber, orange, teal, green, red, pink, purple, yellow, gray, black, white; composition — одно из: centered, rule of thirds, symmetrical, top-down, close-up, wide negative space; avoid — массив, элементы ТОЛЬКО из списка: people, text, logo, watermark, blur; перечисли ровно то, что заказчик прямо запрещает («без …»); если запретов нет — пустой массив.\n\nДва примера формата (для других описаний):\nПример 1.\nОписание: Афиша джаз-фестиваля у моря: саксофон на закате, тёплые цвета, без текста.\n{\"subject\": \"saxophone on a seaside pier\", \"setting\": \"sea coast at sunset\", \"style\": \"flat vector illustration\", \"lighting\": \"warm sunset light\", \"palette\": [\"orange\", \"purple\"], \"composition\": \"centered\", \"avoid\": [\"text\"]}\nПример 2.\nОписание: Открытка ко дню рождения: воздушные шары над полем, акварель, светлая палитра.\n{\"subject\": \"colorful balloons floating above a field\", \"setting\": \"open green field, clear sky\", \"style\": \"watercolor\", \"lighting\": \"soft daylight\", \"palette\": [\"blue\", \"yellow\", \"pink\"], \"composition\": \"rule of thirds\", \"avoid\": []}\n\nОписания заказчика:\n1. Нужен плакат для фестиваля робототехники: светящаяся механическая рука в синих и янтарных тонах, без людей и текста.\n2. Афиша соревнований роботов-манипуляторов: строгий индустриальный стиль, холодный свет, но только не синий; много пустого места для заголовка.\n3. Обложка буклета школьного кружка робототехники: дружелюбный маленький робот на столе, тёплый свет лампы.\n4. Баннер для сайта фестиваля: рука-манипулятор берёт светящийся шар, вид крупным планом; палитра — ровно два цвета: чёрный и электрический синий.\n5. Иллюстрация к статье об автоматизации склада: ряды стеллажей и робот-погрузчик, изометрия, серо-оранжевая гамма."
+      ],
+      "attachments": {},
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": false,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false
+        }
+      }
+    },
+    {
+      "id": "72962443",
+      "cell_type": "markdown",
+      "source": [
+        "### Ответ few, повтор 1\n\n[\n  {\n    \"subject\": \"glowing mechanical robotic hand\",\n    \"setting\": \"dark futuristic tech festival stage\",\n    \"style\": \"3D render\",\n    \"lighting\": \"glowing neon light\",\n    \"palette\": [\"blue\", \"amber\"],\n    \"composition\": \"centered\",\n    \"avoid\": [\"people\", \"text\"]\n  },\n  {\n    \"subject\": \"industrial robotic manipulator arm in competition\",\n    \"setting\": \"minimal industrial factory hall\",\n    \"style\": \"3D render\",\n    \"lighting\": \"cold white light\",\n    \"palette\": [\"gray\", \"white\", \"black\"],\n    \"composition\": \"wide negative space\",\n    \"avoid\": []\n  },\n  {\n    \"subject\": \"friendly small robot sitting on a desk\",\n    \"setting\": \"cozy school classroom desk\",\n    \"style\": \"flat vector illustration\",\n    \"lighting\": \"warm desk lamp light\",\n    \"palette\": [\"amber\", \"orange\", \"yellow\"],\n    \"composition\": \"rule of thirds\",\n    \"avoid\": []\n  },\n  {\n    \"subject\": \"robotic manipulator hand grabbing a glowing sphere\",\n    \"setting\": \"dark plain background\",\n    \"style\": \"3D render\",\n    \"lighting\": \"electric blue glow\",\n    \"palette\": [\"black\", \"blue\"],\n    \"composition\": \"close-up\",\n    \"avoid\": []\n  },\n  {\n    \"subject\": \"robotic forklift moving between rows of shelving\",\n    \"setting\": \"automated warehouse interior\",\n    \"style\": \"isometric 3D render\",\n    \"lighting\": \"even soft studio light\",\n    \"palette\": [\"gray\", \"orange\"],\n    \"composition\": \"symmetrical\",\n    \"avoid\": []\n  }\n]"
+      ],
+      "attachments": {},
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": false,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false
+        }
+      }
+    },
+    {
+      "id": "b18cc1f7",
+      "cell_type": "markdown",
+      "source": [
+        "### Ответ few, повтор 2\n\n[\n  {\"subject\": \"glowing mechanical robotic hand\", \"setting\": \"dark robotics festival stage\", \"style\": \"3D render\", \"lighting\": \"glowing neon backlight\", \"palette\": [\"blue\", \"amber\"], \"composition\": \"centered\", \"avoid\": [\"people\", \"text\"]},\n  {\"subject\": \"industrial robotic manipulator arm in competition\", \"setting\": \"bare concrete factory hall\", \"style\": \"minimal geometric\", \"lighting\": \"cold white industrial light\", \"palette\": [\"gray\", \"white\", \"black\"], \"composition\": \"wide negative space\", \"avoid\": []},\n  {\"subject\": \"friendly small robot standing on a desk\", \"setting\": \"school robotics club classroom table\", \"style\": \"3D render\", \"lighting\": \"warm desk lamp light\", \"palette\": [\"amber\", \"orange\", \"yellow\"], \"composition\": \"centered\", \"avoid\": []},\n  {\"subject\": \"robotic manipulator arm grasping a glowing sphere\", \"setting\": \"plain dark background\", \"style\": \"3D render\", \"lighting\": \"electric blue glow\", \"palette\": [\"black\", \"blue\"], \"composition\": \"close-up\", \"avoid\": []},\n  {\"subject\": \"rows of warehouse shelving with a robotic forklift\", \"setting\": \"automated warehouse interior\", \"style\": \"isometric 3D render\", \"lighting\": \"even soft daylight\", \"palette\": [\"gray\", \"orange\"], \"composition\": \"centered\", \"avoid\": []}\n]"
+      ],
+      "attachments": {},
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": false,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false
+        }
+      }
+    },
+    {
+      "id": "2474fec1",
+      "cell_type": "markdown",
+      "source": [
+        "### Ответ few, повтор 3\n\n[\n  {\"subject\": \"glowing mechanical robotic arm\", \"setting\": \"dark robotics festival stage\", \"style\": \"3D render\", \"lighting\": \"glowing neon light\", \"palette\": [\"blue\", \"amber\"], \"composition\": \"centered\", \"avoid\": [\"people\", \"text\"]},\n  {\"subject\": \"industrial robotic manipulator arm in competition\", \"setting\": \"minimal concrete factory hall\", \"style\": \"photorealistic\", \"lighting\": \"cold white industrial light\", \"palette\": [\"gray\", \"white\"], \"composition\": \"wide negative space\", \"avoid\": []},\n  {\"subject\": \"friendly small robot sitting on a desk\", \"setting\": \"cozy school classroom desk\", \"style\": \"3D render\", \"lighting\": \"warm desk lamp light\", \"palette\": [\"amber\", \"orange\", \"yellow\"], \"composition\": \"centered\", \"avoid\": []},\n  {\"subject\": \"robotic manipulator arm grasping a glowing sphere\", \"setting\": \"dark minimal background\", \"style\": \"3D render\", \"lighting\": \"electric blue glow\", \"palette\": [\"black\", \"blue\"], \"composition\": \"close-up\", \"avoid\": []},\n  {\"subject\": \"rows of warehouse shelves and a robotic forklift\", \"setting\": \"automated warehouse interior\", \"style\": \"isometric 3D render\", \"lighting\": \"even soft lighting\", \"palette\": [\"gray\", \"orange\"], \"composition\": \"centered\", \"avoid\": []}\n]"
+      ],
+      "attachments": {},
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": false,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false
+        }
+      }
+    },
+    {
+      "id": "631a400b",
+      "cell_type": "markdown",
+      "source": [
+        "### Запрос step\nТы помощник дизайнера. Преобразуй пять описаний заказчика (на русском языке) в пять JSON-объектов для генератора изображений. Не используй поиск в интернете и не добавляй ссылки. Ответ: один JSON-массив из пяти объектов в одном блоке кода, в том же порядке, что описания. Поля каждого объекта — ровно эти семь, значения на английском языке: subject — предмет, 3–12 слов; setting — место или фон, 2–12 слов; style — одно из: flat vector illustration, photorealistic, 3D render, watercolor, minimal geometric, macro photography, pencil sketch, isometric 3D render; lighting — освещение, 1–6 слов; palette — массив из 1–3 цветов ТОЛЬКО из списка: blue, amber, orange, teal, green, red, pink, purple, yellow, gray, black, white; composition — одно из: centered, rule of thirds, symmetrical, top-down, close-up, wide negative space; avoid — массив, элементы ТОЛЬКО из списка: people, text, logo, watermark, blur; перечисли ровно то, что заказчик прямо запрещает («без …»); если запретов нет — пустой массив.\n\nСначала для каждого описания кратко выпиши ключевые элементы (предмет, стиль, цвета, ограничения), затем дай итоговый JSON-массив в одном блоке кода.\n\nОписания заказчика:\n1. Нужен плакат для фестиваля робототехники: светящаяся механическая рука в синих и янтарных тонах, без людей и текста.\n2. Афиша соревнований роботов-манипуляторов: строгий индустриальный стиль, холодный свет, но только не синий; много пустого места для заголовка.\n3. Обложка буклета школьного кружка робототехники: дружелюбный маленький робот на столе, тёплый свет лампы.\n4. Баннер для сайта фестиваля: рука-манипулятор берёт светящийся шар, вид крупным планом; палитра — ровно два цвета: чёрный и электрический синий.\n5. Иллюстрация к статье об автоматизации склада: ряды стеллажей и робот-погрузчик, изометрия, серо-оранжевая гамма."
+      ],
+      "attachments": {},
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": false,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false
+        }
+      }
+    },
+    {
+      "id": "d2b281a8",
+      "cell_type": "markdown",
+      "source": [
+        "### Ответ step, повтор 1\n\nКлючевые элементы\n\n1. Плакат фестиваля. Предмет: светящаяся механическая рука. Стиль не указан, выбран 3D-рендер. Цвета: синий и янтарный. Запреты: люди и текст.\n\n2. Афиша соревнований. Предмет: робот-манипулятор. Стиль: строгий индустриальный, выбран minimal geometric. Свет: холодный, но не синий. Цвета: серый, белый, чёрный, синий исключён. Композиция: много пустого места. Запретов «без …» нет, ограничение касается только цвета.\n\n3. Обложка буклета. Предмет: дружелюбный маленький робот на столе. Стиль не указан, выбран flat vector illustration. Свет: тёплый, от лампы. Цвета: тёплые (янтарный, жёлтый, оранжевый). Запретов нет.\n\n4. Баннер сайта. Предмет: рука-манипулятор берёт светящийся шар. Композиция: крупный план. Цвета: ровно два, чёрный и синий. Запретов нет.\n\n5. Иллюстрация к статье. Предмет: ряды стеллажей и робот-погрузчик. Стиль: изометрия. Цвета: серый и оранжевый. Запретов нет.\n\n[\n\n  {\n\n    \"subject\": \"glowing mechanical robotic hand\",\n\n    \"setting\": \"dark futuristic festival backdrop\",\n\n    \"style\": \"3D render\",\n\n    \"lighting\": \"soft neon glow\",\n\n    \"palette\": [\"blue\", \"amber\"],\n\n    \"composition\": \"centered\",\n\n    \"avoid\": [\"people\", \"text\"]\n\n  },\n\n  {\n\n    \"subject\": \"industrial robotic manipulator arm in competition pose\",\n\n    \"setting\": \"clean minimalist industrial arena\",\n\n    \"style\": \"minimal geometric\",\n\n    \"lighting\": \"cool neutral white light\",\n\n    \"palette\": [\"gray\", \"white\", \"black\"],\n\n    \"composition\": \"wide negative space\",\n\n    \"avoid\": []\n\n  },\n\n  {\n\n    \"subject\": \"friendly small cute robot\",\n\n    \"setting\": \"wooden school desk\",\n\n    \"style\": \"flat vector illustration\",\n\n    \"lighting\": \"warm desk lamp light\",\n\n    \"palette\": [\"amber\", \"yellow\", \"orange\"],\n\n    \"composition\": \"centered\",\n\n    \"avoid\": []\n\n  },\n\n  {\n\n    \"subject\": \"robotic manipulator hand grasping a glowing sphere\",\n\n    \"setting\": \"pure black background\",\n\n    \"style\": \"photorealistic\",\n\n    \"lighting\": \"electric blue glow\",\n\n    \"palette\": [\"black\", \"blue\"],\n\n    \"composition\": \"close-up\",\n\n    \"avoid\": []\n\n  },\n\n  {\n\n    \"subject\": \"rows of warehouse shelving and a robotic forklift\",\n\n    \"setting\": \"automated warehouse floor\",\n\n    \"style\": \"isometric 3D render\",\n\n    \"lighting\": \"even soft studio light\",\n\n    \"palette\": [\"gray\", \"orange\"],\n\n    \"composition\": \"centered\",\n\n    \"avoid\": []\n\n  }\n\n]"
+      ],
+      "attachments": {},
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": false,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false
+        }
+      }
+    },
+    {
+      "id": "a739c728",
+      "cell_type": "markdown",
+      "source": [
+        "### Ответ step, повтор 2\n\nКлючевые элементы по каждому описанию\n\n1. Плакат фестиваля. Предмет: светящаяся механическая рука. Стиль заказчик не указал, поэтому выбран 3D render. Цвета: синий и янтарный. Запреты: люди и текст.\n\n2. Афиша соревнований. Предмет: робот-манипулятор. Стиль: строгий индустриальный, выбран minimal geometric. Свет холодный. Синий заказчик исключил, поэтому палитра серая, белая и чёрная (teal тоже не взят, потому что он близок к синему). Компоновка: много пустого места. Запрета вида «без …» нет. Исключение синего касается цвета, а не списка avoid.\n\n3. Обложка буклета. Предмет: дружелюбный маленький робот на столе. Стиль не указан, выбран flat vector illustration. Свет: тёплая настольная лампа, поэтому палитра янтарная, оранжевая и жёлтая. Запретов нет.\n\n4. Баннер сайта. Предмет: рука-манипулятор держит светящийся шар. Вид крупным планом (close-up). Палитра ровно из двух цветов: чёрный и синий (электрический синий). Стиль не указан, выбран 3D render. Запретов нет.\n\n5. Иллюстрация к статье. Предмет: ряды стеллажей и робот-погрузчик. Стиль: изометрия (isometric 3D render). Палитра: серый и оранжевый. Запретов нет.\n\n[\n\n  {\n\n    \"subject\": \"glowing mechanical robotic hand with intricate joints\",\n\n    \"setting\": \"dark abstract tech background\",\n\n    \"style\": \"3D render\",\n\n    \"lighting\": \"soft inner glow, rim light\",\n\n    \"palette\": [\"blue\", \"amber\"],\n\n    \"composition\": \"centered\",\n\n    \"avoid\": [\"people\", \"text\"]\n\n  },\n\n  {\n\n    \"subject\": \"industrial robotic manipulator arm in strict pose\",\n\n    \"setting\": \"clean minimal factory floor backdrop\",\n\n    \"style\": \"minimal geometric\",\n\n    \"lighting\": \"cold white industrial light\",\n\n    \"palette\": [\"gray\", \"white\", \"black\"],\n\n    \"composition\": \"wide negative space\",\n\n    \"avoid\": []\n\n  },\n\n  {\n\n    \"subject\": \"friendly small cute robot sitting on a desk\",\n\n    \"setting\": \"cozy school classroom table\",\n\n    \"style\": \"flat vector illustration\",\n\n    \"lighting\": \"warm desk lamp glow\",\n\n    \"palette\": [\"amber\", \"orange\", \"yellow\"],\n\n    \"composition\": \"centered\",\n\n    \"avoid\": []\n\n  },\n\n  {\n\n    \"subject\": \"robotic manipulator arm grasping a glowing sphere\",\n\n    \"setting\": \"pure dark background\",\n\n    \"style\": \"3D render\",\n\n    \"lighting\": \"electric glow from sphere\",\n\n    \"palette\": [\"black\", \"blue\"],\n\n    \"composition\": \"close-up\",\n\n    \"avoid\": []\n\n  },\n\n  {\n\n    \"subject\": \"rows of warehouse shelving racks with robotic forklift\",\n\n    \"setting\": \"automated warehouse interior\",\n\n    \"style\": \"isometric 3D render\",\n\n    \"lighting\": \"even soft ambient light\",\n\n    \"palette\": [\"gray\", \"orange\"],\n\n    \"composition\": \"centered\",\n\n    \"avoid\": []\n\n  }\n\n]"
+      ],
+      "attachments": {},
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": false,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false
+        }
+      }
+    },
+    {
+      "id": "b2ff0700",
+      "cell_type": "markdown",
+      "source": [
+        "### Ответ step, повтор 3\n\nКлючевые элементы\n\n1. Предмет: светящаяся механическая рука. Стиль: прямо не указан; для яркого плаката выбран 3D render. Цвета: синий и янтарный. Запреты: без людей и без текста.\n\n2. Предмет: робот-манипулятор. Стиль: строгий индустриальный, поэтому minimal geometric. Цвета: холодные, но без синего, поэтому серый, белый и чёрный. Композиция: много пустого места. Запреты: запрет на синий цвет нельзя указать в avoid, он учтён в палитре и освещении. Текст не запрещён, место под заголовок просто оставлено, поэтому avoid пустой.\n\n3. Предмет: дружелюбный маленький робот на столе. Стиль: прямо не указан; для детского буклета выбран flat vector illustration. Цвета: тёплые, под свет лампы: янтарный, оранжевый, жёлтый. Запреты: нет.\n\n4. Предмет: рука-манипулятор берёт светящийся шар. Стиль: 3D render. Цвета: ровно два, чёрный и синий. Композиция: крупный план. Запреты: нет.\n\n5. Предмет: ряды стеллажей и робот-погрузчик. Стиль: изометрия, isometric 3D render. Цвета: серый и оранжевый. Запреты: нет.\n\n[\n\n  {\n\n    \"subject\": \"glowing mechanical robotic hand\",\n\n    \"setting\": \"dark futuristic robotics festival backdrop\",\n\n    \"style\": \"3D render\",\n\n    \"lighting\": \"glowing neon rim light\",\n\n    \"palette\": [\"blue\", \"amber\"],\n\n    \"composition\": \"centered\",\n\n    \"avoid\": [\"people\", \"text\"]\n\n  },\n\n  {\n\n    \"subject\": \"industrial robotic manipulator arm\",\n\n    \"setting\": \"minimal industrial factory floor\",\n\n    \"style\": \"minimal geometric\",\n\n    \"lighting\": \"cold white diffused light\",\n\n    \"palette\": [\"gray\", \"white\", \"black\"],\n\n    \"composition\": \"wide negative space\",\n\n    \"avoid\": []\n\n  },\n\n  {\n\n    \"subject\": \"friendly small robot sitting on a desk\",\n\n    \"setting\": \"school robotics club classroom\",\n\n    \"style\": \"flat vector illustration\",\n\n    \"lighting\": \"warm desk lamp light\",\n\n    \"palette\": [\"amber\", \"orange\", \"yellow\"],\n\n    \"composition\": \"centered\",\n\n    \"avoid\": []\n\n  },\n\n  {\n\n    \"subject\": \"robotic manipulator arm grasping a glowing sphere\",\n\n    \"setting\": \"dark minimal background\",\n\n    \"style\": \"3D render\",\n\n    \"lighting\": \"electric blue glow\",\n\n    \"palette\": [\"black\", \"blue\"],\n\n    \"composition\": \"close-up\",\n\n    \"avoid\": []\n\n  },\n\n  {\n\n    \"subject\": \"warehouse shelving rows with robotic forklift\",\n\n    \"setting\": \"automated warehouse interior\",\n\n    \"style\": \"isometric 3D render\",\n\n    \"lighting\": \"soft even studio lighting\",\n\n    \"palette\": [\"gray\", \"orange\"],\n\n    \"composition\": \"centered\",\n\n    \"avoid\": []\n\n  }\n\n]"
+      ],
+      "attachments": {},
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": false,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false
+        }
+      }
+    },
+    {
+      "id": "ae1138a3",
+      "cell_type": "markdown",
+      "source": [
+        "## Контрольные вопросы\n1. Пять seed позволяют увидеть разброс; один seed смешивает эффект запроса со случайным исходным шумом.\n2. |Δ|>2s_A сравнивает среднюю разность с разбросом A. Практическая польза сравнивается с заранее заданным допуском; это разные условия, и 2s не является формальным тестом с заданным уровнем ошибки.\n3. При guidance_scale=0 отрицательная ветвь не используется. Слова no people входят в обычное кодирование текста и могут даже привлечь людей вместо удаления.\n4. Рост clip_target означает рост сходства с текстом в CLIP. Если глаз не видит изменения, вывод о визуальном улучшении не обоснован; нужно указать расхождение и ограничение метрики.\n5. clip_subject контролирует сохранение предмета. В данном протоколе падение больше 1 пункта нежелательно, дополнительно проверяется узнаваемость руки.\n6. Допустимо: в этой серии не найдено значимого роста детализации. Недопустимо: такие слова бесполезны для всех моделей и сцен.\n7. K1 - корректность каждого объекта по схеме; K4 - согласованность style и composition между повторами. Разные правильные ответы могут иметь одинаково высокий K1 и низкий K4.\n8. Новый чат убирает влияние предыдущих сообщений, примеров и исправлений. Общие настройки сервиса всё равно остаются возможным скрытым фактором.\n9. Проверять соблюдение неуказанного ограничения некорректно: эксперимент измеряет не качество выполнения поставленной задачи. Все допустимые списки должны быть в запросе.\n10. Три повтора и пять объектов - малая выборка. Попарные сравнения используют одни и те же ответы и потому не независимы; результат нельзя объявлять универсальным рейтингом приёмов.\n11. Если базовая модель неизвестна, записываются сервис, видимый режим, дата и способ определения режима; название модели не придумывается. Здесь: Dia, стандартный чат, без ручного выбора базовой модели.\n"
+      ],
+      "attachments": {},
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": false,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false
+        }
+      }
+    }
+  ]
+}
