@@ -1,0 +1,9 @@
+{
+  "type": "AmusedScheduler",
+  "config": {
+    "mask_token_id": 8255,
+    "masking_schedule": "cosine",
+    "_class_name": "AmusedScheduler",
+    "_diffusers_version": "0.25.0.dev0"
+  }
+}

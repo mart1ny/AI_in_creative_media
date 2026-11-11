@@ -1,0 +1,1 @@
+PASS: source SHA256, 10 PNG, per-seed edge/contrast, five summary metrics. CLIP and elapsed time not independently rerun.

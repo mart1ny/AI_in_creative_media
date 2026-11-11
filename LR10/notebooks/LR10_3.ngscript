@@ -1,0 +1,241 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 5,
+  "metadata": {
+    "kernelspec": {
+      "display_name": "IJulia 1.9.3",
+      "language": "julia",
+      "name": "ijulia-1.9"
+    },
+    "language_info": {
+      "name": "julia",
+      "file_extension": ".jl",
+      "version": "1.9.3"
+    },
+    "engee": {}
+  },
+  "cells": [
+    {
+      "id": "f072c56d",
+      "cell_type": "markdown",
+      "source": [
+        "# ЛР10. Сравнение text-to-image\nВласюк Данил Витальевич, Т26ИИКТ-МИК11. Вариант3.\n# Предварительный протокол ЛР10, вариант 3\n\nA: SD-Turbo, 1 шаг, guidance0, 512x512. B: aMUSEd-256, 12 шагов, guidance10, 256x256. Ревизии из методички, float32 CPU, 4 потока, seed101-105. Один бриф робототехники. CLIP ViT-L/14. Edge и contrast после resize256. Время без загрузки и после прогрева seed0.\n\nH1: aMUSEd уступит SD-Turbo по clip_brief более чем на 1 пункт. H2: clip_text у aMUSEd выше более 1 пункта. H3: B медленнее A хотя бы в 1.5 раза. Для edge/contrast направление не предсказывается; допуск10% среднего A. Для обеих CLIP-метрик допуск1.0. Признак |delta|>2s_A отдельно от практического допуска, не формальный тест.\n\nСлепая оценка: сначала осмотреть только blind_101…105, записать сторону и причину; потом открыть ключ. Оценщик - ИИ-ассистент, выполняющий работу по поручению студента; это не независимая человеческая экспертиза. Пять пар не доказывают превосходства на уровне0.05, даже5:0 даёт p=0.0625. Размер кадра может раскрывать семейство косвенно.\n\n2026-11-11T16:51:08.305849+03:00"
+      ],
+      "attachments": {},
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": true,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false
+        }
+      }
+    },
+    {
+      "id": "3ca7dc3f",
+      "cell_type": "code",
+      "source": [
+        "cd(\"/user/AI_in_creative_media/LR10\")\nprintln(read(\"artifacts/passport.json\",String))"
+      ],
+      "execution_count": 0,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": "{\n  \"started\": \"2026-11-11T13:53:32+0000\",\n  \"python\": \"3.11.11 (main, Mar 17 2025, 21:02:09) [Clang 20.1.0 ]\",\n  \"platform\": \"Linux-6.8.0-117-generic-x86_64-with-glibc2.35\",\n  \"packages\": {\n    \"torch\": \"2.4.1+cpu\",\n    \"diffusers\": \"0.32.2\",\n    \"transformers\": \"4.57.6\",\n    \"numpy\": \"2.1.3\",\n    \"scipy\": \"1.15.2\",\n    \"Pillow\": \"11.1.0\"\n  },\n  \"configs\": {\n    \"turbo\": {\n      \"repo\": \"stabilityai/sd-turbo\",\n      \"revision\": \"b261bac6fd2cf515557d5d0707481eafa0485ec2\",\n      \"steps\": 1,\n      \"guidance\": 0.0,\n      \"size\": 512\n    },\n    \"amused\": {\n      \"repo\": \"amused/amused-256\",\n      \"revision\": \"09b6259bf96dbe6d70a852b70812420fe02df55e\",\n      \"steps\": 12,\n      \"guidance\": 10.0,\n      \"size\": 256\n    }\n  },\n  \"clip\": \"openai/clip-vit-large-patch14\",\n  \"clip_revision\": \"32bd64288804d66eefd0ccbe215aa642df71cc41\",\n  \"prompt\": \"editorial poster concept for a robotics festival, glowing mechanical arm silhouette, deep blue and amber palette, clean composition, no text, no logo, no people\",\n  \"seeds\": [\n    101,\n    102,\n    103,\n    104,\n    105\n  ],\n  \"device\": \"cpu\",\n  \"dtype\": \"float32\",\n  \"threads\": 4,\n  \"source_sha256\": \"0619146f547990ff322c2db1c4fd6c5bd2066431c88fc59a2ff54a139d8eebbe\"\n}\n"
+        }
+      ],
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": false,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false,
+          "outputInfo": {
+            "isExpanded": false,
+            "scrollTop": 0
+          },
+          "maskInfo": {
+            "isMaskVisible": true,
+            "isEditorVisible": true,
+            "isAutoplayActive": false
+          }
+        }
+      }
+    },
+    {
+      "id": "cf38e8d1",
+      "cell_type": "markdown",
+      "source": [
+        "## Выполнение\nСценарий execute_lr10.py выполнен отдельным процессом Engee. Следующая ячейка показывает его фактический журнал; это не повторная генерация. Для нового расчёта: run(`/user/.user_venvs/py3.11/bin/python3 -u execute_lr10.py`). Модели загружаются последовательно, время измеряется после прогрева и до CLIP."
+      ],
+      "attachments": {},
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": true,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false
+        }
+      }
+    },
+    {
+      "id": "62809d2c",
+      "cell_type": "code",
+      "source": [
+        "println(read(\"run.log\",String))\nprintln(read(\"artifacts/summary.json\",String))"
+      ],
+      "execution_count": 0,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": "LOADING turbo\nturbo {'seed': 101, 'clip_brief': 24.45605993270874, 'clip_text': 12.095042318105698, 'edge': 0.04988290548905468, 'contrast': 0.17012024677067744, 'seconds': 27.440864231437445}\nturbo {'seed': 102, 'clip_brief': 26.131674647331238, 'clip_text': 12.814885377883911, 'edge': 0.05112966859054516, 'contrast': 0.1711565072021831, 'seconds': 27.30594713613391}\nturbo {'seed': 103, 'clip_brief': 24.213044345378876, 'clip_text': 13.18628191947937, 'edge': 0.05829639051656915, 'contrast': 0.1617587921010287, 'seconds': 24.410150503739715}\nturbo {'seed': 104, 'clip_brief': 25.529900193214417, 'clip_text': 10.881296545267105, 'edge': 0.049148583121187944, 'contrast': 0.1671944009181931, 'seconds': 24.259974647313356}\nturbo {'seed': 105, 'clip_brief': 25.495797395706177, 'clip_text': 13.008835911750793, 'edge': 0.05499075859047035, 'contrast': 0.2048842073662648, 'seconds': 23.69863590411842}\nLOADING amused\namused {'seed': 101, 'clip_brief': 26.467186212539673, 'clip_text': 15.974749624729156, 'edge': 0.017492823867680644, 'contrast': 0.21742411220120356, 'seconds': 47.97862414829433}\namused {'seed': 102, 'clip_brief': 29.213687777519226, 'clip_text': 14.428326487541199, 'edge': 0.02112148355046035, 'contrast': 0.24136856052065744, 'seconds': 42.32557234540582}\namused {'seed': 103, 'clip_brief': 28.181234002113342, 'clip_text': 14.020617306232452, 'edge': 0.020564243423767104, 'contrast': 0.263294030474654, 'seconds': 50.093046113848686}\namused {'seed': 104, 'clip_brief': 26.41899585723877, 'clip_text': 15.286347270011902, 'edge': 0.023953002385503516, 'contrast': 0.26682909647538056, 'seconds': 47.224264865741134}\namused {'seed': 105, 'clip_brief': 29.09134030342102, 'clip_text': 15.826362371444702, 'edge': 0.018952682737703938, 'contrast': 0.2983893538627373, 'seconds': 38.59888461045921}\nCOMPLETE [[\"clip_brief\", 25.16529530286789, 0.8040295537422786, 27.874488830566406, 2.709193527698517, 3.3695198330569256, true], [\"clip_text\", 12.397268414497375, 0.9434606992989486, 15.107280611991882, 2.710012197494507, 2.872416624781741, true], [\"edge\", 0.052689661261565456, 0.0038594413893861183, 0.02041684719302311, -0.03227281406854235, 8.362042796477253, true], [\"contrast\", 0.17502283087166942, 0.017087309880303346, 0.2574610307069266, 0.08243819983525719, 4.824527699956108, true], [\"seconds\", 25.42311448454857, 1.8006380477963964, 45.244078416749836, 19.820963932201266, 11.007744702750212, true]]\n\n{\n  \"variant\": 3,\n  \"pair\": [\n    \"turbo\",\n    \"amused\"\n  ],\n  \"rows\": [\n    [\n      \"clip_brief\",\n      25.16529530286789,\n      0.8040295537422786,\n      27.874488830566406,\n      2.709193527698517,\n      3.3695198330569256,\n      true\n    ],\n    [\n      \"clip_text\",\n      12.397268414497375,\n      0.9434606992989486,\n      15.107280611991882,\n      2.710012197494507,\n      2.872416624781741,\n      true\n    ],\n    [\n      \"edge\",\n      0.052689661261565456,\n      0.0038594413893861183,\n      0.02041684719302311,\n      -0.03227281406854235,\n      8.362042796477253,\n      true\n    ],\n    [\n      \"contrast\",\n      0.17502283087166942,\n      0.017087309880303346,\n      0.2574610307069266,\n      0.08243819983525719,\n      4.824527699956108,\n      true\n    ],\n    [\n      \"seconds\",\n      25.42311448454857,\n      1.8006380477963964,\n      45.244078416749836,\n      19.820963932201266,\n      11.007744702750212,\n      true\n    ]\n  ]\n}\n"
+        }
+      ],
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": false,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false,
+          "outputInfo": {
+            "isExpanded": false,
+            "scrollTop": 0
+          },
+          "maskInfo": {
+            "isMaskVisible": true,
+            "isEditorVisible": true,
+            "isAutoplayActive": false
+          }
+        }
+      }
+    },
+    {
+      "id": "5c791262",
+      "cell_type": "markdown",
+      "source": [
+        "# Источники и происхождение\n\nМетодика и конфигурации: приложенные МУ ЛР10, приложение А, стр.30-33. ZIP на странице do.skif задания159542 отсутствовал на момент работы; execute_lr10.py - собственная реализация варианта3 по опубликованным функциям, не побитовая копия отсутствующего lab10_lib.py. Добавлены сохранение per-seed JSON, PNG без потерь и паспорт; JPG quality90 и слепые листы соответствуют методичке.\n\nКарточки просмотрены 11.11.2026:\n- https://huggingface.co/stabilityai/sd-turbo — исследовательский артефакт; карточка направляет коммерческое использование на https://stability.ai/license. Условия Stability AI; не следует считать веса общедоступной лицензией без ограничений.\n- https://huggingface.co/amused/amused-256 — OpenRAIL++; маскированные токены, не диффузия.\n- https://huggingface.co/openai/clip-vit-large-patch14 — измерительный CLIP; ограничения и intended use в карточке. Код CLIP: https://github.com/openai/CLIP (MIT).\n\nТочные ревизии закреплены в сценарии и паспорте. Учебные результаты не предполагают разрешение на коммерческую публикацию или распространение весов. Перед внешним использованием проверяются условия конкретной ревизии, ограничения использования, уведомления и права на результат. Веса не входят в комплект.\n"
+      ],
+      "attachments": {},
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": true,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false
+        }
+      }
+    },
+    {
+      "id": "c294788e",
+      "cell_type": "markdown",
+      "source": [
+        "## Итог слепого сравнения\n\nВыбор записан 11.11.2026 после просмотра только blind_101-105, до отображения содержимого ключа; SHA-256 записи сохранён в blind_choice_sha256.txt. Файл ключа был технически скопирован вместе с архивом, но его содержимое оценщику до записи выбора не показывалось.\n\nПосле раскрытия: seed101 - turbo, 102 - turbo, 103 - amused, 104 - turbo, 105 - turbo. Итого SD-Turbo 4, aMUSEd 1. Это наблюдение ИИ-оценщика на пяти парах, а не доказанное превосходство. Двусторонняя биномиальная вероятность для результата не менее крайнего, чем4:1, при p=0.5 равна0.375. Даже5:0 дало бы0.0625>0.05.\n"
+      ],
+      "attachments": {},
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": true,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false
+        }
+      }
+    },
+    {
+      "id": "82370c43",
+      "cell_type": "markdown",
+      "source": [
+        "На seed101 SD-Turbo показывает сложный промышленный манипулятор на тёмно-синем фоне с янтарными деталями. Рука узнаваема и занимает большую часть кадра; вокруг много декоративных элементов, поэтому требование чистой композиции выполнено лишь частично. aMUSEd показывает центральную тёмно-синюю кисть на жёлто-янтарном фоне: силуэт проще и чище, но связь с промышленной роботизированной рукой менее очевидна, детали условные и размытые.\n\nВ серии aMUSEd на seed102/104/105 заметны крупные буквоподобные элементы вопреки no text; на104 вместо руки доминирует гуманоидная фигура. У SD-Turbo на103 тоже доминирует гуманоид, что объясняет выбор aMUSEd именно в этой паре. Ни одно изображение не следует считать чертежом реального устройства. Названия производителей не вводились.\n\naMUSEd получает более высокий clip_brief, но слепой выбор чаще отдаёт предпочтение SD-Turbo. CLIP может оценивать плакатную композицию, цвета и сходство с рукой, не учитывая инженерную правдоподобность. Рост clip_text согласуется с заметными псевдобуквами, но эта проба не является OCR. Более низкая энергия границ aMUSEd согласуется с упрощёнными и размытыми формами; более высокий контраст яркости не равен более качественной детализации.\n"
+      ],
+      "attachments": {},
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": false,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false
+        }
+      }
+    },
+    {
+      "id": "35201f7e",
+      "cell_type": "markdown",
+      "source": [
+        "H1 не подтвердилась: aMUSEd не уступила по clip_brief, а превысила SD-Turbo на2.7092 пункта, выше допуска1.0 и порога2s_A. H2 подтвердилась для данной серии: clip_text вырос на2.7100 пункта, также выше обоих порогов. H3 подтвердилась: среднее время45.244с против25.423с, отношение1.780>1.5, без загрузки и прогрева.\n\nEdge снизился на61.25%, contrast вырос на47.10%; оба изменения превышают допуск10% и2s_A, но сами по себе не означают улучшения дизайна. Все пять метрик превышают эвристический порог2s_A и заданные практические допуски. Классификация ведётся по двум независимым признакам: они могут выполняться одновременно.\n\nДля данного брифа практический выбор - SD-Turbo: она быстрее и выиграла4 из5 слепых пар ИИ-оценки. Это не универсальный рейтинг моделей. Если целью конвейера является именно CLIP-сходство, преимущество aMUSEd по этому показателю следует учитывать отдельно; его цена - большее время и более частые буквоподобные артефакты. Лицензия, визуальный контроль и требования заказчика остаются частью выбора.\n"
+      ],
+      "attachments": {},
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": false,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false
+        }
+      }
+    },
+    {
+      "id": "9ef5b398",
+      "cell_type": "markdown",
+      "source": [
+        "1. Сравниваются конфигурации целиком: веса, планировщик, шаги, guidance, размер. LCM с одним шагом - другой объект сравнения, он может дать худший результат из-за сокращённого режима.\n2. |Δ|>2s_A - сравнение средних с разбросом A, не p-value. При пяти seed небольшое устойчивое различие может не пересечь порог; правило консервативно.\n3. Пространственный масштаб влияет на производные и контраст; resize256 уменьшает смешение размера с метрикой. Интерполяция также влияет на детали и не делает модели полностью сопоставимыми.\n4. Загрузка оценивает сеть и кэш, а не вызов генерации. Прогрев уменьшает влияние первой инициализации вычислений. Время всё равно зависит от нагрузки CPU и относится только к одному сеансу.\n5. CLIP измеряет сходство с текстом, а не эстетику и отсутствие дефектов. Следует сообщить оба результата и расхождение без объявления модели лучшей вообще.\n6. clip_text - сходство с фразой written text and letters. Оно чувствительно к буквоподобной структуре и стилю, не локализует и не распознаёт текст, допускает ложные срабатывания.\n7. Случайный порядок уменьшает позиционное предпочтение; закрытый ключ уменьшает ожидания от названия модели. Знание характерных артефактов и разрешения может частично раскрывать модель.\n8. При равновероятном выборе вероятность двух крайних исходов - 2*(1/2)^5=0.0625>0.05. Даже5:0 недостаточно для отклонения равенства на этом уровне.\n9. Шаг aMUSEd - уточнение маскированных токенов, а не диффузионное удаление шума. Равенство числа шагов не означает равной вычислительной работы. Guidance и размер сохраняют операционный смысл, но их эффект не эквивалентен разным семействам.\n10. Нельзя обобщить: один бриф, пять seed, конкретные конфигурации и CPU-среда. Отдельный фактор архитектуры этим опытом не изолирован.\n11. Проверяются точная ревизия и текст лицензии, разрешённые сценарии, коммерческое использование, запрещённое применение, атрибуция и распространение, применимость условий к результатам. Доступность весов не означает отсутствие ограничений.\n12. Для данного брифа и конвейера можно предпочесть более быструю конфигурацию при приемлемой визуальной оценке и лицензии. Отсутствие эффекта CLIP не доказывает равного качества для других задач.\n"
+      ],
+      "attachments": {},
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": false,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false
+        }
+      }
+    },
+    {
+      "id": "4fff7188",
+      "cell_type": "markdown",
+      "source": [
+        "## Исходный сценарий\n```python\n\"\"\"Вариант 3. Восстановлено по приложению А методички ЛР10; ZIP не предоставлен.\"\"\"\nimport os,time,gc,json,random,sys,platform,hashlib\nfrom pathlib import Path\nimport importlib.metadata as md\nimport numpy as np\nimport torch\nfrom PIL import Image\nfrom scipy import ndimage\nfrom diffusers import DiffusionPipeline\nfrom transformers import CLIPModel,CLIPProcessor\nR=Path(__file__).resolve().parent;O=R/'artifacts';O.mkdir(exist_ok=True)\ntorch.set_num_threads(min(4,torch.get_num_threads()))\nPROMPT='editorial poster concept for a robotics festival, glowing mechanical arm silhouette, deep blue and amber palette, clean composition, no text, no logo, no people'\nCONFIGS={'turbo':dict(repo='stabilityai/sd-turbo',revision='b261bac6fd2cf515557d5d0707481eafa0485ec2',steps=1,guidance=0.,size=512),'amused':dict(repo='amused/amused-256',revision='09b6259bf96dbe6d70a852b70812420fe02df55e',steps=12,guidance=10.,size=256)}\nCLIP_ID='openai/clip-vit-large-patch14';CLIP_REV='32bd64288804d66eefd0ccbe215aa642df71cc41'\nSEEDS=list(range(101,106));METRICS=['clip_brief','clip_text','edge','contrast','seconds']\ndef save(name,x):(O/name).write_text(json.dumps(x,ensure_ascii=False,indent=2))\ndef generate(pipe,c,seed):\n g=torch.Generator('cpu').manual_seed(seed);t=time.perf_counter()\n img=pipe(PROMPT,num_inference_steps=c['steps'],guidance_scale=c['guidance'],height=c['size'],width=c['size'],generator=g).images[0]\n return img,time.perf_counter()-t\n@torch.no_grad()\ndef sims(model,proc,img):\n out=model(**proc(text=[PROMPT,'written text and letters'],images=img,return_tensors='pt',padding=True,truncation=True))\n a=out.image_embeds/out.image_embeds.norm(dim=-1,keepdim=True);b=out.text_embeds/out.text_embeds.norm(dim=-1,keepdim=True)\n return [float(v)*100 for v in (a@b.T)[0]]\ndef main():\n save('passport.json',dict(started=time.strftime('%Y-%m-%dT%H:%M:%S%z'),python=sys.version,platform=platform.platform(),packages={p:md.version(p) for p in ['torch','diffusers','transformers','numpy','scipy','Pillow']},configs=CONFIGS,clip=CLIP_ID,clip_revision=CLIP_REV,prompt=PROMPT,seeds=SEEDS,device='cpu',dtype='float32',threads=torch.get_num_threads(),source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()))\n clip=CLIPModel.from_pretrained(CLIP_ID,revision=CLIP_REV,use_safetensors=True).eval();proc=CLIPProcessor.from_pretrained(CLIP_ID,revision=CLIP_REV);res={}\n for key,c in CONFIGS.items():\n  print('LOADING',key,flush=True)\n  pipe=DiffusionPipeline.from_pretrained(c['repo'],revision=c['revision'],torch_dtype=torch.float32,safety_checker=None,requires_safety_checker=False,use_safetensors=True);pipe.set_progress_bar_config(disable=True)\n  save(key+'_scheduler.json',dict(type=type(pipe.scheduler).__name__,config=dict(pipe.scheduler.config)))\n  generate(pipe,c,0);res[key]=[]\n  for seed in SEEDS:\n   img,seconds=generate(pipe,c,seed);cs=sims(clip,proc,img)\n   x=np.asarray(img.convert('RGB').resize((256,256)),dtype=np.float64)/255;y=.299*x[...,0]+.587*x[...,1]+.114*x[...,2]\n   rec=dict(seed=seed,clip_brief=cs[0],clip_text=cs[1],edge=float(np.hypot(ndimage.sobel(y,axis=0),ndimage.sobel(y,axis=1)).mean()/8),contrast=float(y.std()),seconds=seconds)\n   img.save(O/f'{key}_s{seed}.png');img.save(O/f'{key}_s{seed}.jpg',quality=90);res[key].append(rec);save('per_seed.json',res);print(key,rec,flush=True)\n  del pipe;gc.collect()\n rows=[]\n for m in METRICS:\n  a=np.array([x[m] for x in res['turbo']]);b=np.array([x[m] for x in res['amused']]);d=float(b.mean()-a.mean());s=float(a.std(ddof=1));rows.append([m,float(a.mean()),s,float(b.mean()),d,abs(d)/s,bool(abs(d)>2*s)])\n save('summary.json',dict(variant=3,pair=['turbo','amused'],rows=rows))\n rng=random.Random(3);keymap={}\n for seed in SEEDS:\n  left,right=('turbo','amused') if rng.random()<.5 else ('amused','turbo');keymap[str(seed)]=left\n  sheet=Image.new('RGB',(780,384),'white')\n  for model,x in [(left,0),(right,396)]:sheet.paste(Image.open(O/f'{model}_s{seed}.jpg').convert('RGB').resize((384,384)),(x,0))\n  sheet.save(O/f'blind_{seed}.png')\n save('blind_key.json',keymap);print('COMPLETE',json.dumps(rows),flush=True)\nif __name__=='__main__':main()\n\n```"
+      ],
+      "attachments": {},
+      "metadata": {
+        "name": "Section name",
+        "engee": {
+          "isDisplay": true,
+          "isParagraph": false,
+          "isClosedParagraph": false,
+          "amountHideCellsInside": 0,
+          "codeOutputView": "col",
+          "codeOutputHidden": false
+        }
+      }
+    }
+  ]
+}

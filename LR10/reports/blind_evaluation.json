@@ -1,0 +1,31 @@
+{
+  "evaluator": "AI assistant, not human expertise",
+  "recorded_before_key": "2026-11-11T19:07:55.262317+03:00",
+  "choices": [
+    {
+      "seed": 101,
+      "choice": "left",
+      "reason": "The industrial mechanical arm is clearer on the left; the right has a detached hand shape, although its composition is cleaner."
+    },
+    {
+      "seed": 102,
+      "choice": "right",
+      "reason": "The right shows a recognizable robotic manipulator and avoids the prominent letter-like marks on the left."
+    },
+    {
+      "seed": 103,
+      "choice": "right",
+      "reason": "The right has a central hand silhouette and cleaner composition; the left makes a humanoid robot the main subject."
+    },
+    {
+      "seed": 104,
+      "choice": "right",
+      "reason": "The right has a recognizable industrial arm; the left shows a blurred humanoid and large pseudo-letters."
+    },
+    {
+      "seed": 105,
+      "choice": "right",
+      "reason": "The right has a clearer mechanical arm and appropriate palette; the left is blurred with letter-like marks near the bottom."
+    }
+  ]
+}
