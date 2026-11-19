@@ -1,0 +1,1 @@
+PASS: 10 run records; code hashes; recomputed summary; 10 complete histories; PNG integrity; executed analysis notebook. Training and metrics not independently rerun by verifier.

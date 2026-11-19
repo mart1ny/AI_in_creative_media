@@ -1,0 +1,63 @@
+{
+  "started": "2026-11-19T04:49:34.722953+00:00",
+  "python": "3.11.11 (main, Mar 17 2025, 21:02:09) [Clang 20.1.0 ]",
+  "platform": "Linux-6.8.0-117-generic-x86_64-with-glibc2.35",
+  "torch": "2.4.1+cpu",
+  "numpy": "2.1.3",
+  "threads": 4,
+  "device": "cpu",
+  "variant": 3,
+  "kind": "disc",
+  "A": {
+    "z": 32,
+    "gw": 1.0,
+    "bn": true,
+    "lr_g": 0.0002,
+    "lr_d": 0.0002,
+    "beta1": 0.5,
+    "loss": "nonsat",
+    "steps": 1500,
+    "batch": 64,
+    "n_critic": 1,
+    "smooth": 1.0,
+    "noise": 0.0,
+    "sn": false,
+    "gp": 10.0,
+    "drop": 0.0,
+    "n_train": 4096
+  },
+  "B": {
+    "z": 32,
+    "gw": 1.0,
+    "bn": true,
+    "lr_g": 0.001,
+    "lr_d": 0.001,
+    "beta1": 0.5,
+    "loss": "nonsat",
+    "steps": 1500,
+    "batch": 64,
+    "n_critic": 1,
+    "smooth": 1.0,
+    "noise": 0.0,
+    "sn": false,
+    "gp": 10.0,
+    "drop": 0.0,
+    "n_train": 4096
+  },
+  "seeds": [
+    101,
+    102,
+    103,
+    104,
+    105
+  ],
+  "source_sha256": {
+    "lab07_lib.py": "d84b83a878f55e95289d76a788dc9fa84d3249d0d33aa719d9db8d6792fd2698",
+    "execute_lr11.py": "24b4a2e75976c0d50eec0c40fc125854c240c2f1849af4f5d21e31c9d575fada",
+    "lab11_lib.py": "88b6083ffa28bd26ce2c6f4e9c142babae7398eb89185636aaa3207dfe7f396b",
+    "run_lab.py": "5caef351ca0c333bc2118cc1efaf52d99d36ab1b86e16d5df6f79583ff739722",
+    "demo_gan.py": "f91864ac04208291d274eee14217f5d89291030cbc864eb73b5b0f2467535fe5",
+    "summarize_lab.py": "1b2f632ebfa9e2d8ee81007d7a546f6080605d0dc7375bbf90412525b53ae5a6",
+    "stack_png.py": "b4c2dc77d3f001a26321d6f04373c9463368e1ea7d8d68be491ce56e4e4694bc"
+  }
+}
